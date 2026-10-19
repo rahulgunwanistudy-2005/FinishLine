@@ -1,0 +1,31 @@
+{
+  "checkedAt": "2026-10-19T15:21:07.590Z",
+  "authenticated": true,
+  "toolCount": 66,
+  "plan": "free",
+  "projects": 0,
+  "repositoryConnected": false,
+  "included": {
+    "memory": "512MB RAM",
+    "storage": "1GB SSD",
+    "managedDatabases": 0
+  },
+  "billing": {
+    "costCents": 0,
+    "costLimitCents": 5000,
+    "creditsCents": 0,
+    "autoTopUpEnabled": false
+  },
+  "zeroSpendConstraint": {
+    "hardZeroCapReported": false,
+    "deploymentPerformed": false,
+    "resourceWritesPerformed": false,
+    "decision": "Read-only verification. Do not provision until zero-cost terms and an enforced zero-spend cap are verified."
+  },
+  "capabilities": {
+    "deploymentStatus": true,
+    "readiness": true,
+    "runtimeLogStreaming": false,
+    "runtimeLogRead": true
+  }
+}

@@ -1656,6 +1656,17 @@ function Deploys() {
         </div>
       ) : (
         <>
+          <p role="status">
+            Connected to Deployxa. This page reads your account and runs local
+            accessibility checks; it does not create deployments or paid
+            resources.
+          </p>
+          {data.projects.length === 0 && (
+            <p>
+              No projects were returned by your account. Recorded races remain
+              available on Home.
+            </p>
+          )}
           <label htmlFor="project">Deployxa project</label>
           <select
             id="project"
@@ -1699,8 +1710,11 @@ function Deploys() {
                         ))}
                     </td>
                     <td>
-                      {data.capabilities.includes(
-                        "deployxa_get_deployment_status",
+                      {data.capabilities.some((name) =>
+                        [
+                          "deployxa_get_deployment_status",
+                          "deployxa_get_deployment",
+                        ].includes(name),
                       ) && (
                         <button
                           className="secondary"
@@ -1729,7 +1743,13 @@ function Deploys() {
               </tbody>
             </table>
           </div>
-          <p>Discovered tools: {data.capabilities.join(", ")}</p>
+          <details>
+            <summary>Connection details</summary>
+            <p>
+              {data.capabilities.length} tools discovered. Only read-only tools
+              are enabled for this page.
+            </p>
+          </details>
         </>
       )}
       <div className="deploy-principles">

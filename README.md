@@ -4,7 +4,7 @@
 
 Finish Line drives one real activation journey through six isolated Chromium sessions: mouse, keyboard, virtual screen reader, voice-label matching, 320px reflow and a throttled phone. It replays the observed events as a race, with a frame trail, measured counts and deterministic fix prompts.
 
-**Local preview:** http://127.0.0.1:3000. **Deployxa live URL:** pending credentials and remote verification.
+**Local preview:** http://127.0.0.1:3000. **Deployxa live URL:** pending a verified zero-cost deployment path. The account is connected read-only.
 
 The original and repaired Corner bakery are **controlled fixtures**, not AI-builder outputs. The recorded engine 0.4.0 runs finish **4/6** and **6/6** respectively. Every result has its actual date and browser evidence. No builder rankings, human sessions or manual assistive-technology results are invented.
 
@@ -111,7 +111,9 @@ Explicit `urlIncludes` or `selectorAppears` expectations are stronger than mutat
 
 Source checked: [Deployxa MCP documentation](https://deployxa.com/docs/mcp-server). Actual CLI checked: **v1.0.8**. The discovery document in the brief returned 404. The app uses the documented `https://mcp.deployxa.com/mcp` endpoint and authenticated `tools/list`, including pagination. [Phase 0 evidence](docs/PHASE0.md).
 
-Configure `DEPLOYXA_API_KEY` server-side with read-only scope. Discovery writes actual schemas to `docs/deployxa-tools.json`; no authenticated tools were available during the initial build. Capabilities appear only when discovered. Planned integration tool names are `deployxa_list_projects`, `deployxa_list_deployments`, `deployxa_get_deployment_status`, `deployxa_get_readiness_score`, `deployxa_diagnose_deployment` and `deployxa_rollback_deployment`. The runtime uses each returned input schema rather than assuming argument spelling.
+Configure `DEPLOYXA_API_KEY` server-side with read-only scope. Authenticated discovery returned **66 tools** on 19 October; actual schemas are in `docs/deployxa-tools.json`. The account exposes `deployxa_get_deployment` and `deployxa_get_readiness`, rather than the brief’s status/score names. The client resolves those compatibility names only when an actual tool is discovered, maps its input schema and rejects non-read-only tools on the public connection.
+
+`pnpm check:deployxa` performs only read operations and saves a sanitized account report to `docs/deployxa-check.json`. The verified account is Free, has no projects, reports $0 usage and has auto-top-up disabled. However, it reports a **$50 usage ceiling**, not an enforced $0 cap. No cloud resources were created because the user requires zero spend. The repository provider is not connected. Managed databases and preview deployments are excluded from the free plan. Verify a hard zero-spend limit and free deployment terms before provisioning; do not upgrade, add paid resources or enable top-up. [Current pricing](https://deployxa.com/pricing).
 
 Deploy history lists reported deployments and race links. Race this deploy waits up to 120 seconds for a healthy URL, uses the previous saved journey or an explicitly supplied one, then queues a race. The gate compares against the previous completed race for the same project; only Finish → DNF is a regression. Unknown requires review. Log streaming and automatic attachment of runtime log excerpts have not been implemented.
 

@@ -2,18 +2,32 @@ import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { StreamableHTTPClientTransport } from "@modelcontextprotocol/sdk/client/streamableHttp.js";
 import type { Tool } from "@modelcontextprotocol/sdk/types.js";
 import { writeFile } from "node:fs/promises";
+const toolAliases: Record<string, string[]> = {
+  deployxa_get_deployment_status: ["deployxa_get_deployment"],
+  deployxa_get_readiness_score: ["deployxa_get_readiness"],
+};
 export class Deployxa {
   client?: Client;
   tools: Tool[] = [];
   error = "DEPLOYXA_API_KEY is not configured.";
+  constructor(private readonly allowMutations = false) {}
   async connect(key = process.env.DEPLOYXA_API_KEY, recordDiscovery = true) {
     if (!key) return false;
+    const client = new Client({ name: "finish-line", version: "0.1.0" });
     try {
-      const client = new Client({ name: "finish-line", version: "0.1.0" });
       await client.connect(
         new StreamableHTTPClientTransport(
           new URL("https://mcp.deployxa.com/mcp"),
-          { requestInit: { headers: { Authorization: `Bearer ${key}` } } },
+          {
+            requestInit: { headers: { Authorization: `Bearer ${key}` } },
+            fetch: (url, init) =>
+              fetch(url, {
+                ...init,
+                signal: init?.signal
+                  ? AbortSignal.any([init.signal, AbortSignal.timeout(15000)])
+                  : AbortSignal.timeout(15000),
+              }),
+          },
         ),
         { timeout: 8000 },
       );
@@ -47,17 +61,27 @@ export class Deployxa {
         );
       return true;
     } catch (e) {
+      await client.close().catch(() => {});
       this.error = e instanceof Error ? e.message : "MCP connection failed";
       return false;
     }
   }
   has(name: string) {
-    return this.tools.some((t) => t.name === name);
+    return !!this.tool(name);
+  }
+  private tool(name: string) {
+    return [name, ...(toolAliases[name] ?? [])]
+      .map((candidate) => this.tools.find((t) => t.name === candidate))
+      .find((t) => !!t);
   }
   async call(name: string, values: Record<string, unknown> = {}) {
     if (!this.client || !this.has(name))
       throw new Error(`Deployxa capability unavailable: ${name}`);
-    const tool = this.tools.find((t) => t.name === name)!;
+    const tool = this.tool(name)!;
+    if (!this.allowMutations && tool.annotations?.readOnlyHint !== true)
+      throw new Error(
+        "The public Deployxa connection only permits read-only tools.",
+      );
     const properties = tool.inputSchema.properties ?? {};
     const args: Record<string, unknown> = {};
     for (const key of Object.keys(properties)) {
@@ -75,7 +99,7 @@ export class Deployxa {
         `The discovered ${name} schema requires ${missing.join(", ")}. Configure this integration against its actual schema.`,
       );
     const result = await this.client.callTool(
-      { name, arguments: args },
+      { name: tool.name, arguments: args },
       undefined,
       { timeout: 15000 },
     );

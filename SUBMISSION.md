@@ -47,7 +47,7 @@ The real AI-builder leaderboard is intentionally pending at least three unmodifi
 
 The server includes authenticated, paginated MCP tool discovery, deploy history, healthy-deploy racing, an advisory regression gate, administrator-only sandbox rollback and a CI gate script. Finish Line also exposes `race_url` and `get_race` through its own Streamable HTTP MCP server.
 
-The official [Deployxa documentation](https://deployxa.com/docs/mcp-server) confirms its MCP endpoint and agent integration. Hosting and account-specific tools remain unverified without credentials. Managed Postgres and previews depend on the actual plan. Replace this paragraph only with verified deployment evidence after connecting.
+Authenticated discovery returned 66 tools. Read-only account checks confirm the Free plan, zero projects, $0 usage and disabled auto-top-up. Its API reports a $50 usage ceiling, so no resources were provisioned under the user’s zero-spend constraint. The public client rejects mutating tools and resolves the actual discovered status/readiness names. Hosting remains unverified; managed databases and previews are excluded from Free. Evidence: `docs/deployxa-check.json`, `docs/deployxa-tools.json`. [Deployxa pricing](https://deployxa.com/pricing).
 
 ## Accessibility and limits
 
@@ -75,7 +75,7 @@ TypeScript, React, Vite, Fastify, Playwright/Chromium, CDP accessibility APIs, P
 
 ## Remaining human inputs before submission
 
-- Deployxa account key; sandbox key/project if demonstrating rollback; actual plan capability checks.
+- Verified free deployment terms and an enforced $0 spending cap, then repository connection and hosting verification. No paid upgrade or provisioning is authorized.
 - At least three builder exports and complete transcripts using benchmark/PROMPT.md.
 - Keyboard-only and VoiceOver/NVDA manual passes and per-store agreement rows.
 - Final narrated video, final verified live URL and Devpost upload.

@@ -418,7 +418,7 @@ app.post("/api/deployxa/sandbox/rollback", async (req) => {
     confirm !== process.env.DEPLOYXA_SANDBOX_PROJECT_NAME
   )
     throw new Error("Type the configured sandbox project name to confirm.");
-  const sandbox = new Deployxa();
+  const sandbox = new Deployxa(true);
   if (
     !process.env.DEPLOYXA_SANDBOX_KEY ||
     !(await sandbox.connect(process.env.DEPLOYXA_SANDBOX_KEY, false))
@@ -437,6 +437,7 @@ app.post("/api/deployxa/sandbox/rollback", async (req) => {
     const result = await sandbox.call("deployxa_rollback_deployment", {
       projectId: process.env.DEPLOYXA_SANDBOX_PROJECT_ID,
       deploymentId,
+      confirmed: true,
     });
     app.log.info({
       action: "sandbox_rollback",
