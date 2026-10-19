@@ -61,6 +61,13 @@ try {
     });
     await page.locator(".lane-screenreader").click();
     await page.getByRole("dialog").waitFor();
+    // Audit the settled sheet, not a frame of its entry fade.
+    await page.waitForFunction(() =>
+      document
+        .querySelector("dialog")
+        ?.getAnimations()
+        .every((a) => a.playState === "finished"),
+    );
     const drawer = await new AxeBuilder({ page }).analyze();
     results.push({
       route: "evidence drawer",
