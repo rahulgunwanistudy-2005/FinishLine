@@ -10,11 +10,11 @@ Finish Line drives one real activation journey through six isolated Chromium ses
 
 The original and repaired Corner bakery are **controlled fixtures**, not AI-builder outputs. The recorded engine 0.4.0 runs finish **4/6** and **6/6** respectively. Every result has its actual date and browser evidence. No builder rankings, human sessions or manual assistive-technology results are invented.
 
-![30-second playback of the controlled bakery race, including its measured DNF results](docs/finish-line-demo.gif)
+![45-second captioned capture: the landing page with its data-driven track figure, then the controlled bakery race and its measured DNF results](docs/finish-line-demo.gif)
 
-This silent GIF captures the actual app playing a recorded controlled fixture. Open the app for spoken announcements and captions. The GIF and narrated demo were recorded before the current Apple-style interface redesign; the engine, recorded runs and results they show are unchanged. Current screenshots are in [docs/screenshots](docs/screenshots).
+This silent GIF, with burned-in captions, captures the actual app playing a recorded controlled fixture. Open the app for spoken announcements and captions. Current screenshots are in [docs/screenshots](docs/screenshots).
 
-[Watch the 2:53 narrated demo](docs/finish-line-demo.mp4), with burned-in captions, [separate subtitles](docs/finish-line-demo.srt) and [transcript](docs/DEMO-NARRATION.md). Narration uses the Mac’s offline computer voice. Footage is the actual local app; no human participant or hosted deployment is represented.
+[Watch the 2:43 narrated demo](docs/finish-line-demo.mp4), with burned-in captions, [separate subtitles](docs/finish-line-demo.srt) and [transcript](docs/DEMO-NARRATION.md). Narration uses the Mac’s offline computer voice. Footage is the local production build of the code deployed at https://finishline-race.vercel.app; no human participant is represented.
 
 ## Run locally
 

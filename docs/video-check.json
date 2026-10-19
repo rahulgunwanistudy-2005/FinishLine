@@ -1,14 +1,20 @@
 {
-  "checkedAt": "2026-10-19T15:59:11.062Z",
-  "durationSeconds": 173.027438,
+  "checkedAt": "2026-10-19T18:15:27.890Z",
+  "durationSeconds": 163.224399,
   "syntheticNarration": true,
-  "source": "Actual local app browser capture. Original/repaired/self timelines are recorded measurements; public URL scan is live. No cloud resources created.",
+  "source": "Actual local production-build browser capture. Original/repaired timelines are recorded measurements; public URL scan is live. The same code is hosted on Render free and Vercel Hobby; no paid resources.",
   "scenes": [
+    {
+      "scene": "Landing",
+      "route": "/",
+      "seconds": 19.129342,
+      "narrationSeconds": 18.629342
+    },
     {
       "scene": "The race",
       "route": "/race/35c53947-0d70-4c0c-8abf-7846bf8899ec",
-      "seconds": 32,
-      "narrationSeconds": 21.637324
+      "seconds": 26,
+      "narrationSeconds": 15.269342
     },
     {
       "scene": "The evidence",
@@ -25,7 +31,7 @@
     {
       "scene": "The repair",
       "route": "/race/94b0d51f-4dfb-46a6-bcd5-53c26153b094",
-      "seconds": 32,
+      "seconds": 28,
       "narrationSeconds": 17.701315
     },
     {
@@ -35,21 +41,14 @@
       "narrationSeconds": 18.453333
     },
     {
-      "scene": "Zero spending",
+      "scene": "Deploys and close",
       "route": "/deploys",
-      "seconds": 20,
-      "narrationSeconds": 19.36
-    },
-    {
-      "scene": "Self check and limits",
-      "route": "/race/1a86fcae-b356-46cc-a9f4-ad5eee6ed323",
-      "seconds": 20.932018,
-      "narrationSeconds": 20.432018
+      "seconds": 22,
+      "narrationSeconds": 19.936009
     }
   ],
-  "plannedSceneSeconds": 172.98136,
+  "plannedSceneSeconds": 163.178684,
   "burnedInCaptions": true,
   "separateCaptions": "docs/finish-line-demo.srt",
-  "captionTiming": "Proportional sentence estimates from actual offline narration durations; review before public upload.",
-  "decodedWithoutErrors": true
+  "captionTiming": "Proportional sentence estimates from actual offline narration durations; review before public upload."
 }

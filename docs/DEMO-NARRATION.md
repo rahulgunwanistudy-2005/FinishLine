@@ -1,10 +1,14 @@
 # Demo narration
 
-Computer-generated narration using the Mac's offline voice. Footage is actual local app playback and inspection; browser audio is muted. No human participant or hosted deployment is represented. Caption timings are proportional sentence estimates; review them before public upload.
+Computer-generated narration using the Mac's offline voice. Footage is actual local app playback and inspection; browser audio is muted. No human participant is represented; footage is the local production build of the same code deployed at https://finishline-race.vercel.app. Caption timings are proportional sentence estimates; review them before public upload.
+
+## Landing
+
+Finish Line. Same checkout, six ways through. This demo uses computer generated narration. Six real Chromium browsers race one journey: mouse, keyboard, screen reader, voice control, four hundred percent zoom and a budget phone. The track is drawn from a real recording, and the terminal prints the same results.
 
 ## The race
 
-Finish Line. Same checkout, six ways through. This demo uses computer generated narration. These are actual recorded browser measurements on a controlled bakery fixture, not an AI builder benchmark. Four of six lanes finish. The screen reader and voice lanes stop at real barriers. Counts are measured. The human time clock is an estimate.
+These are actual recorded browser measurements on a controlled bakery fixture, not an AI builder benchmark. Four of six lanes finish. The screen reader and voice lanes stop at real barriers. Counts are measured. The human time clock is an estimate.
 
 ## The evidence
 
@@ -22,10 +26,6 @@ This is the repaired controlled bakery. It follows the same three step journey: 
 
 For an authorized public site, paste its URL and inspect real controls. Select up to three actions in order. Preview can replay earlier selections to reveal the next page or a cart drawer. It requires authorization because those actions can change the target site. This example only inspects example dot com.
 
-## Zero spending
+## Deploys and close
 
-The real Deployxa account is connected in read only mode. Cloud writes, purchases, rollback and AI requests are blocked by the application. No resources have been provisioned. The account's reported fifty dollar usage ceiling does not guarantee zero spending, so hosting remains unverified. No paid upgrade is authorized.
-
-## Self check and limits
-
-Finish Line also races its own Start button. All six lanes finish that one step self check. Automated accessibility checks pass, while human keyboard and screen reader checks remain pending. Original AI builder exports are still required for the real benchmark. This is the working local prototype. Push code. Everyone finishes.
+Finish Line also connects read only to Deployxa. A deploy can trigger a race, and a lane that drops from finish to did not finish flags that deploy. Cloud writes, rollback and AI requests are blocked. Finish Line is live on free hosting at finish line race dot vercel dot app. Push code. Everyone finishes.

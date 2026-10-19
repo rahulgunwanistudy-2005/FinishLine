@@ -12,8 +12,7 @@ const { races } = (await (await fetch(origin + "/api/benchmark")).json()) as {
 };
 const original = races.find((race) => /original/i.test(race.title))!;
 const repaired = races.find((race) => /repaired/i.test(race.title))!;
-const self = races.find((race) => /self-race/i.test(race.title))!;
-assert(original && repaired && self, "Actual retained recordings are required");
+assert(original && repaired, "Actual retained recordings are required");
 const scenes: {
   name: string;
   route: string;
@@ -23,10 +22,34 @@ const scenes: {
   action?: (page: Page) => Promise<void>;
 }[] = [
   {
+    name: "Landing",
+    route: "/",
+    seconds: 18,
+    // Muting scrolls the console into view; film the hero from the top.
+    setup: async (page) => {
+      await page.evaluate(() => window.scrollTo(0, 0));
+      await delay(300);
+    },
+    text: "Finish Line. Same checkout, six ways through. This demo uses computer generated narration. Six real Chromium browsers race one journey: mouse, keyboard, screen reader, voice control, four hundred percent zoom and a budget phone. The track is drawn from a real recording, and the terminal prints the same results.",
+    action: async (page) => {
+      const figure = page.locator(".track-figure");
+      const box = await figure.boundingBox();
+      if (!box) return;
+      await delay(4000);
+      for (let step = 0; step <= 60; step++) {
+        await page.mouse.move(
+          box.x + box.width * (0.15 + 0.7 * (step / 60)),
+          box.y + box.height * (0.45 + 0.2 * Math.sin(step / 6)),
+        );
+        await delay(90);
+      }
+    },
+  },
+  {
     name: "The race",
     route: `/race/${original.id}`,
-    seconds: 32,
-    text: "Finish Line. Same checkout, six ways through. This demo uses computer generated narration. These are actual recorded browser measurements on a controlled bakery fixture, not an AI builder benchmark. Four of six lanes finish. The screen reader and voice lanes stop at real barriers. Counts are measured. The human time clock is an estimate.",
+    seconds: 26,
+    text: "These are actual recorded browser measurements on a controlled bakery fixture, not an AI builder benchmark. Four of six lanes finish. The screen reader and voice lanes stop at real barriers. Counts are measured. The human time clock is an estimate.",
     action: async (page) => {
       await delay(1500);
       await page
@@ -64,7 +87,7 @@ const scenes: {
   {
     name: "The repair",
     route: `/race/${repaired.id}`,
-    seconds: 32,
+    seconds: 28,
     text: "This is the repaired controlled bakery. It follows the same three step journey: add the first product, open the cart, then checkout. The dated rerun finishes all six lanes. Both versions retain their real timelines and screenshots. We do not attribute these hand authored fixtures to any AI builder.",
     action: async (page) => {
       await delay(1000);
@@ -94,21 +117,10 @@ const scenes: {
     },
   },
   {
-    name: "Zero spending",
+    name: "Deploys and close",
     route: "/deploys",
-    seconds: 20,
-    text: "The real Deployxa account is connected in read only mode. Cloud writes, purchases, rollback and AI requests are blocked by the application. No resources have been provisioned. The account's reported fifty dollar usage ceiling does not guarantee zero spending, so hosting remains unverified. No paid upgrade is authorized.",
-  },
-  {
-    name: "Self check and limits",
-    route: `/race/${self.id}`,
-    seconds: 20,
-    text: "Finish Line also races its own Start button. All six lanes finish that one step self check. Automated accessibility checks pass, while human keyboard and screen reader checks remain pending. Original AI builder exports are still required for the real benchmark. This is the working local prototype. Push code. Everyone finishes.",
-    action: async (page) => {
-      await page
-        .getByRole("button", { name: "Start race", exact: true })
-        .click();
-    },
+    seconds: 22,
+    text: "Finish Line also connects read only to Deployxa. A deploy can trigger a race, and a lane that drops from finish to did not finish flags that deploy. Cloud writes, rollback and AI requests are blocked. Finish Line is live on free hosting at finish line race dot vercel dot app. Push code. Everyone finishes.",
   },
 ];
 const browser = await chromium.launch();
@@ -249,7 +261,7 @@ try {
   await writeFile("docs/finish-line-demo.srt", subtitles.trimEnd() + "\n");
   await writeFile(
     "docs/DEMO-NARRATION.md",
-    "# Demo narration\n\nComputer-generated narration using the Mac's offline voice. Footage is actual local app playback and inspection; browser audio is muted. No human participant or hosted deployment is represented. Caption timings are proportional sentence estimates; review them before public upload.\n\n" +
+    "# Demo narration\n\nComputer-generated narration using the Mac's offline voice. Footage is actual local app playback and inspection; browser audio is muted. No human participant is represented; footage is the local production build of the same code deployed at https://finishline-race.vercel.app. Caption timings are proportional sentence estimates; review them before public upload.\n\n" +
       scenes.map((scene) => `## ${scene.name}\n\n${scene.text}\n`).join("\n"),
   );
   await writeFile(
@@ -260,7 +272,7 @@ try {
         durationSeconds: total,
         syntheticNarration: true,
         source:
-          "Actual local app browser capture. Original/repaired/self timelines are recorded measurements; public URL scan is live. No cloud resources created.",
+          "Actual local production-build browser capture. Original/repaired timelines are recorded measurements; public URL scan is live. The same code is hosted on Render free and Vercel Hobby; no paid resources.",
         scenes: evidence,
       },
       null,

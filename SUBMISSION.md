@@ -96,5 +96,5 @@ Use the screenshots in `docs/screenshots/` (home, race results, evidence dialog,
 
 ## Notes for the submitter
 
-- The demo GIF and narrated MP4 in `docs/` were recorded on the previous visual design. The engine and results are identical, but record a fresh screen capture of the live site if time allows.
+- **Demo video:** `docs/finish-line-demo.mp4` (2:43, 1280×1000, burned-in captions, offline computer-generated narration, recorded 19 Oct 2026 on the current interface). Upload it to YouTube or Vimeo for the Devpost video field. Subtitles are in `docs/finish-line-demo.srt`, and the transcript is in `docs/DEMO-NARRATION.md`.
 - The controlled bakery fixtures are hand-authored test pages, not AI-builder output. Don't describe them as anything else.
