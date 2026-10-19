@@ -1,0 +1,76 @@
+{
+  "checkedAt": "2026-10-19T00:04:58.575Z",
+  "results": [
+    {
+      "route": "/",
+      "viewport": 1440,
+      "violations": []
+    },
+    {
+      "route": "/method",
+      "viewport": 1440,
+      "violations": []
+    },
+    {
+      "route": "/deploys",
+      "viewport": 1440,
+      "violations": []
+    },
+    {
+      "route": "/race/94b0d51f-4dfb-46a6-bcd5-53c26153b094",
+      "viewport": 1440,
+      "violations": []
+    },
+    {
+      "route": "evidence drawer",
+      "viewport": 1440,
+      "violations": []
+    },
+    {
+      "check": "clipboard and dialog focus",
+      "fixPromptCopied": true,
+      "raceLinkCopied": true,
+      "focusReturned": true
+    },
+    {
+      "route": "/",
+      "viewport": 390,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "route": "/method",
+      "viewport": 390,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "route": "/deploys",
+      "viewport": 390,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "route": "/",
+      "viewport": 320,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "route": "/method",
+      "viewport": 320,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "route": "/deploys",
+      "viewport": 320,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "check": "browser errors",
+      "errors": []
+    }
+  ]
+}

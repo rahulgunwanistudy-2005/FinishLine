@@ -1,0 +1,36 @@
+{
+  "journey": [
+    {
+      "label": "Add to cart",
+      "target": {
+        "css": "#target"
+      }
+    }
+  ],
+  "expected": {
+    "mouse": {
+      "status": "finished",
+      "reasonCode": null
+    },
+    "keyboard": {
+      "status": "dnf",
+      "reasonCode": "KB_TRAP"
+    },
+    "screenreader": {
+      "status": "dnf",
+      "reasonCode": "SR_UNREACHABLE"
+    },
+    "voice": {
+      "status": "finished",
+      "reasonCode": null
+    },
+    "zoom": {
+      "status": "finished",
+      "reasonCode": null
+    },
+    "budget": {
+      "status": "finished",
+      "reasonCode": null
+    }
+  }
+}

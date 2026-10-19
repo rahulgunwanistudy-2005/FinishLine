@@ -1,0 +1,10 @@
+FROM mcr.microsoft.com/playwright:v1.56.1-noble
+ENV NODE_ENV=production HOST=0.0.0.0 PORT=3000
+WORKDIR /app
+RUN npm install -g pnpm@11.22.0
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+RUN CI=true pnpm install --frozen-lockfile --prod=false
+COPY . .
+RUN pnpm build
+EXPOSE 3000
+CMD ["pnpm", "start"]

@@ -1,0 +1,1078 @@
+{
+  "checkedAt": "2026-10-19T00:03:59.787Z",
+  "engineVersion": "0.4.0",
+  "total": 60,
+  "passed": 60,
+  "rows": [
+    {
+      "fixture": "cookie-banner",
+      "cells": [
+        {
+          "lane": "mouse",
+          "pass": true,
+          "expected": {
+            "status": "finished",
+            "reasonCode": null
+          },
+          "actual": {
+            "status": "finished",
+            "reasonCode": null,
+            "cost": {
+              "unit": "clicks",
+              "value": 1
+            }
+          },
+          "detail": "Journey completed"
+        },
+        {
+          "lane": "keyboard",
+          "pass": true,
+          "expected": {
+            "status": "dnf",
+            "reasonCode": "KB_FOCUS_HIDDEN"
+          },
+          "actual": {
+            "status": "dnf",
+            "reasonCode": "KB_FOCUS_HIDDEN",
+            "cost": {
+              "unit": "keys",
+              "value": 1
+            }
+          },
+          "detail": "“Add to cart” is covered by Cookie banner when it receives focus."
+        },
+        {
+          "lane": "screenreader",
+          "pass": true,
+          "expected": {
+            "status": "dnf",
+            "reasonCode": "KB_FOCUS_HIDDEN"
+          },
+          "actual": {
+            "status": "dnf",
+            "reasonCode": "KB_FOCUS_HIDDEN",
+            "cost": {
+              "unit": "announcements",
+              "value": 1
+            }
+          },
+          "detail": "“Add to cart” is covered by Cookie banner when it receives focus."
+        },
+        {
+          "lane": "voice",
+          "pass": true,
+          "expected": {
+            "status": "finished",
+            "reasonCode": null
+          },
+          "actual": {
+            "status": "finished",
+            "reasonCode": null,
+            "cost": {
+              "unit": "commands",
+              "value": 1
+            }
+          },
+          "detail": "Journey completed"
+        },
+        {
+          "lane": "zoom",
+          "pass": true,
+          "expected": {
+            "status": "finished",
+            "reasonCode": null
+          },
+          "actual": {
+            "status": "finished",
+            "reasonCode": null,
+            "cost": {
+              "unit": "screens",
+              "value": 0.81
+            }
+          },
+          "detail": "Journey completed"
+        },
+        {
+          "lane": "budget",
+          "pass": true,
+          "expected": {
+            "status": "finished",
+            "reasonCode": null
+          },
+          "actual": {
+            "status": "finished",
+            "reasonCode": null,
+            "cost": {
+              "unit": "seconds",
+              "value": 1.06
+            }
+          },
+          "detail": "Journey completed"
+        }
+      ]
+    },
+    {
+      "fixture": "div-button",
+      "cells": [
+        {
+          "lane": "mouse",
+          "pass": true,
+          "expected": {
+            "status": "finished",
+            "reasonCode": null
+          },
+          "actual": {
+            "status": "finished",
+            "reasonCode": null,
+            "cost": {
+              "unit": "clicks",
+              "value": 1
+            }
+          },
+          "detail": "Journey completed"
+        },
+        {
+          "lane": "keyboard",
+          "pass": true,
+          "expected": {
+            "status": "dnf",
+            "reasonCode": "KB_UNREACHABLE"
+          },
+          "actual": {
+            "status": "dnf",
+            "reasonCode": "KB_UNREACHABLE",
+            "cost": {
+              "unit": "keys",
+              "value": 4
+            }
+          },
+          "detail": "“Add to cart” never receives keyboard focus. It is a clickable div outside the tab order."
+        },
+        {
+          "lane": "screenreader",
+          "pass": true,
+          "expected": {
+            "status": "dnf",
+            "reasonCode": "SR_UNREACHABLE"
+          },
+          "actual": {
+            "status": "dnf",
+            "reasonCode": "SR_UNREACHABLE",
+            "cost": {
+              "unit": "announcements",
+              "value": 2
+            }
+          },
+          "detail": "“Add to cart” never receives keyboard focus. It is a clickable div outside the tab order."
+        },
+        {
+          "lane": "voice",
+          "pass": true,
+          "expected": {
+            "status": "dnf",
+            "reasonCode": "VOICE_NO_MATCH"
+          },
+          "actual": {
+            "status": "dnf",
+            "reasonCode": "VOICE_NO_MATCH",
+            "cost": {
+              "unit": "commands",
+              "value": 1
+            }
+          },
+          "detail": "The command “click Add to cart” matched no interactive control. This control’s accessible name is “(empty)”."
+        },
+        {
+          "lane": "zoom",
+          "pass": true,
+          "expected": {
+            "status": "finished",
+            "reasonCode": null
+          },
+          "actual": {
+            "status": "finished",
+            "reasonCode": null,
+            "cost": {
+              "unit": "screens",
+              "value": 0
+            }
+          },
+          "detail": "Journey completed"
+        },
+        {
+          "lane": "budget",
+          "pass": true,
+          "expected": {
+            "status": "finished",
+            "reasonCode": null
+          },
+          "actual": {
+            "status": "finished",
+            "reasonCode": null,
+            "cost": {
+              "unit": "seconds",
+              "value": 1.1
+            }
+          },
+          "detail": "Journey completed"
+        }
+      ]
+    },
+    {
+      "fixture": "enter-does-nothing",
+      "cells": [
+        {
+          "lane": "mouse",
+          "pass": true,
+          "expected": {
+            "status": "finished",
+            "reasonCode": null
+          },
+          "actual": {
+            "status": "finished",
+            "reasonCode": null,
+            "cost": {
+              "unit": "clicks",
+              "value": 1
+            }
+          },
+          "detail": "Journey completed"
+        },
+        {
+          "lane": "keyboard",
+          "pass": true,
+          "expected": {
+            "status": "dnf",
+            "reasonCode": "KB_NO_ACTIVATION"
+          },
+          "actual": {
+            "status": "dnf",
+            "reasonCode": "KB_NO_ACTIVATION",
+            "cost": {
+              "unit": "keys",
+              "value": 3
+            }
+          },
+          "detail": "“Add to cart” receives focus, but keyboard activation produces no observable effect."
+        },
+        {
+          "lane": "screenreader",
+          "pass": true,
+          "expected": {
+            "status": "dnf",
+            "reasonCode": "KB_NO_ACTIVATION"
+          },
+          "actual": {
+            "status": "dnf",
+            "reasonCode": "KB_NO_ACTIVATION",
+            "cost": {
+              "unit": "announcements",
+              "value": 1
+            }
+          },
+          "detail": "“Add to cart” receives focus, but keyboard activation produces no observable effect."
+        },
+        {
+          "lane": "voice",
+          "pass": true,
+          "expected": {
+            "status": "finished",
+            "reasonCode": null
+          },
+          "actual": {
+            "status": "finished",
+            "reasonCode": null,
+            "cost": {
+              "unit": "commands",
+              "value": 1
+            }
+          },
+          "detail": "Journey completed"
+        },
+        {
+          "lane": "zoom",
+          "pass": true,
+          "expected": {
+            "status": "finished",
+            "reasonCode": null
+          },
+          "actual": {
+            "status": "finished",
+            "reasonCode": null,
+            "cost": {
+              "unit": "screens",
+              "value": 0
+            }
+          },
+          "detail": "Journey completed"
+        },
+        {
+          "lane": "budget",
+          "pass": true,
+          "expected": {
+            "status": "finished",
+            "reasonCode": null
+          },
+          "actual": {
+            "status": "finished",
+            "reasonCode": null,
+            "cost": {
+              "unit": "seconds",
+              "value": 1.01
+            }
+          },
+          "detail": "Journey completed"
+        }
+      ]
+    },
+    {
+      "fixture": "focus-trap",
+      "cells": [
+        {
+          "lane": "mouse",
+          "pass": true,
+          "expected": {
+            "status": "finished",
+            "reasonCode": null
+          },
+          "actual": {
+            "status": "finished",
+            "reasonCode": null,
+            "cost": {
+              "unit": "clicks",
+              "value": 1
+            }
+          },
+          "detail": "Journey completed"
+        },
+        {
+          "lane": "keyboard",
+          "pass": true,
+          "expected": {
+            "status": "dnf",
+            "reasonCode": "KB_TRAP"
+          },
+          "actual": {
+            "status": "dnf",
+            "reasonCode": "KB_TRAP",
+            "cost": {
+              "unit": "keys",
+              "value": 41
+            }
+          },
+          "detail": "Focus repeats inside 2 controls, even after Escape. “Add to cart” cannot be reached."
+        },
+        {
+          "lane": "screenreader",
+          "pass": true,
+          "expected": {
+            "status": "dnf",
+            "reasonCode": "SR_UNREACHABLE"
+          },
+          "actual": {
+            "status": "dnf",
+            "reasonCode": "SR_UNREACHABLE",
+            "cost": {
+              "unit": "announcements",
+              "value": 40
+            }
+          },
+          "detail": "Focus repeats inside 2 controls, even after Escape. “Add to cart” cannot be reached."
+        },
+        {
+          "lane": "voice",
+          "pass": true,
+          "expected": {
+            "status": "finished",
+            "reasonCode": null
+          },
+          "actual": {
+            "status": "finished",
+            "reasonCode": null,
+            "cost": {
+              "unit": "commands",
+              "value": 1
+            }
+          },
+          "detail": "Journey completed"
+        },
+        {
+          "lane": "zoom",
+          "pass": true,
+          "expected": {
+            "status": "finished",
+            "reasonCode": null
+          },
+          "actual": {
+            "status": "finished",
+            "reasonCode": null,
+            "cost": {
+              "unit": "screens",
+              "value": 0
+            }
+          },
+          "detail": "Journey completed"
+        },
+        {
+          "lane": "budget",
+          "pass": true,
+          "expected": {
+            "status": "finished",
+            "reasonCode": null
+          },
+          "actual": {
+            "status": "finished",
+            "reasonCode": null,
+            "cost": {
+              "unit": "seconds",
+              "value": 1.06
+            }
+          },
+          "detail": "Journey completed"
+        }
+      ]
+    },
+    {
+      "fixture": "good-button",
+      "cells": [
+        {
+          "lane": "mouse",
+          "pass": true,
+          "expected": {
+            "status": "finished",
+            "reasonCode": null
+          },
+          "actual": {
+            "status": "finished",
+            "reasonCode": null,
+            "cost": {
+              "unit": "clicks",
+              "value": 1
+            }
+          },
+          "detail": "Journey completed"
+        },
+        {
+          "lane": "keyboard",
+          "pass": true,
+          "expected": {
+            "status": "finished",
+            "reasonCode": null
+          },
+          "actual": {
+            "status": "finished",
+            "reasonCode": null,
+            "cost": {
+              "unit": "keys",
+              "value": 2
+            }
+          },
+          "detail": "Journey completed"
+        },
+        {
+          "lane": "screenreader",
+          "pass": true,
+          "expected": {
+            "status": "finished",
+            "reasonCode": null
+          },
+          "actual": {
+            "status": "finished",
+            "reasonCode": null,
+            "cost": {
+              "unit": "announcements",
+              "value": 1
+            }
+          },
+          "detail": "Journey completed"
+        },
+        {
+          "lane": "voice",
+          "pass": true,
+          "expected": {
+            "status": "finished",
+            "reasonCode": null
+          },
+          "actual": {
+            "status": "finished",
+            "reasonCode": null,
+            "cost": {
+              "unit": "commands",
+              "value": 1
+            }
+          },
+          "detail": "Journey completed"
+        },
+        {
+          "lane": "zoom",
+          "pass": true,
+          "expected": {
+            "status": "finished",
+            "reasonCode": null
+          },
+          "actual": {
+            "status": "finished",
+            "reasonCode": null,
+            "cost": {
+              "unit": "screens",
+              "value": 0
+            }
+          },
+          "detail": "Journey completed"
+        },
+        {
+          "lane": "budget",
+          "pass": true,
+          "expected": {
+            "status": "finished",
+            "reasonCode": null
+          },
+          "actual": {
+            "status": "finished",
+            "reasonCode": null,
+            "cost": {
+              "unit": "seconds",
+              "value": 1.11
+            }
+          },
+          "detail": "Journey completed"
+        }
+      ]
+    },
+    {
+      "fixture": "icon-button",
+      "cells": [
+        {
+          "lane": "mouse",
+          "pass": true,
+          "expected": {
+            "status": "finished",
+            "reasonCode": null
+          },
+          "actual": {
+            "status": "finished",
+            "reasonCode": null,
+            "cost": {
+              "unit": "clicks",
+              "value": 1
+            }
+          },
+          "detail": "Journey completed"
+        },
+        {
+          "lane": "keyboard",
+          "pass": true,
+          "expected": {
+            "status": "finished",
+            "reasonCode": null
+          },
+          "actual": {
+            "status": "finished",
+            "reasonCode": null,
+            "cost": {
+              "unit": "keys",
+              "value": 2
+            }
+          },
+          "detail": "Journey completed"
+        },
+        {
+          "lane": "screenreader",
+          "pass": true,
+          "expected": {
+            "status": "dnf",
+            "reasonCode": "SR_NO_NAME"
+          },
+          "actual": {
+            "status": "dnf",
+            "reasonCode": "SR_NO_NAME",
+            "cost": {
+              "unit": "announcements",
+              "value": 1
+            }
+          },
+          "detail": "Reached “Add to cart”, but it was announced only as “button”. The control has no usable name."
+        },
+        {
+          "lane": "voice",
+          "pass": true,
+          "expected": {
+            "status": "finished",
+            "reasonCode": null
+          },
+          "actual": {
+            "status": "finished",
+            "reasonCode": null,
+            "cost": {
+              "unit": "commands",
+              "value": 2
+            }
+          },
+          "detail": "Journey completed"
+        },
+        {
+          "lane": "zoom",
+          "pass": true,
+          "expected": {
+            "status": "finished",
+            "reasonCode": null
+          },
+          "actual": {
+            "status": "finished",
+            "reasonCode": null,
+            "cost": {
+              "unit": "screens",
+              "value": 0
+            }
+          },
+          "detail": "Journey completed"
+        },
+        {
+          "lane": "budget",
+          "pass": true,
+          "expected": {
+            "status": "finished",
+            "reasonCode": null
+          },
+          "actual": {
+            "status": "finished",
+            "reasonCode": null,
+            "cost": {
+              "unit": "seconds",
+              "value": 1.07
+            }
+          },
+          "detail": "Journey completed"
+        }
+      ]
+    },
+    {
+      "fixture": "label-mismatch",
+      "cells": [
+        {
+          "lane": "mouse",
+          "pass": true,
+          "expected": {
+            "status": "finished",
+            "reasonCode": null
+          },
+          "actual": {
+            "status": "finished",
+            "reasonCode": null,
+            "cost": {
+              "unit": "clicks",
+              "value": 1
+            }
+          },
+          "detail": "Journey completed"
+        },
+        {
+          "lane": "keyboard",
+          "pass": true,
+          "expected": {
+            "status": "finished",
+            "reasonCode": null
+          },
+          "actual": {
+            "status": "finished",
+            "reasonCode": null,
+            "cost": {
+              "unit": "keys",
+              "value": 2
+            }
+          },
+          "detail": "Journey completed"
+        },
+        {
+          "lane": "screenreader",
+          "pass": true,
+          "expected": {
+            "status": "finished",
+            "reasonCode": null
+          },
+          "actual": {
+            "status": "finished",
+            "reasonCode": null,
+            "cost": {
+              "unit": "announcements",
+              "value": 1
+            }
+          },
+          "detail": "Journey completed"
+        },
+        {
+          "lane": "voice",
+          "pass": true,
+          "expected": {
+            "status": "dnf",
+            "reasonCode": "VOICE_NO_MATCH"
+          },
+          "actual": {
+            "status": "dnf",
+            "reasonCode": "VOICE_NO_MATCH",
+            "cost": {
+              "unit": "commands",
+              "value": 1
+            }
+          },
+          "detail": "The command “click Add to cart” matched no interactive control. This control’s accessible name is “Submit item”."
+        },
+        {
+          "lane": "zoom",
+          "pass": true,
+          "expected": {
+            "status": "finished",
+            "reasonCode": null
+          },
+          "actual": {
+            "status": "finished",
+            "reasonCode": null,
+            "cost": {
+              "unit": "screens",
+              "value": 0
+            }
+          },
+          "detail": "Journey completed"
+        },
+        {
+          "lane": "budget",
+          "pass": true,
+          "expected": {
+            "status": "finished",
+            "reasonCode": null
+          },
+          "actual": {
+            "status": "finished",
+            "reasonCode": null,
+            "cost": {
+              "unit": "seconds",
+              "value": 1.12
+            }
+          },
+          "detail": "Journey completed"
+        }
+      ]
+    },
+    {
+      "fixture": "many-same-labels",
+      "cells": [
+        {
+          "lane": "mouse",
+          "pass": true,
+          "expected": {
+            "status": "finished",
+            "reasonCode": null
+          },
+          "actual": {
+            "status": "finished",
+            "reasonCode": null,
+            "cost": {
+              "unit": "clicks",
+              "value": 1
+            }
+          },
+          "detail": "Journey completed"
+        },
+        {
+          "lane": "keyboard",
+          "pass": true,
+          "expected": {
+            "status": "finished",
+            "reasonCode": null
+          },
+          "actual": {
+            "status": "finished",
+            "reasonCode": null,
+            "cost": {
+              "unit": "keys",
+              "value": 2
+            }
+          },
+          "detail": "Journey completed"
+        },
+        {
+          "lane": "screenreader",
+          "pass": true,
+          "expected": {
+            "status": "finished",
+            "reasonCode": null
+          },
+          "actual": {
+            "status": "finished",
+            "reasonCode": null,
+            "cost": {
+              "unit": "announcements",
+              "value": 1
+            }
+          },
+          "detail": "Journey completed"
+        },
+        {
+          "lane": "voice",
+          "pass": true,
+          "expected": {
+            "status": "finished",
+            "reasonCode": null
+          },
+          "actual": {
+            "status": "finished",
+            "reasonCode": null,
+            "cost": {
+              "unit": "commands",
+              "value": 3
+            }
+          },
+          "detail": "Journey completed"
+        },
+        {
+          "lane": "zoom",
+          "pass": true,
+          "expected": {
+            "status": "finished",
+            "reasonCode": null
+          },
+          "actual": {
+            "status": "finished",
+            "reasonCode": null,
+            "cost": {
+              "unit": "screens",
+              "value": 0
+            }
+          },
+          "detail": "Journey completed"
+        },
+        {
+          "lane": "budget",
+          "pass": true,
+          "expected": {
+            "status": "finished",
+            "reasonCode": null
+          },
+          "actual": {
+            "status": "finished",
+            "reasonCode": null,
+            "cost": {
+              "unit": "seconds",
+              "value": 1.02
+            }
+          },
+          "detail": "Journey completed"
+        }
+      ]
+    },
+    {
+      "fixture": "slow-button",
+      "cells": [
+        {
+          "lane": "mouse",
+          "pass": true,
+          "expected": {
+            "status": "finished",
+            "reasonCode": null
+          },
+          "actual": {
+            "status": "finished",
+            "reasonCode": null,
+            "cost": {
+              "unit": "clicks",
+              "value": 1
+            }
+          },
+          "detail": "Journey completed"
+        },
+        {
+          "lane": "keyboard",
+          "pass": true,
+          "expected": {
+            "status": "finished",
+            "reasonCode": null
+          },
+          "actual": {
+            "status": "finished",
+            "reasonCode": null,
+            "cost": {
+              "unit": "keys",
+              "value": 2
+            }
+          },
+          "detail": "Journey completed"
+        },
+        {
+          "lane": "screenreader",
+          "pass": true,
+          "expected": {
+            "status": "finished",
+            "reasonCode": null
+          },
+          "actual": {
+            "status": "finished",
+            "reasonCode": null,
+            "cost": {
+              "unit": "announcements",
+              "value": 1
+            }
+          },
+          "detail": "Journey completed"
+        },
+        {
+          "lane": "voice",
+          "pass": true,
+          "expected": {
+            "status": "finished",
+            "reasonCode": null
+          },
+          "actual": {
+            "status": "finished",
+            "reasonCode": null,
+            "cost": {
+              "unit": "commands",
+              "value": 1
+            }
+          },
+          "detail": "Journey completed"
+        },
+        {
+          "lane": "zoom",
+          "pass": true,
+          "expected": {
+            "status": "finished",
+            "reasonCode": null
+          },
+          "actual": {
+            "status": "finished",
+            "reasonCode": null,
+            "cost": {
+              "unit": "screens",
+              "value": 0
+            }
+          },
+          "detail": "Journey completed"
+        },
+        {
+          "lane": "budget",
+          "pass": true,
+          "expected": {
+            "status": "finished",
+            "reasonCode": null
+          },
+          "actual": {
+            "status": "finished",
+            "reasonCode": null,
+            "cost": {
+              "unit": "seconds",
+              "value": 2.93
+            }
+          },
+          "detail": "Journey completed"
+        }
+      ]
+    },
+    {
+      "fixture": "wide-table",
+      "cells": [
+        {
+          "lane": "mouse",
+          "pass": true,
+          "expected": {
+            "status": "finished",
+            "reasonCode": null
+          },
+          "actual": {
+            "status": "finished",
+            "reasonCode": null,
+            "cost": {
+              "unit": "clicks",
+              "value": 1
+            }
+          },
+          "detail": "Journey completed"
+        },
+        {
+          "lane": "keyboard",
+          "pass": true,
+          "expected": {
+            "status": "finished",
+            "reasonCode": null
+          },
+          "actual": {
+            "status": "finished",
+            "reasonCode": null,
+            "cost": {
+              "unit": "keys",
+              "value": 2
+            }
+          },
+          "detail": "Journey completed"
+        },
+        {
+          "lane": "screenreader",
+          "pass": true,
+          "expected": {
+            "status": "finished",
+            "reasonCode": null
+          },
+          "actual": {
+            "status": "finished",
+            "reasonCode": null,
+            "cost": {
+              "unit": "announcements",
+              "value": 1
+            }
+          },
+          "detail": "Journey completed"
+        },
+        {
+          "lane": "voice",
+          "pass": true,
+          "expected": {
+            "status": "finished",
+            "reasonCode": null
+          },
+          "actual": {
+            "status": "finished",
+            "reasonCode": null,
+            "cost": {
+              "unit": "commands",
+              "value": 1
+            }
+          },
+          "detail": "Journey completed"
+        },
+        {
+          "lane": "zoom",
+          "pass": true,
+          "expected": {
+            "status": "dnf",
+            "reasonCode": "ZOOM_HSCROLL"
+          },
+          "actual": {
+            "status": "dnf",
+            "reasonCode": "ZOOM_HSCROLL",
+            "cost": {
+              "unit": "screens",
+              "value": 0
+            }
+          },
+          "detail": "“Add to cart” is outside the 320 CSS pixel viewport and requires horizontal scrolling."
+        },
+        {
+          "lane": "budget",
+          "pass": true,
+          "expected": {
+            "status": "finished",
+            "reasonCode": null
+          },
+          "actual": {
+            "status": "finished",
+            "reasonCode": null,
+            "cost": {
+              "unit": "seconds",
+              "value": 1.14
+            }
+          },
+          "detail": "Journey completed"
+        }
+      ]
+    }
+  ]
+}

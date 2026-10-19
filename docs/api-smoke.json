@@ -1,0 +1,79 @@
+{
+  "checkedAt": "2026-10-18T23:38:49.134Z",
+  "http://127.0.0.1": 400,
+  "file:///etc/passwd": 400,
+  "http://169.254.169.254/latest/meta-data": 400,
+  "scan": {
+    "width": 1280,
+    "height": 800,
+    "elements": [
+      {
+        "number": 1,
+        "label": "Learn more",
+        "target": {
+          "css": "body > a:nth-of-type(1)",
+          "role": "link",
+          "name": "Learn more"
+        },
+        "box": {
+          "x": 599,
+          "y": 740.03125,
+          "w": 82,
+          "h": 18
+        }
+      }
+    ]
+  },
+  "idempotency": true,
+  "sse": {
+    "progressEvents": 20,
+    "done": true
+  },
+  "publicRace": {
+    "id": "5718fdf1-4a5d-42cc-9417-c171db0a8247",
+    "status": "done",
+    "results": [
+      {
+        "lane": "mouse",
+        "status": "finished",
+        "reason": null,
+        "detail": "Journey completed"
+      },
+      {
+        "lane": "keyboard",
+        "status": "finished",
+        "reason": null,
+        "detail": "Journey completed"
+      },
+      {
+        "lane": "screenreader",
+        "status": "finished",
+        "reason": null,
+        "detail": "Journey completed"
+      },
+      {
+        "lane": "voice",
+        "status": "finished",
+        "reason": null,
+        "detail": "Journey completed"
+      },
+      {
+        "lane": "zoom",
+        "status": "finished",
+        "reason": null,
+        "detail": "Journey completed"
+      },
+      {
+        "lane": "budget",
+        "status": "finished",
+        "reason": null,
+        "detail": "Journey completed"
+      }
+    ]
+  },
+  "mcpTools": [
+    "race_url",
+    "get_race"
+  ],
+  "mcpGetRace": true
+}

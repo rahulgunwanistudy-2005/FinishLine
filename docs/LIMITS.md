@@ -1,0 +1,17 @@
+# Limits and current status
+
+- Chromium-only, one to three activation steps. No form filling, credentials, CAPTCHA, cross-origin frame discovery, closed shadow DOM or menu discovery. Selecting controls exposed only after earlier steps is not yet supported by the screenshot picker; explicit API journeys can target them.
+- Virtual screen reader is Tab-mode accessibility-tree evidence. It is not an actual assistive-technology session. Voice is label matching, not speech recognition.
+- The reflow lane is a 320-pixel viewport test. The phone is throttled Chromium, not real mobile hardware. Two-frame stability is a heuristic.
+- Scans inspect the first 150 candidate controls. Voice pages with more than 300 candidates produce unknown when their name-resolution budget is exceeded.
+- Names that look generic or like image files are flagged using a deterministic heuristic; misses and false positives are possible.
+- A mouse failure invalidates the journey. Underlying diagnostic observations are still retained; they do not justify a valid accessibility comparison.
+- 45 seconds per lane, six parallel contexts per race, global concurrency two, queue capped at 20. Timeouts and page errors are unknown. The effective browser budget is bounded by the lane cap; queue wait is separate.
+- No production retention policy or authentication for public race evidence. Do not run URLs containing secrets or private customer data. No sessions or passwords are accepted.
+- URL length and journey size are validated. Outbound HTTP(S) resolves DNS, rejects non-public ranges, and pins sockets to checked addresses through a local authenticated proxy. Each request and redirect is checked; WebSockets, downloads, popups and service workers are blocked. Production egress isolation remains defense in depth.
+- Postgres schema and adapter are implemented but need a real DATABASE_URL verification. Without it, durable local JSON/JPEG files are used. Local storage requires a persistent volume in hosted deployments.
+- Deployxa tools are discovered at runtime. No API key was available during the initial build, so hosted Chromium, managed Postgres, previews, readiness scores, deploy triggers and rollback remain unverified. No platform functionality is claimed solely because a tool name appears in the brief.
+- The deployed artifact uses a version-pinned official Playwright image matching the browser package, rather than an unpinned “latest” image. Remote deployment remains pending credentials.
+- Original/repaired Corner bakery are hand-authored controlled fixtures, never AI-builder outputs. At least three real exports and complete transcripts are still required for the hackathon benchmark.
+- Manual keyboard and VoiceOver/NVDA agreement, optional consenting-user participation, Lighthouse checks, and submission assets must each be reported only after actually performed. See A11Y.md for current evidence.
+- Rollback requires SANDBOX_ADMIN_TOKEN, a separate scoped key, an exact sandbox project ID, an exact typed project name and verified deployment ownership. It is not offered in the public interface.

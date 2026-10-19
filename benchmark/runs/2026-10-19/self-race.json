@@ -1,0 +1,548 @@
+{
+  "id": "1a86fcae-b356-46cc-a9f4-ad5eee6ed323",
+  "title": "Finish Line / self-race",
+  "url": "http://127.0.0.1:3000/",
+  "journey": [
+    {
+      "label": "Start race",
+      "target": {
+        "css": ".start-button"
+      },
+      "expect": {
+        "selectorAppears": ".race-console.playing, .race-console.done"
+      }
+    }
+  ],
+  "source": "self",
+  "status": "done",
+  "createdAt": "2026-10-19T00:02:28.666Z",
+  "engineVersion": "0.4.0",
+  "cacheKey": "self-race",
+  "results": [
+    {
+      "lane": "mouse",
+      "status": "finished",
+      "cost": {
+        "unit": "clicks",
+        "value": 1
+      },
+      "estSeconds": 1.3,
+      "stoppedAtStep": null,
+      "reasonCode": null,
+      "wcag": [],
+      "events": [
+        {
+          "i": 0,
+          "kind": "activate",
+          "step": 0,
+          "text": "Click “Start race”",
+          "costDelta": 1,
+          "estSecondsDelta": 1.3,
+          "frameId": "e88613f0-68bc-4122-b848-fe7c69ea5f80"
+        },
+        {
+          "i": 1,
+          "kind": "finish",
+          "step": 0,
+          "text": "Journey completed",
+          "costDelta": 0,
+          "estSecondsDelta": 0,
+          "frameId": "6498466b-f9de-4156-96a0-9186610c57d0"
+        }
+      ]
+    },
+    {
+      "lane": "keyboard",
+      "status": "finished",
+      "cost": {
+        "unit": "keys",
+        "value": 10
+      },
+      "estSeconds": 4.15,
+      "stoppedAtStep": null,
+      "reasonCode": null,
+      "wcag": [],
+      "events": [
+        {
+          "i": 0,
+          "kind": "wait",
+          "step": 0,
+          "text": "Consider the next step",
+          "costDelta": 0,
+          "estSecondsDelta": 1.35
+        },
+        {
+          "i": 1,
+          "kind": "focus",
+          "step": 0,
+          "text": "Skip to content, link",
+          "costDelta": 1,
+          "estSecondsDelta": 0.28,
+          "box": {
+            "x": 10,
+            "y": 8,
+            "w": 129.15625,
+            "h": 48
+          },
+          "frameId": "69db6d32-5c45-4e83-9326-90151b3ed3a4"
+        },
+        {
+          "i": 2,
+          "kind": "focus",
+          "step": 0,
+          "text": "Finish Line home, link",
+          "costDelta": 1,
+          "estSecondsDelta": 0.28,
+          "box": {
+            "x": 48,
+            "y": 27.5,
+            "w": 163.53125,
+            "h": 32
+          },
+          "frameId": "3b9c6c81-3dd0-400d-b825-39db561e3f3b"
+        },
+        {
+          "i": 3,
+          "kind": "focus",
+          "step": 0,
+          "text": "The race, link",
+          "costDelta": 1,
+          "estSecondsDelta": 0.28,
+          "box": {
+            "x": 497.578125,
+            "y": 23,
+            "w": 54,
+            "h": 41
+          },
+          "frameId": "2436372d-f9dd-422f-96e5-d38c4b754cd6"
+        },
+        {
+          "i": 4,
+          "kind": "focus",
+          "step": 0,
+          "text": "Deploy history, link",
+          "costDelta": 1,
+          "estSecondsDelta": 0.28,
+          "box": {
+            "x": 583.578125,
+            "y": 23,
+            "w": 87.078125,
+            "h": 41
+          },
+          "frameId": "d8e7d76c-3b26-4b88-aabf-a862cd0ad630"
+        },
+        {
+          "i": 5,
+          "kind": "focus",
+          "step": 0,
+          "text": "Method & limits, link",
+          "costDelta": 1,
+          "estSecondsDelta": 0.28,
+          "box": {
+            "x": 702.65625,
+            "y": 23,
+            "w": 94.625,
+            "h": 41
+          },
+          "frameId": "5f7b25ba-2fe2-4f58-ad0d-14f8ba4124b2"
+        },
+        {
+          "i": 6,
+          "kind": "focus",
+          "step": 0,
+          "text": "Race your site, link",
+          "costDelta": 1,
+          "estSecondsDelta": 0.28,
+          "box": {
+            "x": 1083.328125,
+            "y": 22,
+            "w": 148.671875,
+            "h": 43
+          },
+          "frameId": "19dcc654-0493-4fe9-9305-4d809c9d7d59"
+        },
+        {
+          "i": 7,
+          "kind": "focus",
+          "step": 0,
+          "text": "Mute announcements, button",
+          "costDelta": 1,
+          "estSecondsDelta": 0.28,
+          "box": {
+            "x": 947,
+            "y": 329.53125,
+            "w": 38,
+            "h": 38
+          },
+          "frameId": "aa5e426b-b25a-4cf6-9375-c13e8fc69f3c"
+        },
+        {
+          "i": 8,
+          "kind": "focus",
+          "step": 0,
+          "text": "Speech speed, combobox, expanded false",
+          "costDelta": 1,
+          "estSecondsDelta": 0.28,
+          "box": {
+            "x": 993,
+            "y": 332.53125,
+            "w": 52,
+            "h": 32
+          },
+          "frameId": "1ab96d97-9741-4b41-aed1-c3269e1d4a27"
+        },
+        {
+          "i": 9,
+          "kind": "focus",
+          "step": 0,
+          "text": "Start race, button",
+          "costDelta": 1,
+          "estSecondsDelta": 0.28,
+          "box": {
+            "x": 1061,
+            "y": 326.4375,
+            "w": 143,
+            "h": 44.1875
+          },
+          "frameId": "88ff175d-841f-44a8-869b-1c43644e220c"
+        },
+        {
+          "i": 10,
+          "kind": "activate",
+          "step": 0,
+          "text": "Press Enter",
+          "costDelta": 1,
+          "estSecondsDelta": 0.28,
+          "frameId": "7f401005-1e82-402b-a978-2bfc54badd10"
+        },
+        {
+          "i": 11,
+          "kind": "finish",
+          "step": 0,
+          "text": "Journey completed",
+          "costDelta": 0,
+          "estSecondsDelta": 0,
+          "frameId": "b49fec4e-9971-46ae-9aba-4d8cbfb7a3de"
+        }
+      ]
+    },
+    {
+      "lane": "screenreader",
+      "status": "finished",
+      "cost": {
+        "unit": "announcements",
+        "value": 9
+      },
+      "estSeconds": 9.75,
+      "stoppedAtStep": null,
+      "reasonCode": null,
+      "wcag": [],
+      "events": [
+        {
+          "i": 0,
+          "kind": "wait",
+          "step": 0,
+          "text": "Consider the next step",
+          "costDelta": 0,
+          "estSecondsDelta": 1.35
+        },
+        {
+          "i": 1,
+          "kind": "announce",
+          "step": 0,
+          "text": "Skip to content, link",
+          "costDelta": 1,
+          "estSecondsDelta": 1,
+          "box": {
+            "x": 10,
+            "y": 8,
+            "w": 129.15625,
+            "h": 48
+          },
+          "frameId": "150d6307-62a3-4b7a-a5e6-d92d1e318c51"
+        },
+        {
+          "i": 2,
+          "kind": "announce",
+          "step": 0,
+          "text": "Finish Line home, link",
+          "costDelta": 1,
+          "estSecondsDelta": 1,
+          "box": {
+            "x": 48,
+            "y": 27.5,
+            "w": 163.53125,
+            "h": 32
+          },
+          "frameId": "04c042e0-e5fe-4bc8-9e4e-dc60147674fd"
+        },
+        {
+          "i": 3,
+          "kind": "announce",
+          "step": 0,
+          "text": "The race, link",
+          "costDelta": 1,
+          "estSecondsDelta": 0.8,
+          "box": {
+            "x": 497.578125,
+            "y": 23,
+            "w": 54,
+            "h": 41
+          },
+          "frameId": "69156d24-1ac0-4162-ac2f-daadc1d84343"
+        },
+        {
+          "i": 4,
+          "kind": "announce",
+          "step": 0,
+          "text": "Deploy history, link",
+          "costDelta": 1,
+          "estSecondsDelta": 0.8,
+          "box": {
+            "x": 583.578125,
+            "y": 23,
+            "w": 87.078125,
+            "h": 41
+          },
+          "frameId": "ad56f6b7-092c-4c18-a521-ca166241a60b"
+        },
+        {
+          "i": 5,
+          "kind": "announce",
+          "step": 0,
+          "text": "Method & limits, link",
+          "costDelta": 1,
+          "estSecondsDelta": 1,
+          "box": {
+            "x": 702.65625,
+            "y": 23,
+            "w": 94.625,
+            "h": 41
+          },
+          "frameId": "e4a850ea-e989-4178-bd81-43f8e5c9c138"
+        },
+        {
+          "i": 6,
+          "kind": "announce",
+          "step": 0,
+          "text": "Race your site, link",
+          "costDelta": 1,
+          "estSecondsDelta": 1,
+          "box": {
+            "x": 1083.328125,
+            "y": 22,
+            "w": 148.671875,
+            "h": 43
+          },
+          "frameId": "10a96a82-b4c9-4eea-8936-db3eb2b1b97c"
+        },
+        {
+          "i": 7,
+          "kind": "announce",
+          "step": 0,
+          "text": "Mute announcements, button",
+          "costDelta": 1,
+          "estSecondsDelta": 0.8,
+          "box": {
+            "x": 947,
+            "y": 329.53125,
+            "w": 38,
+            "h": 38
+          },
+          "frameId": "0ea0bae3-2232-482f-9b96-c07e19e7b12d"
+        },
+        {
+          "i": 8,
+          "kind": "announce",
+          "step": 0,
+          "text": "Speech speed, combobox, expanded false",
+          "costDelta": 1,
+          "estSecondsDelta": 1.2,
+          "box": {
+            "x": 993,
+            "y": 332.53125,
+            "w": 52,
+            "h": 32
+          },
+          "frameId": "466fccbb-395d-4462-b225-d596b6844d18"
+        },
+        {
+          "i": 9,
+          "kind": "announce",
+          "step": 0,
+          "text": "Start race, button",
+          "costDelta": 1,
+          "estSecondsDelta": 0.8,
+          "box": {
+            "x": 1061,
+            "y": 326.4375,
+            "w": 143,
+            "h": 44.1875
+          },
+          "frameId": "29f9d90d-43b1-4f6e-8662-5b67dd0cb586"
+        },
+        {
+          "i": 10,
+          "kind": "activate",
+          "step": 0,
+          "text": "Press Enter",
+          "costDelta": 0,
+          "estSecondsDelta": 0,
+          "frameId": "6c146312-6ce3-4de3-9a0c-5fc6a21a7d3b"
+        },
+        {
+          "i": 11,
+          "kind": "finish",
+          "step": 0,
+          "text": "Journey completed",
+          "costDelta": 0,
+          "estSecondsDelta": 0,
+          "frameId": "b7ebdb84-7a02-4f8a-a25d-8bae31e0b160"
+        }
+      ]
+    },
+    {
+      "lane": "voice",
+      "status": "finished",
+      "cost": {
+        "unit": "commands",
+        "value": 3
+      },
+      "estSeconds": 8.85,
+      "stoppedAtStep": null,
+      "reasonCode": null,
+      "wcag": [],
+      "events": [
+        {
+          "i": 0,
+          "kind": "wait",
+          "step": 0,
+          "text": "Consider the next step",
+          "costDelta": 0,
+          "estSecondsDelta": 1.35
+        },
+        {
+          "i": 1,
+          "kind": "command",
+          "step": 0,
+          "text": "Click Start race",
+          "costDelta": 1,
+          "estSecondsDelta": 2.5,
+          "box": {
+            "x": 1061,
+            "y": 326.4375,
+            "w": 143,
+            "h": 44.1875
+          },
+          "frameId": "cb5ce16d-c15e-40ef-b427-5efeaa6fbb06"
+        },
+        {
+          "i": 2,
+          "kind": "command",
+          "step": 0,
+          "text": "Show numbers; choose this control from 2 matches",
+          "costDelta": 2,
+          "estSecondsDelta": 5,
+          "box": {
+            "x": 1061,
+            "y": 326.4375,
+            "w": 143,
+            "h": 44.1875
+          },
+          "frameId": "ebf33223-9507-4c85-8824-48ec2c9b1cc8"
+        },
+        {
+          "i": 3,
+          "kind": "activate",
+          "step": 0,
+          "text": "Activate “Start race”",
+          "costDelta": 0,
+          "estSecondsDelta": 0,
+          "frameId": "16eb58c5-adda-480c-83d7-62b3c19836d5"
+        },
+        {
+          "i": 4,
+          "kind": "finish",
+          "step": 0,
+          "text": "Journey completed",
+          "costDelta": 0,
+          "estSecondsDelta": 0,
+          "frameId": "5c1c3c14-87d4-4835-be14-d34c0bd85775"
+        }
+      ]
+    },
+    {
+      "lane": "zoom",
+      "status": "finished",
+      "cost": {
+        "unit": "screens",
+        "value": 0
+      },
+      "estSeconds": 1.3,
+      "stoppedAtStep": null,
+      "reasonCode": null,
+      "wcag": [],
+      "events": [
+        {
+          "i": 0,
+          "kind": "activate",
+          "step": 0,
+          "text": "Click “Start race”",
+          "costDelta": 0,
+          "estSecondsDelta": 1.3,
+          "frameId": "308ad63e-89a2-4309-82e1-c5b8368bd9c5"
+        },
+        {
+          "i": 1,
+          "kind": "finish",
+          "step": 0,
+          "text": "Journey completed",
+          "costDelta": 0,
+          "estSecondsDelta": 0,
+          "frameId": "4b267158-8f83-44bf-a116-b64419348c97"
+        }
+      ]
+    },
+    {
+      "lane": "budget",
+      "status": "finished",
+      "cost": {
+        "unit": "seconds",
+        "value": 5.85
+      },
+      "estSeconds": 7.15,
+      "stoppedAtStep": null,
+      "reasonCode": null,
+      "wcag": [],
+      "events": [
+        {
+          "i": 0,
+          "kind": "wait",
+          "step": 0,
+          "text": "Target visible, enabled and stable",
+          "costDelta": 5.848,
+          "estSecondsDelta": 5.848,
+          "frameId": "65614014-76f3-40ca-b93e-19a5185c4bad"
+        },
+        {
+          "i": 1,
+          "kind": "activate",
+          "step": 0,
+          "text": "Click “Start race”",
+          "costDelta": 0,
+          "estSecondsDelta": 1.3,
+          "frameId": "f454b5d1-c849-42d2-a9b6-57949bbcbc69"
+        },
+        {
+          "i": 2,
+          "kind": "finish",
+          "step": 0,
+          "text": "Journey completed",
+          "costDelta": 0,
+          "estSecondsDelta": 0,
+          "frameId": "95d7affe-5eab-4e80-bb28-eced880148d3"
+        }
+      ]
+    }
+  ]
+}

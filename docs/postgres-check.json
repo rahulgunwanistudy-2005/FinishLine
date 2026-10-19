@@ -1,0 +1,9 @@
+{
+  "checkedAt": "2026-10-18T23:56:44.797Z",
+  "database": "isolated local Postgres 14",
+  "managedDeployxa": false,
+  "connected": true,
+  "raceRoundTrip": true,
+  "laneUpsertCount": 6,
+  "jpegRoundTrip": true
+}

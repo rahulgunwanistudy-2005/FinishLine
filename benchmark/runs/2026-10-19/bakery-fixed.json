@@ -1,0 +1,1081 @@
+{
+  "id": "94b0d51f-4dfb-46a6-bcd5-53c26153b094",
+  "url": "http://127.0.0.1:3000/fixtures/bakery-fixed.html",
+  "journey": [
+    {
+      "label": "Add to cart",
+      "target": {
+        "css": "#add-first"
+      },
+      "expect": {
+        "selectorAppears": "#added:not(:empty)"
+      }
+    },
+    {
+      "label": "Open cart",
+      "target": {
+        "css": "#open-cart"
+      },
+      "expect": {
+        "selectorAppears": "#cart"
+      }
+    },
+    {
+      "label": "Checkout",
+      "target": {
+        "css": "#checkout-button"
+      },
+      "expect": {
+        "selectorAppears": "#checkout"
+      }
+    }
+  ],
+  "source": "fixture",
+  "title": "Corner bakery / repaired",
+  "engineVersion": "0.4.0",
+  "status": "done",
+  "createdAt": "2026-10-19T00:01:47.526Z",
+  "cacheKey": "e2604fceae099b2ee465c3d2618950eee2283887cda624d1a254988647423ed4",
+  "results": [
+    {
+      "lane": "mouse",
+      "status": "finished",
+      "cost": {
+        "unit": "clicks",
+        "value": 3
+      },
+      "estSeconds": 3.9,
+      "stoppedAtStep": null,
+      "reasonCode": null,
+      "wcag": [],
+      "events": [
+        {
+          "i": 0,
+          "kind": "activate",
+          "step": 0,
+          "text": "Click “Add to cart”",
+          "costDelta": 1,
+          "estSecondsDelta": 1.3,
+          "frameId": "499d57aa-a63e-4015-87b4-cd5692f8a09f"
+        },
+        {
+          "i": 1,
+          "kind": "activate",
+          "step": 1,
+          "text": "Click “Open cart”",
+          "costDelta": 1,
+          "estSecondsDelta": 1.3,
+          "frameId": "0013f39d-3b89-40ac-95f3-21e5a3162586"
+        },
+        {
+          "i": 2,
+          "kind": "activate",
+          "step": 2,
+          "text": "Click “Checkout”",
+          "costDelta": 1,
+          "estSecondsDelta": 1.3,
+          "frameId": "40a9b37f-ecb9-4373-ae6d-0fe6fca99d6d"
+        },
+        {
+          "i": 3,
+          "kind": "finish",
+          "step": 2,
+          "text": "Journey completed",
+          "costDelta": 0,
+          "estSecondsDelta": 0,
+          "frameId": "cf4a8466-a054-468c-97a1-956d1dc5c0f7"
+        }
+      ]
+    },
+    {
+      "lane": "keyboard",
+      "status": "finished",
+      "cost": {
+        "unit": "keys",
+        "value": 23
+      },
+      "estSeconds": 10.49,
+      "stoppedAtStep": null,
+      "reasonCode": null,
+      "wcag": [],
+      "events": [
+        {
+          "i": 0,
+          "kind": "wait",
+          "step": 0,
+          "text": "Consider the next step",
+          "costDelta": 0,
+          "estSecondsDelta": 1.35
+        },
+        {
+          "i": 1,
+          "kind": "focus",
+          "step": 0,
+          "text": "Our bread, link",
+          "costDelta": 1,
+          "estSecondsDelta": 0.28,
+          "box": {
+            "x": 939.90625,
+            "y": 34,
+            "w": 97.046875,
+            "h": 36
+          },
+          "frameId": "816b00dd-0a5b-4e2a-9f2d-cbe729330c42"
+        },
+        {
+          "i": 2,
+          "kind": "focus",
+          "step": 0,
+          "text": "Our story, link",
+          "costDelta": 1,
+          "estSecondsDelta": 0.28,
+          "box": {
+            "x": 1036.953125,
+            "y": 34,
+            "w": 90.015625,
+            "h": 36
+          },
+          "frameId": "bdf27045-ef12-4641-8248-da1f745509f8"
+        },
+        {
+          "i": 3,
+          "kind": "focus",
+          "step": 0,
+          "text": "Cart 0, button",
+          "costDelta": 1,
+          "estSecondsDelta": 0.28,
+          "box": {
+            "x": 1126.96875,
+            "y": 28,
+            "w": 89.03125,
+            "h": 49
+          },
+          "frameId": "c9db5f4d-82d3-42a4-80e8-b2ea25224e17"
+        },
+        {
+          "i": 4,
+          "kind": "focus",
+          "step": 0,
+          "text": "Add to cart, button",
+          "costDelta": 1,
+          "estSecondsDelta": 0.28,
+          "box": {
+            "x": 115.59375,
+            "y": 563.8125,
+            "w": 127.046875,
+            "h": 49
+          },
+          "frameId": "6008dc15-199c-40c5-834e-5cfa7a0d2c9d"
+        },
+        {
+          "i": 5,
+          "kind": "activate",
+          "step": 0,
+          "text": "Press Enter",
+          "costDelta": 1,
+          "estSecondsDelta": 0.28,
+          "frameId": "d43cbd53-3035-4499-80ab-6f78747f2689"
+        },
+        {
+          "i": 6,
+          "kind": "wait",
+          "step": 1,
+          "text": "Consider the next step",
+          "costDelta": 0,
+          "estSecondsDelta": 1.35
+        },
+        {
+          "i": 7,
+          "kind": "focus",
+          "step": 1,
+          "text": "Add to cart, button",
+          "costDelta": 1,
+          "estSecondsDelta": 0.28,
+          "box": {
+            "x": 339.75,
+            "y": 563.8125,
+            "w": 127.046875,
+            "h": 49
+          },
+          "frameId": "68e0b122-ee75-4746-8c33-222fb256415b"
+        },
+        {
+          "i": 8,
+          "kind": "focus",
+          "step": 1,
+          "text": "Add to cart, button",
+          "costDelta": 1,
+          "estSecondsDelta": 0.28,
+          "box": {
+            "x": 563.90625,
+            "y": 563.8125,
+            "w": 127.046875,
+            "h": 49
+          }
+        },
+        {
+          "i": 9,
+          "kind": "focus",
+          "step": 1,
+          "text": "Add to cart, button",
+          "costDelta": 1,
+          "estSecondsDelta": 0.28,
+          "box": {
+            "x": 788.078125,
+            "y": 563.8125,
+            "w": 127.046875,
+            "h": 49
+          }
+        },
+        {
+          "i": 10,
+          "kind": "focus",
+          "step": 1,
+          "text": "Add to cart, button",
+          "costDelta": 1,
+          "estSecondsDelta": 0.28,
+          "box": {
+            "x": 1012.234375,
+            "y": 563.8125,
+            "w": 127.046875,
+            "h": 49
+          }
+        },
+        {
+          "i": 11,
+          "kind": "focus",
+          "step": 1,
+          "text": "Add to cart, button",
+          "costDelta": 1,
+          "estSecondsDelta": 0.28,
+          "box": {
+            "x": 115.59375,
+            "y": 627.625,
+            "w": 127.046875,
+            "h": 49
+          }
+        },
+        {
+          "i": 12,
+          "kind": "focus",
+          "step": 1,
+          "text": "Document",
+          "costDelta": 1,
+          "estSecondsDelta": 0.28
+        },
+        {
+          "i": 13,
+          "kind": "focus",
+          "step": 1,
+          "text": "Our bread, link",
+          "costDelta": 1,
+          "estSecondsDelta": 0.28,
+          "box": {
+            "x": 939.90625,
+            "y": 34,
+            "w": 97.046875,
+            "h": 36
+          },
+          "frameId": "07dbcf04-f72b-4ba5-8429-3985e0142ffe"
+        },
+        {
+          "i": 14,
+          "kind": "focus",
+          "step": 1,
+          "text": "Our story, link",
+          "costDelta": 1,
+          "estSecondsDelta": 0.28,
+          "box": {
+            "x": 1036.953125,
+            "y": 34,
+            "w": 90.015625,
+            "h": 36
+          },
+          "frameId": "4c37912f-840e-4ff6-be42-6142665a785c"
+        },
+        {
+          "i": 15,
+          "kind": "focus",
+          "step": 1,
+          "text": "Cart 1, button",
+          "costDelta": 1,
+          "estSecondsDelta": 0.28,
+          "box": {
+            "x": 1126.96875,
+            "y": 28,
+            "w": 89.03125,
+            "h": 49
+          },
+          "frameId": "b8121706-3a7d-407a-bc76-228ae0c64bf3"
+        },
+        {
+          "i": 16,
+          "kind": "activate",
+          "step": 1,
+          "text": "Press Enter",
+          "costDelta": 1,
+          "estSecondsDelta": 0.28,
+          "frameId": "a731e797-2f23-4ba4-8c00-3182fcd62714"
+        },
+        {
+          "i": 17,
+          "kind": "wait",
+          "step": 2,
+          "text": "Consider the next step",
+          "costDelta": 0,
+          "estSecondsDelta": 1.35
+        },
+        {
+          "i": 18,
+          "kind": "focus",
+          "step": 2,
+          "text": "Add to cart, button",
+          "costDelta": 1,
+          "estSecondsDelta": 0.28,
+          "box": {
+            "x": 115.59375,
+            "y": 563.8125,
+            "w": 127.046875,
+            "h": 49
+          },
+          "frameId": "91976594-f4ca-448e-b889-51d882518b7c"
+        },
+        {
+          "i": 19,
+          "kind": "focus",
+          "step": 2,
+          "text": "Add to cart, button",
+          "costDelta": 1,
+          "estSecondsDelta": 0.28,
+          "box": {
+            "x": 339.75,
+            "y": 563.8125,
+            "w": 127.046875,
+            "h": 49
+          },
+          "frameId": "8bd219dd-8422-40c3-bc22-8379f25e15ad"
+        },
+        {
+          "i": 20,
+          "kind": "focus",
+          "step": 2,
+          "text": "Add to cart, button",
+          "costDelta": 1,
+          "estSecondsDelta": 0.28,
+          "box": {
+            "x": 563.90625,
+            "y": 563.8125,
+            "w": 127.046875,
+            "h": 49
+          }
+        },
+        {
+          "i": 21,
+          "kind": "focus",
+          "step": 2,
+          "text": "Add to cart, button",
+          "costDelta": 1,
+          "estSecondsDelta": 0.28,
+          "box": {
+            "x": 788.078125,
+            "y": 563.8125,
+            "w": 127.046875,
+            "h": 49
+          }
+        },
+        {
+          "i": 22,
+          "kind": "focus",
+          "step": 2,
+          "text": "Add to cart, button",
+          "costDelta": 1,
+          "estSecondsDelta": 0.28,
+          "box": {
+            "x": 1012.234375,
+            "y": 563.8125,
+            "w": 127.046875,
+            "h": 49
+          }
+        },
+        {
+          "i": 23,
+          "kind": "focus",
+          "step": 2,
+          "text": "Add to cart, button",
+          "costDelta": 1,
+          "estSecondsDelta": 0.28,
+          "box": {
+            "x": 115.59375,
+            "y": 627.625,
+            "w": 127.046875,
+            "h": 49
+          }
+        },
+        {
+          "i": 24,
+          "kind": "focus",
+          "step": 2,
+          "text": "Checkout, button",
+          "costDelta": 1,
+          "estSecondsDelta": 0.28,
+          "box": {
+            "x": 890,
+            "y": 136.8125,
+            "w": 116.046875,
+            "h": 49
+          },
+          "frameId": "1a150e30-51a3-4c47-827b-c60b247c5603"
+        },
+        {
+          "i": 25,
+          "kind": "activate",
+          "step": 2,
+          "text": "Press Enter",
+          "costDelta": 1,
+          "estSecondsDelta": 0.28,
+          "frameId": "055b45f5-e2a6-4714-a419-03b3374fcba3"
+        },
+        {
+          "i": 26,
+          "kind": "finish",
+          "step": 2,
+          "text": "Journey completed",
+          "costDelta": 0,
+          "estSecondsDelta": 0,
+          "frameId": "fd42a464-d2ee-4b5f-88f8-cbe9d9f56b8e"
+        }
+      ]
+    },
+    {
+      "lane": "screenreader",
+      "status": "finished",
+      "cost": {
+        "unit": "announcements",
+        "value": 19
+      },
+      "estSeconds": 21.45,
+      "stoppedAtStep": null,
+      "reasonCode": null,
+      "wcag": [],
+      "events": [
+        {
+          "i": 0,
+          "kind": "wait",
+          "step": 0,
+          "text": "Consider the next step",
+          "costDelta": 0,
+          "estSecondsDelta": 1.35
+        },
+        {
+          "i": 1,
+          "kind": "announce",
+          "step": 0,
+          "text": "Our bread, link",
+          "costDelta": 1,
+          "estSecondsDelta": 0.8,
+          "box": {
+            "x": 939.90625,
+            "y": 34,
+            "w": 97.046875,
+            "h": 36
+          },
+          "frameId": "ddc1bdbb-f6ee-4f2a-a1e7-6bfeb2692dcc"
+        },
+        {
+          "i": 2,
+          "kind": "announce",
+          "step": 0,
+          "text": "Our story, link",
+          "costDelta": 1,
+          "estSecondsDelta": 0.8,
+          "box": {
+            "x": 1036.953125,
+            "y": 34,
+            "w": 90.015625,
+            "h": 36
+          },
+          "frameId": "fd8c5c2c-6942-4b08-95aa-58360c845668"
+        },
+        {
+          "i": 3,
+          "kind": "announce",
+          "step": 0,
+          "text": "Cart 0, button",
+          "costDelta": 1,
+          "estSecondsDelta": 0.8,
+          "box": {
+            "x": 1126.96875,
+            "y": 28,
+            "w": 89.03125,
+            "h": 49
+          },
+          "frameId": "7d59509d-8dae-40e5-b32e-16e20282fe33"
+        },
+        {
+          "i": 4,
+          "kind": "announce",
+          "step": 0,
+          "text": "Add to cart, button",
+          "costDelta": 1,
+          "estSecondsDelta": 1,
+          "box": {
+            "x": 115.59375,
+            "y": 563.8125,
+            "w": 127.046875,
+            "h": 49
+          },
+          "frameId": "570a5dd8-e460-4e82-93c7-fae755151fd0"
+        },
+        {
+          "i": 5,
+          "kind": "activate",
+          "step": 0,
+          "text": "Press Enter",
+          "costDelta": 0,
+          "estSecondsDelta": 0,
+          "frameId": "1d030cca-b9d2-4f42-a5b7-5520c410dbff"
+        },
+        {
+          "i": 6,
+          "kind": "wait",
+          "step": 1,
+          "text": "Consider the next step",
+          "costDelta": 0,
+          "estSecondsDelta": 1.35
+        },
+        {
+          "i": 7,
+          "kind": "announce",
+          "step": 1,
+          "text": "Add to cart, button",
+          "costDelta": 1,
+          "estSecondsDelta": 1,
+          "box": {
+            "x": 339.75,
+            "y": 563.8125,
+            "w": 127.046875,
+            "h": 49
+          },
+          "frameId": "240e4e1a-58f4-4127-894c-f8bc28b1ba39"
+        },
+        {
+          "i": 8,
+          "kind": "announce",
+          "step": 1,
+          "text": "Add to cart, button",
+          "costDelta": 1,
+          "estSecondsDelta": 1,
+          "box": {
+            "x": 563.90625,
+            "y": 563.8125,
+            "w": 127.046875,
+            "h": 49
+          }
+        },
+        {
+          "i": 9,
+          "kind": "announce",
+          "step": 1,
+          "text": "Add to cart, button",
+          "costDelta": 1,
+          "estSecondsDelta": 1,
+          "box": {
+            "x": 788.078125,
+            "y": 563.8125,
+            "w": 127.046875,
+            "h": 49
+          }
+        },
+        {
+          "i": 10,
+          "kind": "announce",
+          "step": 1,
+          "text": "Add to cart, button",
+          "costDelta": 1,
+          "estSecondsDelta": 1,
+          "box": {
+            "x": 1012.234375,
+            "y": 563.8125,
+            "w": 127.046875,
+            "h": 49
+          }
+        },
+        {
+          "i": 11,
+          "kind": "announce",
+          "step": 1,
+          "text": "Add to cart, button",
+          "costDelta": 1,
+          "estSecondsDelta": 1,
+          "box": {
+            "x": 115.59375,
+            "y": 627.625,
+            "w": 127.046875,
+            "h": 49
+          }
+        },
+        {
+          "i": 12,
+          "kind": "announce",
+          "step": 1,
+          "text": "Our bread, link",
+          "costDelta": 1,
+          "estSecondsDelta": 0.8,
+          "box": {
+            "x": 939.90625,
+            "y": 34,
+            "w": 97.046875,
+            "h": 36
+          },
+          "frameId": "055d3330-2bdd-4774-bf29-6accc0b8b1ac"
+        },
+        {
+          "i": 13,
+          "kind": "announce",
+          "step": 1,
+          "text": "Our story, link",
+          "costDelta": 1,
+          "estSecondsDelta": 0.8,
+          "box": {
+            "x": 1036.953125,
+            "y": 34,
+            "w": 90.015625,
+            "h": 36
+          },
+          "frameId": "0d401291-8b5d-48c9-a4b3-e5802180d9c8"
+        },
+        {
+          "i": 14,
+          "kind": "announce",
+          "step": 1,
+          "text": "Cart 1, button",
+          "costDelta": 1,
+          "estSecondsDelta": 0.8,
+          "box": {
+            "x": 1126.96875,
+            "y": 28,
+            "w": 89.03125,
+            "h": 49
+          },
+          "frameId": "82c9d4ba-fc26-41b6-b370-313c40126023"
+        },
+        {
+          "i": 15,
+          "kind": "activate",
+          "step": 1,
+          "text": "Press Enter",
+          "costDelta": 0,
+          "estSecondsDelta": 0,
+          "frameId": "3ee820ed-19b4-4bc1-b8c9-a54b588ce27c"
+        },
+        {
+          "i": 16,
+          "kind": "wait",
+          "step": 2,
+          "text": "Consider the next step",
+          "costDelta": 0,
+          "estSecondsDelta": 1.35
+        },
+        {
+          "i": 17,
+          "kind": "announce",
+          "step": 2,
+          "text": "Add to cart, button",
+          "costDelta": 1,
+          "estSecondsDelta": 1,
+          "box": {
+            "x": 115.59375,
+            "y": 563.8125,
+            "w": 127.046875,
+            "h": 49
+          },
+          "frameId": "7abda56d-c560-4254-9f08-3279c3c0e6f7"
+        },
+        {
+          "i": 18,
+          "kind": "announce",
+          "step": 2,
+          "text": "Add to cart, button",
+          "costDelta": 1,
+          "estSecondsDelta": 1,
+          "box": {
+            "x": 339.75,
+            "y": 563.8125,
+            "w": 127.046875,
+            "h": 49
+          },
+          "frameId": "1d906562-f1fc-4d5c-8c23-0ad54f18e074"
+        },
+        {
+          "i": 19,
+          "kind": "announce",
+          "step": 2,
+          "text": "Add to cart, button",
+          "costDelta": 1,
+          "estSecondsDelta": 1,
+          "box": {
+            "x": 563.90625,
+            "y": 563.8125,
+            "w": 127.046875,
+            "h": 49
+          }
+        },
+        {
+          "i": 20,
+          "kind": "announce",
+          "step": 2,
+          "text": "Add to cart, button",
+          "costDelta": 1,
+          "estSecondsDelta": 1,
+          "box": {
+            "x": 788.078125,
+            "y": 563.8125,
+            "w": 127.046875,
+            "h": 49
+          }
+        },
+        {
+          "i": 21,
+          "kind": "announce",
+          "step": 2,
+          "text": "Add to cart, button",
+          "costDelta": 1,
+          "estSecondsDelta": 1,
+          "box": {
+            "x": 1012.234375,
+            "y": 563.8125,
+            "w": 127.046875,
+            "h": 49
+          }
+        },
+        {
+          "i": 22,
+          "kind": "announce",
+          "step": 2,
+          "text": "Add to cart, button",
+          "costDelta": 1,
+          "estSecondsDelta": 1,
+          "box": {
+            "x": 115.59375,
+            "y": 627.625,
+            "w": 127.046875,
+            "h": 49
+          }
+        },
+        {
+          "i": 23,
+          "kind": "announce",
+          "step": 2,
+          "text": "Checkout, button",
+          "costDelta": 1,
+          "estSecondsDelta": 0.6000000000000001,
+          "box": {
+            "x": 890,
+            "y": 136.8125,
+            "w": 116.046875,
+            "h": 49
+          },
+          "frameId": "8176ce65-1b24-4658-a34c-c84c4bfef70b"
+        },
+        {
+          "i": 24,
+          "kind": "activate",
+          "step": 2,
+          "text": "Press Enter",
+          "costDelta": 0,
+          "estSecondsDelta": 0,
+          "frameId": "8051da66-0318-44ec-89a0-68d44386136f"
+        },
+        {
+          "i": 25,
+          "kind": "finish",
+          "step": 2,
+          "text": "Journey completed",
+          "costDelta": 0,
+          "estSecondsDelta": 0,
+          "frameId": "c396b97c-cf81-44cd-99da-fafde9103a45"
+        }
+      ]
+    },
+    {
+      "lane": "voice",
+      "status": "finished",
+      "cost": {
+        "unit": "commands",
+        "value": 5
+      },
+      "estSeconds": 16.55,
+      "stoppedAtStep": null,
+      "reasonCode": null,
+      "wcag": [],
+      "events": [
+        {
+          "i": 0,
+          "kind": "wait",
+          "step": 0,
+          "text": "Consider the next step",
+          "costDelta": 0,
+          "estSecondsDelta": 1.35
+        },
+        {
+          "i": 1,
+          "kind": "command",
+          "step": 0,
+          "text": "Click Add to cart",
+          "costDelta": 1,
+          "estSecondsDelta": 2.5,
+          "box": {
+            "x": 115.59375,
+            "y": 563.8125,
+            "w": 127.046875,
+            "h": 49
+          },
+          "frameId": "e0c349cc-6ce8-440d-af33-ea3fbfb092e2"
+        },
+        {
+          "i": 2,
+          "kind": "command",
+          "step": 0,
+          "text": "Show numbers; choose this control from 6 matches",
+          "costDelta": 2,
+          "estSecondsDelta": 5,
+          "box": {
+            "x": 115.59375,
+            "y": 563.8125,
+            "w": 127.046875,
+            "h": 49
+          },
+          "frameId": "f8cfaad1-e946-4ac9-b387-33eddcdf2fd7"
+        },
+        {
+          "i": 3,
+          "kind": "activate",
+          "step": 0,
+          "text": "Activate “Add to cart”",
+          "costDelta": 0,
+          "estSecondsDelta": 0,
+          "frameId": "7da90cb1-0a0f-4b7f-beda-69b3cb78bba1"
+        },
+        {
+          "i": 4,
+          "kind": "wait",
+          "step": 1,
+          "text": "Consider the next step",
+          "costDelta": 0,
+          "estSecondsDelta": 1.35
+        },
+        {
+          "i": 5,
+          "kind": "command",
+          "step": 1,
+          "text": "Click Cart 1",
+          "costDelta": 1,
+          "estSecondsDelta": 2.5,
+          "box": {
+            "x": 1126.96875,
+            "y": 28,
+            "w": 89.03125,
+            "h": 49
+          },
+          "frameId": "198e5761-aba6-4d64-9aa6-3aa6192f6c48"
+        },
+        {
+          "i": 6,
+          "kind": "activate",
+          "step": 1,
+          "text": "Activate “Open cart”",
+          "costDelta": 0,
+          "estSecondsDelta": 0,
+          "frameId": "23a22eb3-68e6-444e-8b68-a8d2e0ab7448"
+        },
+        {
+          "i": 7,
+          "kind": "wait",
+          "step": 2,
+          "text": "Consider the next step",
+          "costDelta": 0,
+          "estSecondsDelta": 1.35
+        },
+        {
+          "i": 8,
+          "kind": "command",
+          "step": 2,
+          "text": "Click Checkout",
+          "costDelta": 1,
+          "estSecondsDelta": 2.5,
+          "box": {
+            "x": 890,
+            "y": 136.8125,
+            "w": 116.046875,
+            "h": 49
+          },
+          "frameId": "9d157da7-fc27-4a70-9e1d-1551d015f989"
+        },
+        {
+          "i": 9,
+          "kind": "activate",
+          "step": 2,
+          "text": "Activate “Checkout”",
+          "costDelta": 0,
+          "estSecondsDelta": 0,
+          "frameId": "6025efd2-7e6e-491f-8097-988635a2f6a7"
+        },
+        {
+          "i": 10,
+          "kind": "finish",
+          "step": 2,
+          "text": "Journey completed",
+          "costDelta": 0,
+          "estSecondsDelta": 0,
+          "frameId": "ca7f9648-0462-44d8-aa2f-824aa7e70cd6"
+        }
+      ]
+    },
+    {
+      "lane": "zoom",
+      "status": "finished",
+      "cost": {
+        "unit": "screens",
+        "value": 1.74
+      },
+      "estSeconds": 5.29,
+      "stoppedAtStep": null,
+      "reasonCode": null,
+      "wcag": [],
+      "events": [
+        {
+          "i": 0,
+          "kind": "scroll",
+          "step": 0,
+          "text": "Scroll 0.87 screens",
+          "costDelta": 0.869140625,
+          "estSecondsDelta": 0.6953125,
+          "frameId": "e7c14e4a-d8d3-4a87-a9b2-f39ee05e9d21"
+        },
+        {
+          "i": 1,
+          "kind": "activate",
+          "step": 0,
+          "text": "Click “Add to cart”",
+          "costDelta": 0,
+          "estSecondsDelta": 1.3,
+          "frameId": "df3bd534-a3a9-4e61-95f1-a12417cb8c63"
+        },
+        {
+          "i": 2,
+          "kind": "scroll",
+          "step": 1,
+          "text": "Scroll 0.87 screens",
+          "costDelta": 0.869140625,
+          "estSecondsDelta": 0.6953125,
+          "frameId": "afced102-ea93-4492-85d0-504a6ef411f4"
+        },
+        {
+          "i": 3,
+          "kind": "activate",
+          "step": 1,
+          "text": "Click “Open cart”",
+          "costDelta": 0,
+          "estSecondsDelta": 1.3,
+          "frameId": "cfde9df2-a79c-423b-9c24-fb2010b36835"
+        },
+        {
+          "i": 4,
+          "kind": "activate",
+          "step": 2,
+          "text": "Click “Checkout”",
+          "costDelta": 0,
+          "estSecondsDelta": 1.3,
+          "frameId": "9b8bdff6-9049-48c0-b4b3-d6b20cb7b53c"
+        },
+        {
+          "i": 5,
+          "kind": "finish",
+          "step": 2,
+          "text": "Journey completed",
+          "costDelta": 0,
+          "estSecondsDelta": 0,
+          "frameId": "c99bafc5-587b-4dc3-994c-e3d909bf8728"
+        }
+      ]
+    },
+    {
+      "lane": "budget",
+      "status": "finished",
+      "cost": {
+        "unit": "seconds",
+        "value": 1.39
+      },
+      "estSeconds": 5.29,
+      "stoppedAtStep": null,
+      "reasonCode": null,
+      "wcag": [],
+      "events": [
+        {
+          "i": 0,
+          "kind": "wait",
+          "step": 0,
+          "text": "Target visible, enabled and stable",
+          "costDelta": 1.128,
+          "estSecondsDelta": 1.128,
+          "frameId": "b009f573-79cf-4e68-a95b-6ba51c66c8a3"
+        },
+        {
+          "i": 1,
+          "kind": "activate",
+          "step": 0,
+          "text": "Click “Add to cart”",
+          "costDelta": 0,
+          "estSecondsDelta": 1.3,
+          "frameId": "059eb9cd-110a-421c-80cc-291c087d14b7"
+        },
+        {
+          "i": 2,
+          "kind": "wait",
+          "step": 1,
+          "text": "Target visible, enabled and stable",
+          "costDelta": 0.157,
+          "estSecondsDelta": 0.157,
+          "frameId": "16515260-15df-4ac0-bdbc-212baf6126f3"
+        },
+        {
+          "i": 3,
+          "kind": "activate",
+          "step": 1,
+          "text": "Click “Open cart”",
+          "costDelta": 0,
+          "estSecondsDelta": 1.3,
+          "frameId": "bd8bb9e3-81d9-4328-941f-7f8a4cbf2c8a"
+        },
+        {
+          "i": 4,
+          "kind": "wait",
+          "step": 2,
+          "text": "Target visible, enabled and stable",
+          "costDelta": 0.106,
+          "estSecondsDelta": 0.106,
+          "frameId": "4270a0a6-9ade-4150-b9a1-598eb094381b"
+        },
+        {
+          "i": 5,
+          "kind": "activate",
+          "step": 2,
+          "text": "Click “Checkout”",
+          "costDelta": 0,
+          "estSecondsDelta": 1.3,
+          "frameId": "d7a15ba0-84b0-4cca-b543-f1112c812970"
+        },
+        {
+          "i": 6,
+          "kind": "finish",
+          "step": 2,
+          "text": "Journey completed",
+          "costDelta": 0,
+          "estSecondsDelta": 0,
+          "frameId": "bca9acc3-67b2-4e8f-9c70-40da86563765"
+        }
+      ]
+    }
+  ],
+  "queuePosition": 0
+}
