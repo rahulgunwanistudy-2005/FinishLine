@@ -76,7 +76,9 @@ function Brand() {
         <i />
         <i />
       </span>
-      Finish Line<span className="brand-point">.</span>
+      <span>
+        Finish Line<span className="brand-point">.</span>
+      </span>
     </a>
   );
 }
@@ -94,27 +96,29 @@ function App() {
         Skip to content
       </a>
       <header className="site-header">
-        <Brand />
-        <nav aria-label="Main navigation">
-          <a href="/" aria-current={pathname === "/" ? "page" : undefined}>
-            The race
+        <div className="nav-inner">
+          <Brand />
+          <nav aria-label="Main navigation">
+            <a href="/" aria-current={pathname === "/" ? "page" : undefined}>
+              The race
+            </a>
+            <a
+              href="/deploys"
+              aria-current={pathname === "/deploys" ? "page" : undefined}
+            >
+              Deploy history
+            </a>
+            <a
+              href="/method"
+              aria-current={pathname === "/method" ? "page" : undefined}
+            >
+              Method & limits
+            </a>
+          </nav>
+          <a className="header-action" href="/#race-your-site">
+            Race your site <ArrowUpRight size={14} />
           </a>
-          <a
-            href="/deploys"
-            aria-current={pathname === "/deploys" ? "page" : undefined}
-          >
-            Deploy history
-          </a>
-          <a
-            href="/method"
-            aria-current={pathname === "/method" ? "page" : undefined}
-          >
-            Method & limits
-          </a>
-        </nav>
-        <a className="header-action" href="/#race-your-site">
-          Race your site <ArrowUpRight size={16} />
-        </a>
+        </div>
       </header>
       <main id="main" tabIndex={-1}>
         {pathname === "/method" ? (
@@ -131,11 +135,13 @@ function App() {
         )}
       </main>
       <footer>
-        <Brand />
-        <span>Push code. Everyone finishes.</span>
-        <a href="/health" target="_blank" rel="noreferrer">
-          System health <ExternalLink size={13} />
-        </a>
+        <div className="footer-inner">
+          <Brand />
+          <span>Push code. Everyone finishes.</span>
+          <a href="/health" target="_blank" rel="noreferrer">
+            System health <ExternalLink size={13} />
+          </a>
+        </div>
       </footer>
     </>
   );
@@ -262,18 +268,24 @@ function Home({
   }
   return (
     <>
-      <section className="intro">
-        <div>
-          <h1>
-            Same checkout.
-            <br />
-            Six ways through.
-          </h1>
-          <p>
-            One website. One journey. See where the experience
-            <br className="desktop-break" /> works, and where it leaves someone
-            behind.
-          </p>
+      <section className="intro" aria-labelledby="home-title">
+        <span className="eyebrow">Finish Line</span>
+        <h1 id="home-title">
+          Same checkout.
+          <br />
+          <span className="soft">Six ways through.</span>
+        </h1>
+        <p>
+          One website. One journey. See where the experience works,
+          <br className="desktop-break" /> and where it leaves someone behind.
+        </p>
+        <div className="hero-actions">
+          <a className="primary" href="#race">
+            Watch the race
+          </a>
+          <a className="text-link" href="#race-your-site">
+            Race your site <ChevronRight size={16} />
+          </a>
         </div>
         <div className="intro-note">
           <span className={`status-dot ${engineReady ? "online" : ""}`} />
@@ -320,7 +332,6 @@ function Home({
             <div className="benchmarks">
               <div className="section-heading">
                 <div>
-                  <span className="section-number">01</span>
                   <h2>The starting field</h2>
                 </div>
                 <span className="subtle">Every result has a receipt.</span>
@@ -587,6 +598,7 @@ function RaceBoard({
   return (
     <section
       className={`race-console ${mode}`}
+      id="race"
       aria-label="Six lane access race"
     >
       <div className="console-top">
@@ -747,13 +759,15 @@ function RaceBoard({
                 </span>
                 <span
                   className="course-fill"
-                  style={{ width: `${visible.progress}%` }}
+                  style={{ transform: `scaleX(${visible.progress / 100})` }}
                 />
                 <span
-                  className="runner"
-                  style={{ left: `${Math.min(97, visible.progress)}%` }}
+                  className="runner-rail"
+                  style={{ transform: `translateX(${visible.progress}%)` }}
                 >
-                  <Icon size={17} />
+                  <span className="runner">
+                    <Icon size={15} />
+                  </span>
                 </span>
                 {visible.done && result?.status !== "finished" && (
                   <span
@@ -969,6 +983,11 @@ function Evidence({
     const node = dialog.current;
     return () => node?.close();
   }, []);
+  // Close at once so focus returns to the lane without waiting on motion.
+  function dismiss() {
+    dialog.current?.close();
+    onClose();
+  }
   return (
     <dialog
       className="evidence-dialog"
@@ -976,8 +995,10 @@ function Evidence({
       ref={dialog}
       onCancel={(event) => {
         event.preventDefault();
-        dialog.current?.close();
-        onClose();
+        dismiss();
+      }}
+      onClick={(event) => {
+        if (event.target === dialog.current) dismiss();
       }}
     >
       <div className="drawer-header">
@@ -987,10 +1008,7 @@ function Evidence({
         </div>
         <button
           className="icon-button"
-          onClick={() => {
-            dialog.current?.close();
-            onClose();
-          }}
+          onClick={dismiss}
           aria-label="Close evidence"
         >
           <X />
@@ -1178,7 +1196,6 @@ function JourneyPicker({ onCreated }: { onCreated: (id: string) => void }) {
     <section className="site-picker" id="race-your-site">
       <div className="section-heading">
         <div>
-          <span className="section-number">02</span>
           <h2>Your site. Your finish line.</h2>
         </div>
       </div>
@@ -1838,7 +1855,7 @@ function Deploys() {
       <div className="deploy-principles">
         <div>
           <Flag size={22} />
-          <h3>A journey gate</h3>
+          <h2>A journey gate</h2>
           <p>
             A lane changing from Finish to DNF flags a regression against the
             previous completed deployment race.
@@ -1846,7 +1863,7 @@ function Deploys() {
         </div>
         <div>
           <RotateCcw size={22} />
-          <h3>No cash spending</h3>
+          <h2>No cash spending</h2>
           <p>
             This app cannot buy services, upgrade your plan, deploy resources or
             roll back a deployment. Your account’s billing settings remain under
@@ -1855,7 +1872,7 @@ function Deploys() {
         </div>
         <div>
           <AudioLines size={22} />
-          <h3>Evidence on every result</h3>
+          <h2>Evidence on every result</h2>
           <p>
             Frames, announcements and commands connect a deployment change to
             the barrier it introduced.
