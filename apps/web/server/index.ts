@@ -298,6 +298,8 @@ app.post(
 );
 app.get("/api/deployxa/projects", async () => ({
   connected: !!deployxa.client,
+  connecting: deployxa.connecting,
+  configured: !!process.env.DEPLOYXA_API_KEY,
   reason: deployxa.error,
   capabilities: deployxa.tools.map((t) => t.name),
   projects: deployxa.has("deployxa_list_projects")
@@ -509,7 +511,7 @@ await app.listen({ port, host: process.env.HOST ?? "127.0.0.1" });
 void getBrowser().catch((e) =>
   app.log.error({ error: String(e) }, "Chromium unavailable"),
 );
-void deployxa.connect();
+void deployxa.start();
 process.on("SIGTERM", () => {
   void app.close().then(() => process.exit(0));
 });

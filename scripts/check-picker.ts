@@ -96,6 +96,12 @@ try {
       })
       .waitFor();
     await choose("#checkout-button");
+    const markerNumbers = await page.locator(".scan-marker").allTextContents();
+    assert.equal(
+      new Set(markerNumbers).size,
+      markerNumbers.length,
+      "Screenshot control numbers must stay unique after selection",
+    );
     assert(
       await previewButton.isDisabled(),
       "A complete three-step journey needs no further replay",
@@ -158,6 +164,7 @@ try {
       width,
       previewPrefixes: previews,
       keyboardSelection: true,
+      uniqueControlNumbers: true,
       previewFocusReturned: true,
       authorizationRequired: true,
       submittedSelectors: submitted.map((step) => step.target.css),

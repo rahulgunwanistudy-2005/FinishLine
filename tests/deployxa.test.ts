@@ -15,6 +15,22 @@ function connection(tools: Tool[]) {
 
 describe("Deployxa read-only integration", () => {
   it.each([
+    [false, false, true],
+    [false, false, false],
+  ])(
+    "bounds startup retries and clears connection progress (%j)",
+    async (...outcomes) => {
+      const client = new Deployxa();
+      const connect = vi.spyOn(client, "connect");
+      for (const result of outcomes) connect.mockResolvedValueOnce(result);
+      const pause = vi.fn().mockResolvedValue(undefined);
+      expect(await client.start("test-key", pause)).toBe(outcomes.at(-1));
+      expect(connect).toHaveBeenCalledTimes(3);
+      expect(pause.mock.calls.map((call) => call[0])).toEqual([1000, 2000]);
+      expect(client.connecting).toBe(false);
+    },
+  );
+  it.each([
     "deployxa_create_deployment",
     "deployxa_purchase_domain",
     "deployxa_rollback_deployment",

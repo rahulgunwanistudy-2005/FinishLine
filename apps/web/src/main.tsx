@@ -1265,12 +1265,10 @@ function JourneyPicker({ onCreated }: { onCreated: (id: string) => void }) {
                     !!busy ||
                     (journey.length === 3 && !selected.includes(e.number))
                   }
-                  aria-label={`${selected.includes(e.number) ? prefix.length + selected.indexOf(e.number) + 1 : e.number}. Select ${e.label}`}
+                  aria-label={`${e.number}. Select ${e.label}${selected.includes(e.number) ? `, step ${prefix.length + selected.indexOf(e.number) + 1}` : ""}`}
                   aria-pressed={selected.includes(e.number)}
                 >
-                  {selected.includes(e.number)
-                    ? prefix.length + selected.indexOf(e.number) + 1
-                    : e.number}
+                  {e.number}
                 </button>
               ))}
           </div>
@@ -1641,6 +1639,8 @@ function Method() {
 function Deploys() {
   const [data, setData] = useState<{
     connected: boolean;
+    connecting: boolean;
+    configured: boolean;
     reason: string;
     capabilities: string[];
     projects: Record<string, unknown>[];
@@ -1652,9 +1652,26 @@ function Deploys() {
   }>();
   const [error, setError] = useState("");
   useEffect(() => {
-    api<NonNullable<typeof data>>("/api/deployxa/projects")
-      .then(setData)
-      .catch((e) => setError(e.message));
+    let active = true;
+    let timer: ReturnType<typeof setTimeout>;
+    async function load() {
+      try {
+        const next = await api<NonNullable<typeof data>>(
+          "/api/deployxa/projects",
+        );
+        if (!active) return;
+        setData(next);
+        if (next.connecting && !next.connected)
+          timer = setTimeout(() => void load(), 2000);
+      } catch (e) {
+        if (active) setError((e as Error).message);
+      }
+    }
+    void load();
+    return () => {
+      active = false;
+      clearTimeout(timer);
+    };
   }, []);
   async function select(id: string) {
     setSelected(id);
@@ -1696,15 +1713,17 @@ function Deploys() {
             <LinkIcon size={32} />
           </div>
           <h2>
-            {data
-              ? "Connect Deployxa to race your deploys."
-              : "Checking the Deployxa connection…"}
+            {!data || data.connecting
+              ? "Checking the Deployxa connection…"
+              : data.configured
+                ? "Deployxa is unavailable right now."
+                : "Connect Deployxa to race your deploys."}
           </h2>
           <p>{data?.reason ?? "Looking for a server-side connection."}</p>
           <p>
-            Configure a read-only Deployxa API key on the server. Available
-            features are discovered from the tools your account actually
-            exposes.
+            {data?.configured
+              ? "The key is configured on the server. Connection attempts are bounded; recorded races remain available."
+              : "Configure a read-only Deployxa API key on the server. Available features are discovered from the tools your account actually exposes."}
           </p>
           <a
             className="primary"

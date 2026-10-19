@@ -9,7 +9,7 @@ import {
 // Inspection only: no create, deploy, upgrade, database or billing-write calls.
 const client = new Deployxa();
 try {
-  if (!(await client.connect())) throw new Error(client.error);
+  if (!(await client.start())) throw new Error(client.error);
   const quota = (await client.call(
     "deployxa_get_organization_quota",
   )) as Record<string, unknown>;

@@ -1,0 +1,27 @@
+{
+  "checkedAt": "2026-10-19T16:53:17.038Z",
+  "status": 200,
+  "engine": {
+    "ok": true,
+    "chromium": true,
+    "version": "0.4.0"
+  },
+  "deployxa": {
+    "ok": true,
+    "toolCount": 66,
+    "spendingPolicy": {
+      "cashSpendingAllowed": false,
+      "cloudMutationsAllowed": false,
+      "aiRequestsAllowed": false
+    }
+  },
+  "benchmark": {
+    "ok": true,
+    "count": 3,
+    "kind": "controlled-fixtures-only"
+  },
+  "queue": {
+    "active": 0,
+    "waiting": 0
+  }
+}

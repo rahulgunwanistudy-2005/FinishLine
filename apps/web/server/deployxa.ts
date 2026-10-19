@@ -30,6 +30,25 @@ export class Deployxa {
   client?: Client;
   tools: Tool[] = [];
   error = "DEPLOYXA_API_KEY is not configured.";
+  connecting = false;
+  async start(
+    key = process.env.DEPLOYXA_API_KEY,
+    pause = (ms: number) =>
+      new Promise<void>((resolve) => setTimeout(resolve, ms)),
+  ) {
+    if (!key) return false;
+    this.connecting = true;
+    this.error = "Connecting to Deployxa…";
+    try {
+      for (let attempt = 0; attempt < 3; attempt++) {
+        if (await this.connect(key)) return true;
+        if (attempt < 2) await pause(1000 * (attempt + 1));
+      }
+      return false;
+    } finally {
+      this.connecting = false;
+    }
+  }
   async connect(key = process.env.DEPLOYXA_API_KEY, recordDiscovery = true) {
     if (!key) return false;
     const client = new Client({ name: "finish-line", version: "0.1.0" });
@@ -81,6 +100,8 @@ export class Deployxa {
       return true;
     } catch (e) {
       await client.close().catch(() => {});
+      this.client = undefined;
+      this.tools = [];
       this.error = e instanceof Error ? e.message : "MCP connection failed";
       return false;
     }

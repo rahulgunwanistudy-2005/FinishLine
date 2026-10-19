@@ -8,7 +8,7 @@ The local product is working and tested. The entire hackathon submission is **no
 | Three-step screenshot/list picker | Working, including action replay, hidden Checkout, edit/reset and keyboard focus | docs/picker-check.json; screenshots at 1440/390/320px |
 | Playback, evidence, fix prompts, share link, reduced motion | Working | docs/a11y-results.json; retained timelines and JPEGs |
 | Original/repaired controlled bakery and homepage self-check | Recorded, 4/6 → 6/6; self-check 6/6 | benchmark/runs/2026-10-19/ |
-| Unit/browser regressions | 33 pass | pnpm test |
+| Unit/browser regressions | 35 pass | pnpm test |
 | Automated accessibility and mobile reflow | Zero axe violations; no document overflow | docs/a11y-results.json; docs/picker-check.json |
 | Lighthouse | Final local median performance 99 / accessibility 100; runs 99/100/99 | docs/lighthouse.json; docs/lighthouse-summary.json; earlier attempts retained |
 | Response delivery | Valid Brotli/gzip/identity negotiation, compressed deep links, no blocking CSS requests | docs/delivery-check.json |

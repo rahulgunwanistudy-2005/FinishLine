@@ -1,7 +1,7 @@
 {
-  "checkedAt": "2026-10-19T16:32:47.898Z",
+  "checkedAt": "2026-10-19T16:51:28.314Z",
   "image": "finish-line:local",
-  "imageId": "sha256:fd41d142dd383c718c9c87de1d92e9a3ee09e898a168a3154e3142f7cc91035e",
+  "imageId": "sha256:6981a61e431f0aa755b46a710574d63b6bdb961e09e8fb98810f4e06b1dcf240",
   "baseImage": "mcr.microsoft.com/playwright:v1.56.1-noble",
   "runtime": {
     "platform": "linux",
@@ -56,16 +56,25 @@
   },
   "limits": [
     "Local Docker verification only; Deployxa hosting and managed Postgres remain unverified.",
-    "The fixture matrix uses trusted local pages; public outbound navigation was verified separately on the host, not in this container."
+    "The fixture matrix uses trusted local pages; public outbound navigation was verified separately on the host, not in this container.",
+    "One earlier engine health probe returned false; its cause was not determined. A subsequent fresh probe and the complete browser tests/matrix passed."
   ],
   "unitTests": {
-    "total": 33,
-    "passed": 33
+    "total": 35,
+    "passed": 35
   },
   "rollbackBlockedStatus": 403,
   "jsonCompression": {
     "encoding": "br",
     "transferBytes": 5691,
     "validRaceCount": 3
-  }
+  },
+  "startupProbes": [
+    {
+      "checkedAt": "2026-10-19T16:51:28.306Z",
+      "status": 200,
+      "engine": true
+    }
+  ],
+  "previousObservedProbeEngineOK": false
 }
