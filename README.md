@@ -4,9 +4,9 @@
 
 Finish Line drives one real activation journey through six isolated Chromium sessions: mouse, keyboard, virtual screen reader, voice-label matching, 320px reflow and a throttled phone. It replays the observed events as a race, with a frame trail, measured counts and deterministic fix prompts.
 
-**Local preview:** http://127.0.0.1:3000. **Deployxa live URL:** pending a verified zero-cost deployment path. The account is connected read-only.
+**Live:** https://finishline-race.vercel.app (UI on Vercel Hobby, proxying to the Render free backend at https://finish-line.onrender.com; the first request after idle can take about a minute). **Local preview:** http://127.0.0.1:3000. **Deployxa hosting:** not used; the account stays connected read-only for local checks. See [docs/HOSTING.md](docs/HOSTING.md).
 
-**Repository target (publication awaiting approval):** [rahulgunwanistudy-2005/FinishLine](https://github.com/rahulgunwanistudy-2005/FinishLine). [Completion audit](docs/COMPLETION.md) distinguishes the tested local product from remaining submission inputs.
+**Repository:** [rahulgunwanistudy-2005/FinishLine](https://github.com/rahulgunwanistudy-2005/FinishLine). [Completion audit](docs/COMPLETION.md) distinguishes the tested local product from remaining submission inputs.
 
 The original and repaired Corner bakery are **controlled fixtures**, not AI-builder outputs. The recorded engine 0.4.0 runs finish **4/6** and **6/6** respectively. Every result has its actual date and browser evidence. No builder rankings, human sessions or manual assistive-technology results are invented.
 

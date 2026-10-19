@@ -18,7 +18,7 @@
 
 ## Pending external inputs
 
-1. A verified zero-cost deployment path. The key works; the account is Free with $0 usage and auto-top-up off, but reports a $50 usage ceiling. No resources were created. Verify an enforced $0 spending cap and free deployment terms before provisioning. The repository provider is not connected. Managed databases and previews are unavailable on Free; no paid upgrade is authorized. See docs/deployxa-check.json.
+1. Deployxa hosting. The app itself is now hosted on free tiers the user authorized on 19 October 2026 (Render free + Vercel Hobby, see docs/HOSTING.md); Deployxa is not used for hosting. For Deployxa, a verified zero-cost deployment path is still required. The key works; the account is Free with $0 usage and auto-top-up off, but reports a $50 usage ceiling. No resources were created. Verify an enforced $0 spending cap and free deployment terms before provisioning. The repository provider is not connected. Managed databases and previews are unavailable on Free; no paid upgrade is authorized. See docs/deployxa-check.json.
 2. At least three original AI-builder bakery exports and full generation transcripts. The exact prompt is in benchmark/PROMPT.md. Current fixtures are not those subjects.
 3. Human keyboard and VoiceOver/NVDA passes, manual per-store agreement and an optional consenting screen-reader participant. Automation is not reported as any of these.
 4. Review the prepared captioned demo and its sentence-estimated subtitle timings, then complete Devpost upload after the live deployment and evidence are ready.
