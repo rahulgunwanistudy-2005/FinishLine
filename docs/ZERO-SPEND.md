@@ -21,6 +21,12 @@ The installed CLI’s budget implementation was inspected and its help path chec
 
 The app cannot control purchases or resources created outside it. Do not run the deployment CLI, upgrade, add a card, top up or provision resources to complete this build. Hosting requires verified zero-cost terms and an enforceable $0 cap. Local development, browser tests, recordings and video encoding use existing local tools.
 
+## Free-tier hosting (authorized 19 October 2026)
+
+The user explicitly authorized hosting on two free tiers only: a Render **free** web service for the Fastify + Chromium backend, and a Vercel **Hobby** project for the static frontend. No paid plan, instance type, card, domain, add-on, database or build upgrade is authorized, and Deployxa provisioning remains off. Details and the exact settings are in `docs/HOSTING.md`.
+
+These plans are provider-reported $0 tiers. As above, a free plan label is not proof of an enforced $0 cap: Render free services spin down when idle and are limited by Render's monthly free allowances; Vercel Hobby is limited by its usage allowances. If either provider ever requests payment, stop and ask the user.
+
 ## Source and CI
 
 The repository was verified public through GitHub’s API. The verification workflow runs only for public repositories on the standard `ubuntu-latest` runner, uses no artifact uploads or dependency cache, has read-only repository permissions and never deploys. The matrix is written to the run summary instead. [GitHub confirms standard runners are free for public repositories and logs/summaries do not consume artifact storage](https://docs.github.com/en/billing/concepts/product-billing/github-actions).
