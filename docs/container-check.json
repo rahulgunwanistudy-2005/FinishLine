@@ -1,0 +1,56 @@
+{
+  "checkedAt": "2026-10-19T07:26:55.933Z",
+  "image": "finish-line:local",
+  "imageId": "sha256:20f73b7d18390dbb25a53a726a64da459a6a7d22e44e003a93cd37f6643aedb2",
+  "baseImage": "mcr.microsoft.com/playwright:v1.56.1-noble",
+  "runtime": {
+    "platform": "linux",
+    "arch": "arm64",
+    "node": "v22.20.0",
+    "chromium": "141.0.7390.37"
+  },
+  "build": {
+    "passed": true,
+    "note": "Local container registry access required a temporary authenticated npm-only host proxy. No Docker settings were changed."
+  },
+  "health": {
+    "status": 200,
+    "body": {
+      "database": {
+        "ok": false,
+        "mode": "local-files",
+        "note": "Postgres is not configured; local durable files are active."
+      },
+      "engine": {
+        "ok": true,
+        "chromium": true,
+        "version": "0.4.0"
+      },
+      "deployxa": {
+        "ok": false,
+        "toolCount": 0,
+        "reason": "DEPLOYXA_API_KEY is not configured.",
+        "capabilities": []
+      },
+      "benchmark": {
+        "ok": true,
+        "count": 3,
+        "kind": "controlled-fixtures-only"
+      },
+      "queue": {
+        "active": 0,
+        "waiting": 0
+      }
+    }
+  },
+  "matrix": {
+    "engineVersion": "0.4.0",
+    "total": 60,
+    "passed": 60,
+    "report": "docs/matrix-linux.json"
+  },
+  "limits": [
+    "Local Docker verification only; Deployxa hosting and managed Postgres remain unverified.",
+    "The fixture matrix uses trusted local pages; public outbound navigation was verified separately on the host, not in this container."
+  ]
+}

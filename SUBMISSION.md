@@ -2,7 +2,11 @@
 
 **Tagline:** Same checkout. Six people. Not everyone finishes.
 
-**State:** Working local implementation. Deployxa URL, original AI-builder exports, manual agreement checks and final demo recording remain pending. Do not submit this draft as though those checks have happened.
+**State:** Working local implementation with a verified Linux container and a 30-second demo GIF. Deployxa URL, original AI-builder exports, manual agreement checks and final narrated video remain pending. Do not submit this draft as though those checks have happened.
+
+![30-second recording of the controlled bakery race](docs/finish-line-demo.gif)
+
+The GIF is silent. The app provides actual spoken announcements and captions after Start race.
 
 ## The problem
 
@@ -30,6 +34,7 @@ The real AI-builder leaderboard is intentionally pending at least three unmodifi
 ## Proof
 
 - Correctness matrix: `/method`, `docs/matrix.json`, rerunnable `pnpm test:matrix`.
+- Linux container: build passed, Chromium launches and 60/60 fixture expectations pass; `docs/container-check.json`, `docs/matrix-linux.json`.
 - Dated recordings: `benchmark/runs/2026-10-19/`; original browser JPEGs in `benchmark/frames/`.
 - Self-race: permanent benchmark entry after its measured run.
 - Current quality evidence: `docs/A11Y.md` and `docs/a11y-results.json`.

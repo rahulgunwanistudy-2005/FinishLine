@@ -8,7 +8,9 @@ Finish Line drives one real activation journey through six isolated Chromium ses
 
 The original and repaired Corner bakery are **controlled fixtures**, not AI-builder outputs. The recorded engine 0.4.0 runs finish **4/6** and **6/6** respectively. Every result has its actual date and browser evidence. No builder rankings, human sessions or manual assistive-technology results are invented.
 
-![Finish Line race](docs/screenshots/home-desktop.png)
+![30-second playback of the controlled bakery race, including its measured DNF results](docs/finish-line-demo.gif)
+
+This silent GIF captures the actual app playing a recorded controlled fixture. Open the app for spoken announcements and captions.
 
 ## Run locally
 
@@ -69,6 +71,8 @@ pnpm check:a11y    # with a local server running
 ```
 
 Ten HTML fixtures isolate native buttons, clickable divs, empty names, label mismatches, traps, occlusion, reflow, slow rendering, missing key handlers and duplicated labels. All six lanes compare observations against JSON sidecars. The actual generated 60-cell report is [docs/matrix.json](docs/matrix.json), exposed at `/api/matrix` and rendered as a table at `/method`. CI reruns it and preserves the artifact.
+
+The official Playwright container also builds and passes **60/60** checks on Linux ARM64. Its real health response confirms Chromium launches: [container report](docs/container-check.json), [Linux matrix](docs/matrix-linux.json). This local verification does not establish Deployxa hosting or container public-network access.
 
 | Fixture | Expected distinction |
 | --- | --- |
