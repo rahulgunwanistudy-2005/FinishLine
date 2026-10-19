@@ -10,7 +10,7 @@ Authorized by the user on 19 October 2026: Render **free** web service + Vercel 
 | Plan / region | `free` / Singapore |
 | Dockerfile | `Dockerfile.web` (official Playwright 1.56.1 image, Chromium included) |
 | Branch | `main`, auto-deploy on commit |
-| Environment | `NODE_ENV=production`, `HOST=0.0.0.0`, `PUBLIC_ORIGIN=https://finishline-race.vercel.app` |
+| Environment | `NODE_ENV=production`, `HOST=0.0.0.0`, `PUBLIC_ORIGIN=https://finishline-race.vercel.app`, `ENGINE_LANE_CONCURRENCY=1` |
 | URL | https://finish-line.onrender.com |
 
 The service runs the complete app: Fastify API, the six-lane Chromium engine, SSE progress, MCP endpoint and the built UI. No `DATABASE_URL` is set, so it uses local files, which are ephemeral on Render free. Recorded benchmark races ship in `benchmark/` and always load. No Deployxa key is configured on the host, so the Deploys page shows its disconnected state honestly.
@@ -58,3 +58,7 @@ Live race progress streams over SSE through the Vercel proxy. If a stream is int
 - `/api/health` on Render: Chromium launched, engine 0.4.0, three recorded races loaded, local-file storage, all spending flags false, no Deployxa key.
 - Through https://finishline-race.vercel.app: Home, Method and Deploys render with no browser errors; the recorded original bakery race replays to "4 of 6 finished"; a proxied POST passes the origin guard; SSE progress streams; frames load as JPEG.
 - A live controlled-fixture race (original bakery) on the free instance returned mouse finished, zoom finished, screen reader DNF (`SR_NO_NAME`), and keyboard, voice and budget phone **unknown** (`ENGINE_TIMEOUT`: the 45 s lane budget was exceeded). The same fixture locally gives 4/6 (keyboard and budget phone finish; voice DNF). The free instance's small CPU share starves six concurrent Chromium lanes (see `ENGINE_LANE_CONCURRENCY` above). These are engine limits, correctly reported as unknown and not as accessibility failures. This hosted run is not a retained benchmark.
+
+### After `ENGINE_LANE_CONCURRENCY=1` — 19 October 2026 (18:31 UTC), engine 0.4.0
+
+With lanes running one at a time on the free instance, a live original-bakery race through https://finishline-race.vercel.app returned **4 of 6**: mouse, keyboard, 400% zoom and budget phone finished; screen reader DNF (`SR_NO_NAME`) and voice control DNF (`VOICE_WRONG_TARGET`). These are the same verdicts and reasons as the local run. Budget phone measured 11.0 s of usable time against 5.2 s locally, because of the slower host CPU. That is a real measurement and shows the lane depends on the host. This hosted run is not a retained benchmark.
