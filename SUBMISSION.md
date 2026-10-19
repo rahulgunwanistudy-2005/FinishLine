@@ -1,85 +1,100 @@
-# Finish Line — submission draft
+# Finish Line — Devpost submission (Hyperbloom October: UI/UX & Web Design)
 
-**Tagline:** Same checkout. Six people. Not everyone finishes.
+Paste-ready text for each Devpost field. Every number below comes from a real, dated browser run or a cited source; nothing is simulated or invented.
 
-**Repository target (publication awaiting approval):** https://github.com/rahulgunwanistudy-2005/FinishLine
+- **Live app:** https://finishline-race.vercel.app
+- **Source:** https://github.com/rahulgunwanistudy-2005/FinishLine
+- **Backend health:** https://finish-line.onrender.com/health (Render free tier: the first request after idle can take about a minute)
 
-**State:** Working local implementation with a verified Linux container, a 30-second demo GIF and a 2:53 captioned demo. Deployxa URL, original AI-builder exports and human agreement checks remain pending. Do not submit this draft as though those checks have happened.
+## Tagline
 
-![30-second recording of the controlled bakery race](docs/finish-line-demo.gif)
+Same checkout. Six ways through. Watch six input methods race the same journey, and see exactly where your site leaves someone behind.
 
-The GIF is silent. The app provides actual spoken announcements and captions after Start race.
+## Inspiration
 
-Prepared video: [captioned MP4](docs/finish-line-demo.mp4), [SRT](docs/finish-line-demo.srt), [actual narration transcript](docs/DEMO-NARRATION.md). Narration is computer-generated offline; the footage is the actual local app, including measured recordings and a live public URL scan. Review the video and sentence-estimated caption timings before public upload.
+A checkout that works with a mouse can still stop someone who uses a keyboard, a screen reader, voice control, 400% zoom or a slow phone. Accessibility reports usually arrive as long lists of rule IDs that designers and founders skim and ignore. We wanted the cost of an inaccessible flow to be something you *feel* in seconds: the same finish line, six people, and not everyone gets there.
 
-## The problem
+The problem is large and well documented (sources checked 19 October 2026):
 
-A checkout can work with a mouse and still stop someone using another input method. A successful deployment does not prove a successful journey.
+1. [WebAIM Million 2026](https://webaim.org/projects/million/) reports empty buttons on 30.6% of home pages, empty links on 46.3% and missing form labels on 51%.
+2. The [Netherlands Authority for Consumers and Markets](https://www.acm.nl/en/publications/acm-majority-large-online-stores-are-not-accessible-customers-disabilities) found ordering with assistive technology impossible on 61% of roughly 100 major Dutch web stores.
+3. [WHO](https://www.who.int/europe/news-room/fact-sheets/item/disability) reports more than 1.3 billion people living with disability.
 
-Four sources checked on 19 October 2026:
+## What it does
 
-1. [WebAIM Million 2026](https://webaim.org/projects/million/) reports empty buttons on 30.6% of home pages, empty links on 46.3% and missing form labels on 51%. Detected errors per page rose 10.1%. WebAIM discusses AI-assisted coding among possible broader contributors; this is not a causal experiment.
-2. The [Netherlands Authority for Consumers and Markets](https://www.acm.nl/en/publications/acm-majority-large-online-stores-are-not-accessible-customers-disabilities) found assistive-technology ordering impossible on 61% of approximately 100 major Dutch stores tested.
-3. An [AudioEye-sponsored article and study](https://venturebeat.com/ai/we-asked-five-ai-tools-to-build-accessible-websites-all-15-sites-failed) reports all 15 AI-built sites failed WCAG Level A. This is vendor-sponsored evidence, separate from our own results.
-4. [WHO’s August 2026 fact sheet](https://www.who.int/europe/news-room/fact-sheets/item/disability) reports over 1.3 billion people living with disability. This updates the older “over 1 billion” wording in the project brief.
+Finish Line turns an accessibility audit into a race you can watch, hear and inspect.
 
-## What we built
+1. **Paste a public URL.** Finish Line opens it in real Chromium and numbers every visible control on a screenshot, which also has a fully keyboard-operable list version.
+2. **Pick up to three actions** (for example Add to cart → Open cart → Checkout). Preview replays your picks in a fresh browser so drawers and next-page controls appear.
+3. **Six browsers race the same journey**, each in its own isolated context:
+   - **Mouse:** the control lane; if the mouse can't finish, the journey is invalid, not a failure.
+   - **Keyboard:** counts every Tab, Enter and Space.
+   - **Screen reader:** speaks the real accessibility-tree announcements aloud, with captions.
+   - **Voice control:** resolves "click [visible label]" against computed accessible names.
+   - **400% zoom:** a 320 px reflow viewport.
+   - **Budget phone:** 4× CPU throttling on a slow network.
+4. **Every result has a receipt.** Select a lane for its browser frames, its event trail, the related WCAG criteria and a one-click fix prompt. Engine problems are reported as *unknown*, never as an accessibility failure.
 
-Finish Line replays one activation journey through six isolated Chromium contexts. Mouse sets the validity check. Keyboard counts keys. A virtual screen-reader lane speaks actual accessibility-tree announcements with captions. Voice control resolves the visible label against computed accessible names. Reflow measures access at 320 CSS pixels. A throttled phone measures time to usable controls.
+The controlled demo store finishes **4 of 6**: the screen reader hears only "button" on the first Add to cart, and voice control's "click Add to cart" resolves to a different control. The repaired version finishes **6 of 6**. The visible button barely changed; the journey did.
 
-Measured counts and browser frames are facts about the run. Human time is a labeled estimate with published KLM constants and clearly separated project assumptions. Every DNF opens an event trail, related WCAG criteria and a deterministic fix prompt. Engine failures say unknown.
+## How we designed it (UX and information architecture)
 
-## Current result
+- **One metaphor, end to end.** The race organizes every screen: a start line (your URL), lanes (input methods), a shared finish line (the journey) and a photo finish (results). People understand a race without reading a manual.
+- **Progressive disclosure.** The landing page answers "is this site usable?" in one number (4/6). One click opens *why* (the lane), and one more opens *proof* (frames, event trail, WCAG, fix). Experts get depth; everyone else gets the headline.
+- **Data-driven hero, not decoration.** The particle stadium track in Fig. 01 is drawn from the recorded race: each runner stops exactly where its lane stopped. The terminal beside it prints the same lane results from the API. Move the cursor and the dots displace with critically damped springs; nothing moves that isn't evidence.
+- **Honest by design.** Measured counts (keys, announcements, screens) are kept separate from *estimated* human time, whose formulas are published on the Method page. Controlled fixtures are labelled as such, and no rankings are invented.
+- **Visual language.** A monochrome, technical system: mono display type (JetBrains Mono) with Inter for reading, square geometry, hairline grid rules and figure annotations. Colour is reserved for meaning: green for finished, red for did-not-finish, amber for unknown.
 
-The controlled original bakery records four of six finishes; the repaired fixture records six of six. The original deliberately lacks a usable accessible name on the first Add to cart button. These are hand-authored fixtures, not AI-builder exports. The engineer judges can inspect every frame and rerun the ten-fixture correctness matrix.
+## Accessibility and inclusive design
 
-The real AI-builder leaderboard is intentionally pending at least three unmodified exports with original transcripts. Add actual results here after recording. Never attribute the controlled bakery to a builder.
+The tool that measures accessibility has to be accessible itself:
 
-## Proof
+- Zero axe violations on every route at 1440, 390 and 320 px, in light **and** dark themes, including race results, the evidence dialog and the journey picker (`docs/a11y-results.json`, `docs/picker-check.json`).
+- Everything is keyboard-operable, with visible focus rings, focus returned after dialogs, a skip link and 44 px targets.
+- Screen-reader announcements are spoken **and** captioned, with mute and speech-rate controls.
+- Results are also available as semantic tables, outcomes are announced in a live region, and the canvas figure has a text alternative that summarizes the result.
+- `prefers-reduced-motion` swaps playback for "Show results / Step through"; reduced transparency, increased contrast and forced colours each have fallbacks.
+- No horizontal overflow at 320 px; spacing is in rem, so layout scales with text size.
 
-- Correctness matrix: `/method`, `docs/matrix.json`, rerunnable `pnpm test:matrix`.
-- Linux container: build passed, Chromium launches and 60/60 fixture expectations pass; `docs/container-check.json`, `docs/matrix-linux.json`.
-- Dated recordings: `benchmark/runs/2026-10-19/`; original browser JPEGs in `benchmark/frames/`.
-- Self-race: permanent benchmark entry after its measured run.
-- Current quality evidence: `docs/A11Y.md` and `docs/a11y-results.json`.
-- Manual agreement: `docs/AGREEMENT.md`; currently no manual agreement rate.
-- Truthful health: `/health`. Repository and hosted URL to be added after publication.
+We have not run a human VoiceOver or NVDA pass, and we don't claim WCAG conformance: a finish is a completed journey, not a certificate.
 
-## Deployxa
+## How we built it
 
-“Deployxa’s readiness score says your app will run. Finish Line asks who can use it.”
+TypeScript end to end. A **Fastify** server drives **Playwright/Chromium** through six isolated contexts and reads names, roles and states from Chromium's accessibility tree over CDP. Progress streams to a **React + Vite** client over Server-Sent Events. A 10-fixture correctness matrix (60 lane expectations) checks the engine on every change. It runs in CI and is published on the Method page. Public URLs pass DNS checks and an IP-pinned proxy to block SSRF. The UI is hosted on **Vercel**, proxying to a **Render** Docker service that runs Chromium. We also expose `race_url` and `get_race` as an **MCP** server, so AI agents can race a site too.
 
-The server includes authenticated, paginated MCP tool discovery, deploy history, healthy-deploy racing, an advisory regression gate and a CI gate script. Finish Line also exposes `race_url` and `get_race` through its own Streamable HTTP MCP server. Cloud changes, rollback and AI requests are disabled by a fixed zero-spend policy; the rollback endpoint returns 403 before any cloud call.
+**Deployxa:** Finish Line connects read-only to Deployxa's MCP tools (66 discovered) to list deployments and race a deploy, with an advisory gate that flags a lane changing from Finish to DNF between deploys. A fixed zero-spend policy blocks cloud changes, rollback and AI requests.
 
-Authenticated discovery returned 66 tools. Read-only account checks confirm the Free plan, zero projects, $0 usage and disabled auto-top-up. Its API reports a $50 usage ceiling, so no resources were provisioned under the user’s zero-spend constraint. The public client rejects mutating tools and resolves the actual discovered status/readiness names. Hosting remains unverified; managed databases and previews are excluded from Free. Evidence: `docs/deployxa-check.json`, `docs/deployxa-tools.json`. [Deployxa pricing](https://deployxa.com/pricing).
+## Challenges
 
-## Accessibility and limits
+- Making motion truthful. Every animation either replays recorded browser events or responds to the user; the hero track, the lane runners and the terminal all read the same race data.
+- Telling "inaccessible" apart from "our engine had trouble". Timeouts and load failures are reported as *unknown*, and a mouse failure invalidates the whole journey. For tiny free-tier servers we added an opt-in lane-concurrency setting, so lanes can run one at a time instead of starving each other.
+- Getting a dense, technical visual style to pass contrast in both themes. Solid fills and tint colours are separate tokens, so white-on-colour text keeps at least 4.5:1.
 
-Finish Line has keyboard-operable controls, visible focus, reduced-motion final results, captions and mute, text statuses, a results table and mobile reflow. Actual automated results are in A11Y.md. A human VoiceOver/NVDA pass is still required. A successful journey is not a WCAG certificate; virtual Tab navigation and voice-name matching do not cover every assistive-technology route.
+## Accomplishments
+
+- A working product, not a mockup: paste a URL and six real browsers race it.
+- 60/60 engine correctness checks, plus zero axe violations across themes and breakpoints.
+- An interface that explains a complex audit through one familiar metaphor.
+
+## What we learned
+
+The most persuasive accessibility argument isn't a score; it's watching the keyboard lane stall while the mouse lane crosses the line.
+
+## What's next
+
+- Race the outputs of popular AI site builders against the same prompt (`benchmark/PROMPT.md`), recorded with dated evidence.
+- Human screen-reader sessions to calibrate the virtual lane.
+- A CI check that blocks a deploy when a lane regresses from Finish to DNF.
 
 ## Built with
 
-TypeScript, React, Vite, Fastify, Playwright/Chromium, CDP accessibility APIs, PostgreSQL/Drizzle (optional until connected), Zod, MCP TypeScript SDK, Web Speech, Vitest and axe-core. System (San Francisco) typography with light and dark appearance. Deployxa integration pending account verification.
+typescript, react, vite, fastify, playwright, chromium, chrome-devtools-protocol, server-sent-events, web-speech-api, canvas, zod, vitest, axe-core, model-context-protocol, deployxa, vercel, render
 
-## Video script — 2 minutes 50 seconds
+## Gallery suggestions
 
-**0:00–0:20 — Cold open.** Start the original controlled bakery recording. Keep “Controlled fixture” and recording date visible. Let the actual announcements play. Open the screen-reader DNF: “This control looks like Add to cart, but Chromium exposes only ‘button’.” Show the real finish count.
+Use the screenshots in `docs/screenshots/` (home, race results, evidence dialog, method, picker at 1440 and 390 px, regenerated for this interface) plus a screenshot of the hero at https://finishline-race.vercel.app.
 
-**0:20–0:35 — Why.** “A live URL proves the app runs. It doesn’t prove everyone can finish. Finish Line measures the same journey through six input methods.” Do not describe this controlled store as an AI-generated subject.
+## Notes for the submitter
 
-**0:35–1:05 — The tool.** Paste an authorized public URL. Scan, choose a journey, start a live race. Open evidence, show a real frame and copy a fix prompt. If the remote site fails, show unknown honestly and use the controlled recording for the remaining demo.
-
-**1:05–1:25 — The proof.** Show the fixture matrix and explain one deliberately broken behavior. Show manual agreement only if actually recorded. Show the dated benchmark leaderboard only when real exports are available.
-
-**1:25–1:55 — Deployxa.** Show the actual read-only connection and zero-spend restriction. Do not provision, upgrade, demonstrate rollback or imply a live deployment exists. Explain that the provider reports a $50 ceiling and hosting awaits a verified $0 cap. Deployment history, readiness and deploy-triggered racing remain unverified against a real project.
-
-**1:55–2:25 — Repair.** Switch to the repaired controlled fixture (or a real repaired benchmark if available). Replay the measured six finishes. “The visible button barely changed. The journey did.” Show the exact fix and dated rerun.
-
-**2:25–2:50 — Close.** Show the self-race, health, repository and honest limits. “Push code. Everyone finishes.” Add the verified Deployxa live URL when available.
-
-## Remaining human inputs before submission
-
-- Verified free deployment terms and an enforced $0 spending cap, then repository connection and hosting verification. No paid upgrade or provisioning is authorized.
-- At least three builder exports and complete transcripts using benchmark/PROMPT.md.
-- Keyboard-only and VoiceOver/NVDA manual passes and per-store agreement rows.
-- Review the supplied captioned demo, then provide the final verified live URL and complete the Devpost upload.
+- The demo GIF and narrated MP4 in `docs/` were recorded on the previous visual design. The engine and results are identical, but record a fresh screen capture of the live site if time allows.
+- The controlled bakery fixtures are hand-authored test pages, not AI-builder output. Don't describe them as anything else.
