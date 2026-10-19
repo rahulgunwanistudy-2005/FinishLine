@@ -1,51 +1,76 @@
-# Finish Line design plan
+# Finish Line design system
 
-## Palette
-- Paper blue #EFF3F8: timing sheet canvas.
-- Stadium navy #182C4B: text and scoreboard.
-- Track blue #2359D9: action and primary lane.
-- Signal coral #B73348: did not finish.
-- Finish teal #16736C: verified finish.
-- White #FFFFFF: lane surface.
+The interface follows Apple's interface principles, translated for the web: content first, translucent chrome, restrained colour, system typography and motion that starts from the current value and settles without overshoot. The track remains the main experience.
+
+## Colour
+
+Semantic tokens live on `:root` in `apps/web/src/styles.css` and are redefined under `prefers-color-scheme: dark`.
+
+| Token | Light | Dark | Use |
+| --- | --- | --- | --- |
+| `--bg` / `--bg-alt` | #FBFBFD / #F5F5F7 | #000000 / #0D0D0F | Page, grouped sections |
+| `--surface` | #FFFFFF | #1C1C1E | Console, lanes, sheet |
+| `--text` / `--text-2` | #1D1D1F / #6E6E73 | #F5F5F7 / #A1A1A6 | Primary and secondary text |
+| `--accent` / `--link` | #0071E3 / #0066CC | #0A84FF / #2997FF | Tint: icons, progress, links |
+| `--accent-fill` | #0071E3 | #0071E3 | Solid fills under white text (hover darkens to #0068D1) |
+| `--green` | #1D7D37 | #30D158 | Verified finish |
+| `--red` / `--red-fill` | #C4001A | #FF6961 / #D70015 | Did not finish |
+| `--orange` / `--orange-fill` | #A94300 | #FFA94D / #B64400 | Unknown: engine limit, never a DNF |
+
+Tint and fill are separate so white text on solid buttons and badges stays at or above 4.5:1 in both appearances. axe runs clean in light and dark.
 
 ## Typography
-Barlow Condensed (600–800) for lane labels and scoreboard figures; Barlow (400–700) for readable instructions. Both have tabular figures. The narrow display family recalls athletics timing displays without turning evidence into tiny monospace labels. Load through Google Fonts with swap; fallback sans-serif remains usable offline.
+
+The system font stack (San Francisco on Apple platforms) with no downloaded web fonts. Tracking is size-specific: display headings at −0.015em with 1.05 leading, 17px body at −0.022em with 1.47 leading, 12–13px captions near −0.01em. Hierarchy comes from weight and size together. Figures use tabular numerals. All sizes are in `rem` so text scaling reflows the layout.
 
 ## Layout
-A generous left-aligned timing console is the hero, with an offset explanatory side panel. Home centers the working race, not a marketing headline. Desktop max width 1320px; 24px mobile padding. Mobile lanes reflow to a compact two-line arrangement.
 
-Home:
 ```
-[Finish Line]          [The race] [Deploys] [Method] [Race your site]
-[Same checkout. Six ways through.]       [Live browser testing]
-[Recorded fixture selector] [3 journey steps] [Sound] [Start race]
-[01 Mouse        -------- runner ----------------| time]
-[02 Keyboard     -------- runner ----------------| time]
-[03 Screen reader ----- runner ------------------| time]
-[04 Voice control ----- runner ------------------| time]
-[05 400% zoom    -------- runner ----------------| time]
-[06 Budget phone -------- runner ----------------| time]
-[Recording date / estimated clock]               [Finish count]
-[Benchmark table]                    [Race your site / journey picker]
+[Translucent global nav: brand · The race · Deploy history · Method & limits · Race your site]
+                      Finish Line
+               Same checkout.
+             Six ways through.          (secondary tone)
+     One website. One journey. ...
+     [Watch the race]  Race your site ›
+     ● Real browsers. Real barriers. · Measured actions. Estimated human time.
+
+┌ Race console (rounded 28px surface) ───────────────────────────────┐
+│ [cb] Corner bakery / original          [🔊] [1×] [▶ Start race]     │
+│ Journey ① Add to cart › ② Open cart › ③ Checkout   ⚑ finish line     │
+│ ┌ lane card ────────────────────────────────────────────────────┐ │
+│ │ 01  Mouse        ●━━━━━━━━━━━━━━━━━━━━━━━━━━┊   3.9s  ✓       │ │
+│ └────────────────────────────────────────────────────────────────┘ │
+│ … six lane cards on the grouped background …                        │
+│ Recorded date · engine version          Counts measured. Time estimated │
+│ The photo finish — 4 of 6 finished. [Copy race link]  photo strip   │
+└─────────────────────────────────────────────────────────────────────┘
+[The starting field: benchmark table]   [Your site. Your finish line: picker]
+[Footer on #F5F5F7]
 ```
-Race:
-```
-[Back] [Site and journey]               [Replay] [Sound]
-[Six lanes, event-driven progress]      [Evidence drawer when selected]
-[Photo finish strip / accessible result table]
-```
+
+Content width 75rem for the console, 61.25rem for reading text. Under 48rem lanes reflow into two lines (method and time, then the full-width course), and the evidence sheet becomes a bottom sheet.
+
+## Materials and depth
+
+- Global navigation and the sheet header use `backdrop-filter: saturate(180%) blur(20px)` over a semi-transparent background, with a hairline scroll edge instead of an opaque bar.
+- The evidence sheet pairs a dimming, lightly blurred scrim with a larger, heavier surface shadow.
+- `prefers-reduced-transparency` makes chrome solid; `prefers-contrast: more` darkens secondary text and adds defined borders; `forced-colors` keeps progress visible.
+
+## Motion
+
+- Runners and progress animate only `transform` (a rail translated by the measured percentage, and a `scaleX` fill) with a critically damped curve (`cubic-bezier(0.22, 1, 0.36, 1)`, ~0.48s). Every change animates from the current on-screen value, so replays and new events never jump.
+- Buttons and lanes respond on press (`scale(0.97)` in 80ms), not on release.
+- The evidence sheet materialises: opacity, scale and blur arrive together (slides up from the bottom on phones). It closes immediately so focus returns to the lane without waiting on motion.
+- DNF/Unknown badges materialise in place. Nothing overshoots: no bounce is applied because no gesture carries momentum.
+- `prefers-reduced-motion` replaces scale, blur and slides with short cross-fades and turns off progress transitions. The race also offers “Show results” and “Step through” instead of playback.
 
 ## Principles
-1. Motion is evidence: only actual captured browser events move a runner.
+
+1. Motion is evidence: only captured browser events move a runner.
 2. The finish line is shared; costs and barriers are individual.
 3. Proof stays one click away: every verdict opens its frames and fix.
+4. Restraint: one accent colour, semantic status colours, no decorative gradients, no all-caps labels, no marketing filler. Every element is explained by the evidence it carries.
 
-## Review and revision
-An initial full navy scoreboard read as a generic developer dashboard. Revised to pale blue with white lane surfaces, blue lane-number blocks and a single solid navy results strip. Dropped decorative grain, a large marketing hero and generic metric cards. Lane numbers are actual race order and carry useful orientation. No gradients, all-caps eyebrows, pill-card grid or decorative hover motion.
+## Accessibility invariants
 
-## Restraint pass
-The final visual QA removes any decorative starting flags; the finish pattern remains because it marks the measured goal.
-
-## Final visual and accessibility critique
-
-Removed the decorative flag/eyebrow above the homepage heading, shortened the desktop lanes so the track dominates the first viewport, and darkened lane numbers after real contrast findings. Removed abbreviated aria-labels from lane controls so their accessible names retain the visible content. Google Fonts were fetched from their original source with licenses and served locally to remove render-blocking third-party latency. Mobile screenshots confirm all six lanes remain legible and selectable at narrow widths.
+Captions for announcements and voice commands stay in the lane, with mute, speech rate, visible focus rings (4px accent halo), semantic result tables, a live region for lane outcomes and 44px minimum hit targets. `pnpm check:a11y` and `pnpm check:picker` must report zero axe violations at 1440, 390 and 320px with no horizontal overflow.

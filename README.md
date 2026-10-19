@@ -12,7 +12,7 @@ The original and repaired Corner bakery are **controlled fixtures**, not AI-buil
 
 ![30-second playback of the controlled bakery race, including its measured DNF results](docs/finish-line-demo.gif)
 
-This silent GIF captures the actual app playing a recorded controlled fixture. Open the app for spoken announcements and captions.
+This silent GIF captures the actual app playing a recorded controlled fixture. Open the app for spoken announcements and captions. The GIF and narrated demo were recorded before the current Apple-style interface redesign; the engine, recorded runs and results they show are unchanged. Current screenshots are in [docs/screenshots](docs/screenshots).
 
 [Watch the 2:53 narrated demo](docs/finish-line-demo.mp4), with burned-in captions, [separate subtitles](docs/finish-line-demo.srt) and [transcript](docs/DEMO-NARRATION.md). Narration uses the Mac’s offline computer voice. Footage is the actual local app; no human participant or hosted deployment is represented.
 
