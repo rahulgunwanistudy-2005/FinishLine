@@ -1,7 +1,7 @@
 {
-  "checkedAt": "2026-10-19T16:07:42.561Z",
+  "checkedAt": "2026-10-19T16:32:47.898Z",
   "image": "finish-line:local",
-  "imageId": "sha256:9f63e63ee2149f2935415291bc84ec5bdd822838bf57fdd1b55f49e387b38810",
+  "imageId": "sha256:fd41d142dd383c718c9c87de1d92e9a3ee09e898a168a3154e3142f7cc91035e",
   "baseImage": "mcr.microsoft.com/playwright:v1.56.1-noble",
   "runtime": {
     "platform": "linux",
@@ -59,8 +59,13 @@
     "The fixture matrix uses trusted local pages; public outbound navigation was verified separately on the host, not in this container."
   ],
   "unitTests": {
-    "total": 29,
-    "passed": 29
+    "total": 33,
+    "passed": 33
   },
-  "rollbackBlockedStatus": 403
+  "rollbackBlockedStatus": 403,
+  "jsonCompression": {
+    "encoding": "br",
+    "transferBytes": 5691,
+    "validRaceCount": 3
+  }
 }

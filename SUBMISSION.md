@@ -2,7 +2,7 @@
 
 **Tagline:** Same checkout. Six people. Not everyone finishes.
 
-**Repository:** https://github.com/rahulgunwanistudy-2005/FinishLine
+**Repository target (publication awaiting approval):** https://github.com/rahulgunwanistudy-2005/FinishLine
 
 **State:** Working local implementation with a verified Linux container, a 30-second demo GIF and a 2:53 captioned demo. Deployxa URL, original AI-builder exports and human agreement checks remain pending. Do not submit this draft as though those checks have happened.
 

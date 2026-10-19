@@ -6,7 +6,7 @@ Finish Line drives one real activation journey through six isolated Chromium ses
 
 **Local preview:** http://127.0.0.1:3000. **Deployxa live URL:** pending a verified zero-cost deployment path. The account is connected read-only.
 
-**Source:** [rahulgunwanistudy-2005/FinishLine](https://github.com/rahulgunwanistudy-2005/FinishLine). [Completion audit](docs/COMPLETION.md) distinguishes the tested local product from remaining submission inputs.
+**Repository target (publication awaiting approval):** [rahulgunwanistudy-2005/FinishLine](https://github.com/rahulgunwanistudy-2005/FinishLine). [Completion audit](docs/COMPLETION.md) distinguishes the tested local product from remaining submission inputs.
 
 The original and repaired Corner bakery are **controlled fixtures**, not AI-builder outputs. The recorded engine 0.4.0 runs finish **4/6** and **6/6** respectively. Every result has its actual date and browser evidence. No builder rankings, human sessions or manual assistive-technology results are invented.
 

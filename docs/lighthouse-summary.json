@@ -1,0 +1,34 @@
+{
+  "checkedAt": "2026-10-19T16:25:43.648Z",
+  "method": "Three sequential local mobile audits using Lighthouse 13.5 and Chrome 155; median performance report retained as lighthouse.json. GPU disabled for headless auditing. All attempts are retained.",
+  "results": [
+    {
+      "run": 1,
+      "file": "docs/lighthouse-final-1.json",
+      "performance": 99,
+      "accessibility": 100,
+      "benchmarkIndex": 991,
+      "warnings": [
+        "The tested device appears to have a slower CPU than  Lighthouse expects. This can negatively affect your performance score. Learn more about [calibrating an appropriate CPU slowdown multiplier](https://github.com/GoogleChrome/lighthouse/blob/main/docs/throttling.md#cpu-throttling)."
+      ]
+    },
+    {
+      "run": 3,
+      "file": "docs/lighthouse-final-3.json",
+      "performance": 99,
+      "accessibility": 100,
+      "benchmarkIndex": 1760,
+      "warnings": []
+    },
+    {
+      "run": 2,
+      "file": "docs/lighthouse-final-2.json",
+      "performance": 100,
+      "accessibility": 100,
+      "benchmarkIndex": 1432,
+      "warnings": []
+    }
+  ],
+  "medianPerformance": 99,
+  "accessibility": 100
+}

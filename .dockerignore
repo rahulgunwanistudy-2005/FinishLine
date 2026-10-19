@@ -2,6 +2,7 @@
 node_modules
 dist
 .data
+deliverables
 .env
 .env.*
 docs/screenshots

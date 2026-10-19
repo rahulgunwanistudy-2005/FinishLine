@@ -27,6 +27,7 @@ import {
 import { createRace, bus, queueState, setRaceLogger } from "./runner.js";
 import { deployxa, records, Deployxa, spendingPolicy } from "./deployxa.js";
 import { registerMcp } from "./mcp.js";
+import { compressJson } from "./compress.js";
 const port = Number(process.env.PORT ?? 3000);
 const app = Fastify({
   logger: { redact: ["req.headers.authorization", "req.headers.cookie"] },
@@ -46,9 +47,26 @@ app.addHook("onRequest", async (req, reply) => {
     reply.code(403).send({ error: "Cross-origin requests are not allowed." });
   }
 });
-app.addHook("onSend", async (_req, reply, payload) => {
+app.addHook("onSend", async (req, reply, payload) => {
   reply.header("X-Content-Type-Options", "nosniff");
   reply.header("Referrer-Policy", "no-referrer");
+  if (typeof payload === "string" && !reply.hasHeader("Content-Encoding")) {
+    const compressed = await compressJson(
+      payload,
+      String(reply.getHeader("Content-Type") ?? ""),
+      req.headers["accept-encoding"] ?? "",
+    );
+    if (compressed) {
+      const vary = String(reply.getHeader("Vary") ?? "");
+      reply.header(
+        "Vary",
+        vary ? `${vary}, Accept-Encoding` : "Accept-Encoding",
+      );
+      reply.header("Content-Encoding", compressed.encoding);
+      reply.removeHeader("Content-Length");
+      return compressed.body;
+    }
+  }
   return payload;
 });
 app.setErrorHandler((error, _req, reply) => {
@@ -468,7 +486,7 @@ if (process.env.NODE_ENV === "production") {
   app.setNotFoundHandler(async (req, reply) =>
     req.url.startsWith("/api/")
       ? reply.code(404).send({ error: "Not found" })
-      : reply.type("text/html").send(await readFile("dist/index.html")),
+      : reply.sendFile("index.html"),
   );
 } else {
   const { createServer } = await import("vite");

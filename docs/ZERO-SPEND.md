@@ -17,6 +17,8 @@ The authenticated account reports Free, $0 current usage, no projects and disabl
 
 [Deployxa’s billing documentation](https://deployxa.com/docs/billing) states that usage beyond plan allowances can be billed. Its budget command is described as a budget/alert mechanism, not proof of a hard zero-spend shutdown. Consequently no deployment is performed under the current evidence. Free excludes managed databases and preview deployments.
 
+The installed CLI’s budget implementation was inspected and its help path checked. It requires a linked project and creates per-project budget records; it does not expose an organization-wide hard $0 cap. The account has no projects, so no project was created just to configure an unverified alert. No budget write was attempted.
+
 The app cannot control purchases or resources created outside it. Do not run the deployment CLI, upgrade, add a card, top up or provision resources to complete this build. Hosting requires verified zero-cost terms and an enforceable $0 cap. Local development, browser tests, recordings and video encoding use existing local tools.
 
 ## Source and CI

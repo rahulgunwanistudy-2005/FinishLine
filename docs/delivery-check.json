@@ -1,0 +1,38 @@
+{
+  "checkedAt": "2026-10-19T16:20:31.910Z",
+  "results": [
+    {
+      "accept": "br",
+      "encoding": "br",
+      "transferBytes": 5691,
+      "decodedBytes": 32299,
+      "races": 3
+    },
+    {
+      "accept": "gzip",
+      "encoding": "gzip",
+      "transferBytes": 5953,
+      "decodedBytes": 32299,
+      "races": 3
+    },
+    {
+      "accept": "br;q=0,gzip;q=0",
+      "encoding": null,
+      "transferBytes": 32299,
+      "decodedBytes": 32299,
+      "races": 3
+    },
+    {
+      "route": "/",
+      "status": 200,
+      "encoding": "br",
+      "blockingStylesheetRequests": 0
+    },
+    {
+      "route": "/race/35c53947-0d70-4c0c-8abf-7846bf8899ec",
+      "status": 200,
+      "encoding": "br",
+      "blockingStylesheetRequests": 0
+    }
+  ]
+}
