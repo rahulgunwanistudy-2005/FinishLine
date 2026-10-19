@@ -21,6 +21,7 @@ import {
   CheckCheck,
   Activity,
   ArrowUpRight,
+  ArrowRight,
   Search,
   Square,
   Info,
@@ -39,7 +40,15 @@ import type {
   Race,
   JourneyStep,
 } from "../../../packages/core";
+import "@fontsource-variable/inter/wght.css";
+import "@fontsource-variable/jetbrains-mono/wght.css";
 import "./styles.css";
+import {
+  TrackFigure,
+  Terminal,
+  type FigureLane,
+  type TerminalLine,
+} from "./hero";
 const icons = {
   mouse: MousePointer2,
   keyboard: Keyboard,
@@ -70,23 +79,21 @@ function Brand() {
   return (
     <a className="brand" href="/" aria-label="Finish Line home">
       <span className="brand-mark" aria-hidden="true">
-        <i />
-        <i />
-        <i />
-        <i />
-        <i />
+        {Array.from({ length: 9 }, (_, i) => (
+          <i key={i} />
+        ))}
       </span>
-      <span>
-        Finish Line<span className="brand-point">.</span>
-      </span>
+      <span>Finish Line</span>
     </a>
   );
 }
 function App() {
   const pathname = location.pathname;
-  const [health, setHealth] = useState<{ engine: { ok: boolean } }>();
+  const [health, setHealth] = useState<{
+    engine: { ok: boolean; version?: string };
+  }>();
   useEffect(() => {
-    api<{ engine: { ok: boolean } }>("/api/health")
+    api<{ engine: { ok: boolean; version?: string } }>("/api/health")
       .then(setHealth)
       .catch(() => {});
   }, []);
@@ -131,13 +138,24 @@ function App() {
               pathname.startsWith("/race/") ? pathname.split("/")[2] : undefined
             }
             engineReady={health?.engine.ok}
+            engineVersion={health?.engine.version}
           />
         )}
       </main>
       <footer>
+        <p className="footer-wordmark" aria-hidden="true">
+          Finish Line
+        </p>
         <div className="footer-inner">
           <Brand />
           <span>Push code. Everyone finishes.</span>
+          <a
+            href="https://github.com/rahulgunwanistudy-2005/FinishLine"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Source <ExternalLink size={13} />
+          </a>
           <a href="/health" target="_blank" rel="noreferrer">
             System health <ExternalLink size={13} />
           </a>
@@ -149,10 +167,18 @@ function App() {
 function Home({
   raceId,
   engineReady,
+  engineVersion,
 }: {
   raceId?: string;
   engineReady?: boolean;
+  engineVersion?: string;
 }) {
+  const [matrix, setMatrix] = useState<{ total?: number; passed?: number }>();
+  useEffect(() => {
+    api<{ total?: number; passed?: number }>("/api/matrix")
+      .then(setMatrix)
+      .catch(() => {});
+  }, []);
   const [gate, setGate] = useState<{ regressions: Lane[] }>();
   const [benchmarks, setBenchmarks] = useState<Race[]>([]);
   const [selected, setSelected] = useState<Race>();
@@ -268,35 +294,21 @@ function Home({
   }
   return (
     <>
-      <section className="intro" aria-labelledby="home-title">
-        <span className="eyebrow">Finish Line</span>
-        <h1 id="home-title">
-          Same checkout.
-          <br />
-          <span className="soft">Six ways through.</span>
-        </h1>
-        <p>
-          One website. One journey. See where the experience works,
-          <br className="desktop-break" /> and where it leaves someone behind.
-        </p>
-        <div className="hero-actions">
-          <a className="primary" href="#race">
-            Watch the race
-          </a>
-          <a className="text-link" href="#race-your-site">
-            Race your site <ChevronRight size={16} />
-          </a>
-        </div>
-        <div className="intro-note">
-          <span className={`status-dot ${engineReady ? "online" : ""}`} />
-          <span>
-            {engineReady
-              ? "Real browsers. Real barriers."
-              : "Recorded races stay ready."}
-            <small>Measured actions. Estimated human time.</small>
-          </span>
-        </div>
-      </section>
+      {!raceId && (
+        <Hero
+          race={selected}
+          engineReady={engineReady}
+          engineVersion={engineVersion}
+          matrix={matrix}
+        />
+      )}
+      {!raceId && (
+        <SectionLabel
+          index="01"
+          title="The race"
+          note="Recorded browser evidence · press start to replay"
+        />
+      )}
       {error && (
         <p className="error" role="alert">
           {error}
@@ -328,6 +340,12 @@ function Home({
               How we measure <ChevronRight size={15} />
             </a>
           </div>
+          <HowItWorks />
+          <SectionLabel
+            index="03"
+            title="Evidence & your site"
+            note="Every result has a receipt"
+          />
           <section className="lower-grid">
             <div className="benchmarks">
               <div className="section-heading">
@@ -360,10 +378,9 @@ function Home({
                             onClick={() => {
                               setSelected(r);
                               setNonce(0);
-                              window.scrollTo({
-                                top: 120,
-                                behavior: "instant",
-                              });
+                              document
+                                .getElementById("race")
+                                ?.scrollIntoView({ block: "start" });
                             }}
                           >
                             {r.title ?? new URL(r.url).hostname}
@@ -424,6 +441,243 @@ function Home({
         </>
       )}
     </>
+  );
+}
+function figureLanes(race?: Race): FigureLane[] {
+  const slowest = Math.max(
+    1,
+    ...(race?.results.map((r) => r.estSeconds) ?? []),
+  );
+  return lanes.map((lane, index) => {
+    const result = race?.results.find((r) => r.lane === lane);
+    const steps = race?.journey.length ?? 3;
+    const done = result
+      ? ["finished", "dnf", "unknown"].includes(result.status)
+      : false;
+    return {
+      lane,
+      number: String(index + 1).padStart(2, "0"),
+      status: done ? (result!.status as FigureLane["status"]) : "pending",
+      progress:
+        result?.status === "finished"
+          ? 1
+          : visibleResult(result, Infinity, steps, true).progress / 100,
+      pace: result ? result.estSeconds / slowest : 0,
+    };
+  });
+}
+function slug(race: Race) {
+  return (race.title ?? new URL(race.url).hostname)
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+function terminalLines(race?: Race): TerminalLine[] {
+  if (!race)
+    return [
+      { kind: "cmd", text: "finishline race corner-bakery" },
+      { kind: "info", text: "Loading recorded browser evidence" },
+    ];
+  const lines: TerminalLine[] = [
+    { kind: "cmd", text: `finishline race ${slug(race)}` },
+    { kind: "info", text: race.journey.map((s) => s.label).join(" › ") },
+  ];
+  const ordered = [...race.results].sort(
+    (a, b) =>
+      Number(b.status === "finished") - Number(a.status === "finished") ||
+      a.estSeconds - b.estSeconds,
+  );
+  for (const r of ordered) {
+    const name = laneMeta[r.lane].name;
+    const last = r.events.at(-1)?.text ?? "";
+    if (r.status === "finished")
+      lines.push({
+        kind: "ok",
+        text: name,
+        meta: `${r.estSeconds.toFixed(1)}s · ${fmt(r.cost.value)} ${r.cost.unit}`,
+      });
+    else if (r.status === "dnf")
+      lines.push({
+        kind: "fail",
+        text: `${name} DNF`,
+        meta: last.length > 44 ? `${last.slice(0, 43)}…` : last,
+      });
+    else
+      lines.push({
+        kind: "warn",
+        text: `${name} unknown`,
+        meta: "engine limit, not a verdict",
+      });
+  }
+  if (["done", "invalid_journey", "failed"].includes(race.status)) {
+    const finished = race.results.filter((r) => r.status === "finished").length;
+    lines.push({
+      kind: "sum",
+      text: `${finished}/${race.results.length} reached the finish`,
+      meta: `engine ${race.engineVersion}`,
+    });
+  }
+  return lines;
+}
+function SectionLabel({
+  index,
+  title,
+  note,
+}: {
+  index: string;
+  title: string;
+  note?: string;
+}) {
+  return (
+    <div className="section-label">
+      <p className="kicker">
+        <span className="kicker-mark" aria-hidden="true" />
+        {index} / {title}
+      </p>
+      {note && <p className="section-note">{note}</p>}
+    </div>
+  );
+}
+function Hero({
+  race,
+  engineReady,
+  engineVersion,
+  matrix,
+}: {
+  race?: Race;
+  engineReady?: boolean;
+  engineVersion?: string;
+  matrix?: { total?: number; passed?: number };
+}) {
+  const finished =
+    race?.results.filter((r) => r.status === "finished").length ?? 0;
+  const stopped = race?.results.filter((r) => r.status !== "finished") ?? [];
+  const label = race
+    ? `Figure: ${race.title ?? "Recorded race"} on a six-lane track. ${finished} of ${race.results.length} input methods reached the finish line${stopped.length ? `; ${stopped.map((r) => laneMeta[r.lane].name).join(" and ")} stopped short` : ""}.`
+    : "Six-lane track figure, waiting for recorded evidence.";
+  const version = engineVersion ?? race?.engineVersion;
+  return (
+    <section className="hero" aria-labelledby="home-title">
+      <div className="hero-copy">
+        <p className="kicker">
+          <span className="kicker-mark" aria-hidden="true" />
+          Accessibility race engine{version ? ` / v${version}` : ""}
+        </p>
+        <h1 id="home-title">
+          Same checkout.
+          <br />
+          <span className="soft">Six ways through.</span>
+        </h1>
+        <p className="hero-lede">
+          One journey through six real Chromium browsers: mouse, keyboard,
+          screen reader, voice control, 400% zoom and a budget phone. Watch who
+          reaches the finish line, and see exactly where someone is left behind.
+        </p>
+        <div className="hero-actions">
+          <a className="btn btn-solid" href="#race">
+            Watch the race <ArrowUpRight size={16} />
+          </a>
+          <a className="btn btn-outline" href="#race-your-site">
+            Race your site <ArrowRight size={16} />
+          </a>
+        </div>
+        <p className="hero-badges">
+          <span>Real Chromium</span>
+          <span>WCAG-mapped fixes</span>
+          <span>Open source</span>
+        </p>
+        <dl className="spec-strip">
+          <div>
+            <dt>Engine</dt>
+            <dd>
+              <span
+                className={`status-dot ${engineReady ? "online" : ""}`}
+                aria-hidden="true"
+              />
+              {engineReady === undefined
+                ? "Checking"
+                : engineReady
+                  ? "Online"
+                  : "Recorded mode"}
+            </dd>
+          </div>
+          <div>
+            <dt>Matrix</dt>
+            <dd>
+              {matrix?.total
+                ? `${matrix.passed}/${matrix.total} checks`
+                : "Not measured"}
+            </dd>
+          </div>
+          <div>
+            <dt>Recorded</dt>
+            <dd>{race ? stamp(race.createdAt) : "—"}</dd>
+          </div>
+        </dl>
+      </div>
+      <div className="hero-figure">
+        <span className="crosshair tl" aria-hidden="true" />
+        <span className="crosshair tr" aria-hidden="true" />
+        <p className="fig-caption" aria-hidden="true">
+          <span>
+            Fig. 01 — {race?.title ?? "Six-lane track"} / recorded run
+          </span>
+          <span className="fig-mode">Move cursor to displace</span>
+        </p>
+        <TrackFigure
+          lanes={figureLanes(race)}
+          label={label}
+          replayKey={race?.id ?? "none"}
+        />
+        <ul className="fig-legend" aria-hidden="true">
+          <li className="finished">Finished</li>
+          <li className="dnf">Did not finish</li>
+          <li className="unknown">Unknown</li>
+        </ul>
+        <Terminal
+          lines={terminalLines(race)}
+          title="finishline — zsh — 6 lanes"
+          runKey={race?.id ?? "none"}
+        />
+      </div>
+    </section>
+  );
+}
+function HowItWorks() {
+  const steps = [
+    {
+      title: "Paste a public URL",
+      body: "Finish Line opens it in Chromium and numbers every visible control, with a screenshot you can click or a list you can tab through.",
+    },
+    {
+      title: "Choose up to three actions",
+      body: "Add to cart, open cart, checkout. Preview replays your picks in a fresh browser so drawers and next-page controls appear.",
+    },
+    {
+      title: "Six browsers race",
+      body: "Each input method tries the same journey in its own context. Every DNF opens its frames, event trail, WCAG reference and a copyable fix.",
+    },
+  ];
+  return (
+    <section className="how" aria-labelledby="how-title">
+      <SectionLabel index="02" title="How it works" note="About a minute" />
+      <h2 id="how-title">
+        From URL to verdict
+        <br />
+        <span className="soft">in three moves.</span>
+      </h2>
+      <ol className="how-grid">
+        {steps.map((step, index) => (
+          <li key={step.title}>
+            <span className="how-index">
+              {String(index + 1).padStart(2, "0")}
+            </span>
+            <h3>{step.title}</h3>
+            <p>{step.body}</p>
+          </li>
+        ))}
+      </ol>
+    </section>
   );
 }
 type VisibleLane = {
