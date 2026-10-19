@@ -1,0 +1,72 @@
+{
+  "checkedAt": "2026-10-19T16:09:29.041Z",
+  "source": "Controlled bakery fixture through real Chromium; API transport intercepted only to preserve production SSRF boundaries. Race submission captured, not executed.",
+  "results": [
+    {
+      "width": 1440,
+      "previewPrefixes": [
+        0,
+        1,
+        2,
+        1,
+        0
+      ],
+      "keyboardSelection": true,
+      "previewFocusReturned": true,
+      "authorizationRequired": true,
+      "submittedSelectors": [
+        "#add-first",
+        "#open-cart",
+        "#checkout-button"
+      ],
+      "editAndReset": true,
+      "axeViolations": 0,
+      "horizontalOverflow": false,
+      "browserErrors": []
+    },
+    {
+      "width": 390,
+      "previewPrefixes": [
+        0,
+        1,
+        2,
+        1,
+        0
+      ],
+      "keyboardSelection": true,
+      "previewFocusReturned": true,
+      "authorizationRequired": true,
+      "submittedSelectors": [
+        "#add-first",
+        "#open-cart",
+        "#checkout-button"
+      ],
+      "editAndReset": true,
+      "axeViolations": 0,
+      "horizontalOverflow": false,
+      "browserErrors": []
+    },
+    {
+      "width": 320,
+      "previewPrefixes": [
+        0,
+        1,
+        2,
+        1,
+        0
+      ],
+      "keyboardSelection": true,
+      "previewFocusReturned": true,
+      "authorizationRequired": true,
+      "submittedSelectors": [
+        "#add-first",
+        "#open-cart",
+        "#checkout-button"
+      ],
+      "editAndReset": true,
+      "axeViolations": 0,
+      "horizontalOverflow": false,
+      "browserErrors": []
+    }
+  ]
+}

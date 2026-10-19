@@ -1,6 +1,10 @@
 import "../apps/web/server/env.js";
 import { writeFile } from "node:fs/promises";
-import { Deployxa, records } from "../apps/web/server/deployxa.js";
+import {
+  Deployxa,
+  records,
+  spendingPolicy,
+} from "../apps/web/server/deployxa.js";
 
 // Inspection only: no create, deploy, upgrade, database or billing-write calls.
 const client = new Deployxa();
@@ -37,6 +41,7 @@ try {
       autoTopUpEnabled: settings.autoTopUpEnabled ?? null,
     },
     zeroSpendConstraint: {
+      applicationPolicy: spendingPolicy,
       hardZeroCapReported: usage.costLimitCents === 0,
       deploymentPerformed: false,
       resourceWritesPerformed: false,

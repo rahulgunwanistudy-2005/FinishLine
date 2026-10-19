@@ -2,11 +2,15 @@
 
 **Tagline:** Same checkout. Six people. Not everyone finishes.
 
-**State:** Working local implementation with a verified Linux container and a 30-second demo GIF. Deployxa URL, original AI-builder exports, manual agreement checks and final narrated video remain pending. Do not submit this draft as though those checks have happened.
+**Repository:** https://github.com/rahulgunwanistudy-2005/FinishLine
+
+**State:** Working local implementation with a verified Linux container, a 30-second demo GIF and a 2:53 captioned demo. Deployxa URL, original AI-builder exports and human agreement checks remain pending. Do not submit this draft as though those checks have happened.
 
 ![30-second recording of the controlled bakery race](docs/finish-line-demo.gif)
 
 The GIF is silent. The app provides actual spoken announcements and captions after Start race.
+
+Prepared video: [captioned MP4](docs/finish-line-demo.mp4), [SRT](docs/finish-line-demo.srt), [actual narration transcript](docs/DEMO-NARRATION.md). Narration is computer-generated offline; the footage is the actual local app, including measured recordings and a live public URL scan. Review the video and sentence-estimated caption timings before public upload.
 
 ## The problem
 
@@ -45,7 +49,7 @@ The real AI-builder leaderboard is intentionally pending at least three unmodifi
 
 “Deployxa’s readiness score says your app will run. Finish Line asks who can use it.”
 
-The server includes authenticated, paginated MCP tool discovery, deploy history, healthy-deploy racing, an advisory regression gate, administrator-only sandbox rollback and a CI gate script. Finish Line also exposes `race_url` and `get_race` through its own Streamable HTTP MCP server.
+The server includes authenticated, paginated MCP tool discovery, deploy history, healthy-deploy racing, an advisory regression gate and a CI gate script. Finish Line also exposes `race_url` and `get_race` through its own Streamable HTTP MCP server. Cloud changes, rollback and AI requests are disabled by a fixed zero-spend policy; the rollback endpoint returns 403 before any cloud call.
 
 Authenticated discovery returned 66 tools. Read-only account checks confirm the Free plan, zero projects, $0 usage and disabled auto-top-up. Its API reports a $50 usage ceiling, so no resources were provisioned under the user’s zero-spend constraint. The public client rejects mutating tools and resolves the actual discovered status/readiness names. Hosting remains unverified; managed databases and previews are excluded from Free. Evidence: `docs/deployxa-check.json`, `docs/deployxa-tools.json`. [Deployxa pricing](https://deployxa.com/pricing).
 
@@ -67,7 +71,7 @@ TypeScript, React, Vite, Fastify, Playwright/Chromium, CDP accessibility APIs, P
 
 **1:05–1:25 — The proof.** Show the fixture matrix and explain one deliberately broken behavior. Show manual agreement only if actually recorded. Show the dated benchmark leaderboard only when real exports are available.
 
-**1:25–1:55 — Deployxa.** With a connected account, show discovered tools, deployment history, readiness and a deploy-triggered race. Demonstrate sandbox rollback only in the authenticated sandbox. Until the key is available, show the unconnected state and explain the unfinished integration plainly.
+**1:25–1:55 — Deployxa.** Show the actual read-only connection and zero-spend restriction. Do not provision, upgrade, demonstrate rollback or imply a live deployment exists. Explain that the provider reports a $50 ceiling and hosting awaits a verified $0 cap. Deployment history, readiness and deploy-triggered racing remain unverified against a real project.
 
 **1:55–2:25 — Repair.** Switch to the repaired controlled fixture (or a real repaired benchmark if available). Replay the measured six finishes. “The visible button barely changed. The journey did.” Show the exact fix and dated rerun.
 
@@ -78,4 +82,4 @@ TypeScript, React, Vite, Fastify, Playwright/Chromium, CDP accessibility APIs, P
 - Verified free deployment terms and an enforced $0 spending cap, then repository connection and hosting verification. No paid upgrade or provisioning is authorized.
 - At least three builder exports and complete transcripts using benchmark/PROMPT.md.
 - Keyboard-only and VoiceOver/NVDA manual passes and per-store agreement rows.
-- Final narrated video, final verified live URL and Devpost upload.
+- Review the supplied captioned demo, then provide the final verified live URL and complete the Devpost upload.

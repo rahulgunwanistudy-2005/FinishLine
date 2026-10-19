@@ -1119,20 +1119,32 @@ function JourneyPicker({ onCreated }: { onCreated: (id: string) => void }) {
   const [url, setUrl] = useState("");
   const [scan, setScan] = useState<Scan>();
   const [selected, setSelected] = useState<number[]>([]);
+  const [prefix, setPrefix] = useState<JourneyStep[]>([]);
   const [busy, setBusy] = useState("");
   const [error, setError] = useState("");
   const [consent, setConsent] = useState(false);
-  async function detect() {
-    setBusy("Scanning");
+  const instruction = useRef<HTMLParagraphElement>(null);
+  useEffect(() => {
+    if (scan) instruction.current?.focus();
+  }, [scan]);
+  const currentSteps = scan
+    ? selected.map((n) => {
+        const element = scan.elements.find((e) => e.number === n)!;
+        return { label: element.label, target: element.target };
+      })
+    : [];
+  const journey = [...prefix, ...currentSteps];
+  async function detect(prior: JourneyStep[] = []) {
+    setBusy(prior.length ? "Previewing actions" : "Scanning");
     setError("");
-    setSelected([]);
     try {
-      setScan(
-        await api<Scan>("/api/journey/scan", {
-          method: "POST",
-          body: JSON.stringify({ url }),
-        }),
-      );
+      const next = await api<Scan>("/api/journey/scan", {
+        method: "POST",
+        body: JSON.stringify({ url, journey: prior, authorized: consent }),
+      });
+      setScan(next);
+      setPrefix(prior);
+      setSelected([]);
     } catch (e) {
       setError((e as Error).message);
     } finally {
@@ -1143,7 +1155,7 @@ function JourneyPicker({ onCreated }: { onCreated: (id: string) => void }) {
     setSelected((previous) =>
       previous.includes(n)
         ? previous.filter((x) => x !== n)
-        : previous.length < 3
+        : previous.length + prefix.length < 3
           ? [...previous, n]
           : previous,
     );
@@ -1152,15 +1164,9 @@ function JourneyPicker({ onCreated }: { onCreated: (id: string) => void }) {
     setBusy("Starting");
     setError("");
     try {
-      const journey = scan
-        ? selected.map((n) => {
-            const el = scan.elements.find((e) => e.number === n)!;
-            return { label: el.label, target: el.target };
-          })
-        : undefined;
       const { id } = await api<{ id: string }>("/api/races", {
         method: "POST",
-        body: JSON.stringify({ url, journey }),
+        body: JSON.stringify({ url, journey: scan ? journey : undefined }),
       });
       onCreated(id);
     } catch (e) {
@@ -1194,12 +1200,14 @@ function JourneyPicker({ onCreated }: { onCreated: (id: string) => void }) {
             id="site-url"
             type="url"
             required
+            disabled={!!busy}
             placeholder="https://your-site.com"
             value={url}
             onChange={(e) => {
               setUrl(e.target.value);
               setScan(undefined);
               setSelected([]);
+              setPrefix([]);
             }}
           />
           <button
@@ -1219,13 +1227,24 @@ function JourneyPicker({ onCreated }: { onCreated: (id: string) => void }) {
       )}
       {scan && (
         <>
-          <p className="picker-instruction">
-            Choose actions in order ({selected.length}/3). Selected:{" "}
-            {selected
-              .map((n) => scan.elements.find((e) => e.number === n)?.label)
-              .join(", ") || "none"}
-            .
+          <p className="picker-instruction" tabIndex={-1} ref={instruction}>
+            Choose actions in order ({journey.length}/3). Preview your selection
+            to reveal controls on the next page or inside a drawer.
           </p>
+          {!!journey.length && (
+            <ol aria-label="Selected journey steps">
+              {journey.map((step, index) => (
+                <li key={index}>{step.label}</li>
+              ))}
+            </ol>
+          )}
+          {!!prefix.length && (
+            <p>
+              The preview has completed {prefix.length} selected{" "}
+              {prefix.length === 1 ? "action" : "actions"}. Choose what happens
+              next.
+            </p>
+          )}
           <div className="scan-preview">
             <img
               src={scan.screenshot}
@@ -1242,11 +1261,15 @@ function JourneyPicker({ onCreated }: { onCreated: (id: string) => void }) {
                     top: `${Math.min(94, Math.max(0, (e.box!.y / 800) * 100))}%`,
                   }}
                   onClick={() => toggle(e.number)}
-                  aria-label={`${selected.includes(e.number) ? selected.indexOf(e.number) + 1 : e.number}. Select ${e.label}`}
+                  disabled={
+                    !!busy ||
+                    (journey.length === 3 && !selected.includes(e.number))
+                  }
+                  aria-label={`${selected.includes(e.number) ? prefix.length + selected.indexOf(e.number) + 1 : e.number}. Select ${e.label}`}
                   aria-pressed={selected.includes(e.number)}
                 >
                   {selected.includes(e.number)
-                    ? selected.indexOf(e.number) + 1
+                    ? prefix.length + selected.indexOf(e.number) + 1
                     : e.number}
                 </button>
               ))}
@@ -1262,7 +1285,8 @@ function JourneyPicker({ onCreated }: { onCreated: (id: string) => void }) {
                   type="checkbox"
                   checked={selected.includes(e.number)}
                   disabled={
-                    selected.length === 3 && !selected.includes(e.number)
+                    !!busy ||
+                    (journey.length === 3 && !selected.includes(e.number))
                   }
                   onChange={() => toggle(e.number)}
                 />
@@ -1270,11 +1294,50 @@ function JourneyPicker({ onCreated }: { onCreated: (id: string) => void }) {
                   {e.number}. {e.label}
                 </span>
                 {selected.includes(e.number) && (
-                  <b>Step {selected.indexOf(e.number) + 1}</b>
+                  <b>Step {prefix.length + selected.indexOf(e.number) + 1}</b>
                 )}
               </label>
             ))}
           </div>
+          {scan.elements.length === 0 && (
+            <p>
+              No visible controls were found in this preview. You can race the
+              selected steps or reset the journey.
+            </p>
+          )}
+          <div className="picker-actions">
+            <button
+              className="secondary"
+              disabled={
+                !!busy || !consent || !selected.length || journey.length >= 3
+              }
+              onClick={() => void detect(journey)}
+            >
+              Preview selected actions
+            </button>
+            {!!prefix.length && (
+              <button
+                className="secondary"
+                disabled={!!busy || (!consent && prefix.length > 1)}
+                onClick={() => void detect(prefix.slice(0, -1))}
+              >
+                Edit previous step
+              </button>
+            )}
+            {!!journey.length && (
+              <button
+                className="text-link"
+                disabled={!!busy}
+                onClick={() => void detect()}
+              >
+                Reset journey
+              </button>
+            )}
+          </div>
+          <p>
+            Preview replays the selected actions in a fresh browser. Confirm
+            authorization below before using it.
+          </p>
         </>
       )}
       <label className="consent">
@@ -1290,7 +1353,7 @@ function JourneyPicker({ onCreated }: { onCreated: (id: string) => void }) {
       </label>
       <button
         className="primary race-url-button"
-        disabled={!url || !consent || !!busy || (!!scan && !selected.length)}
+        disabled={!url || !consent || !!busy || (!!scan && !journey.length)}
         onClick={() => void run()}
       >
         <Flag size={16} />
@@ -1565,9 +1628,10 @@ function Method() {
             remains recommended for defense in depth.
           </li>
           <li>
-            Deployxa hosting, database, readiness scores, rollback and builder
-            benchmarks remain unverified until credentials and source exports
-            are available.
+            The Deployxa account is connected read-only. Zero-spend mode blocks
+            cloud changes, rollback and AI requests. Hosting and builder
+            benchmarks still need verified free hosting and original source
+            exports.
           </li>
         </ul>
       </section>
@@ -1657,9 +1721,9 @@ function Deploys() {
       ) : (
         <>
           <p role="status">
-            Connected to Deployxa. This page reads your account and runs local
-            accessibility checks; it does not create deployments or paid
-            resources.
+            Connected to Deployxa. Zero-spend mode is on: cloud changes,
+            rollback and AI requests are disabled. You can inspect deployments
+            and run accessibility checks locally.
           </p>
           {data.projects.length === 0 && (
             <p>
@@ -1763,11 +1827,11 @@ function Deploys() {
         </div>
         <div>
           <RotateCcw size={22} />
-          <h3>A bounded rollback</h3>
+          <h3>No cash spending</h3>
           <p>
-            Rollback is restricted to one configured sandbox, requires
-            administrator authentication and typed project-name confirmation,
-            and is not offered publicly.
+            This app cannot buy services, upgrade your plan, deploy resources or
+            roll back a deployment. Your account’s billing settings remain under
+            your control.
           </p>
         </div>
         <div>

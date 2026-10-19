@@ -1,0 +1,159 @@
+1
+00:00:00,000 --> 00:00:00,766
+Finish Line.
+
+2
+00:00:00,766 --> 00:00:02,872
+Same checkout, six ways through.
+
+3
+00:00:02,872 --> 00:00:05,744
+This demo uses computer generated narration.
+
+4
+00:00:05,744 --> 00:00:12,638
+These are actual recorded browser measurements on a controlled bakery fixture, not an AI builder benchmark.
+
+5
+00:00:12,638 --> 00:00:14,297
+Four of six lanes finish.
+
+6
+00:00:14,297 --> 00:00:17,935
+The screen reader and voice lanes stop at real barriers.
+
+7
+00:00:17,935 --> 00:00:19,276
+Counts are measured.
+
+8
+00:00:19,276 --> 00:00:21,637
+The human time clock is an estimate.
+
+9
+00:00:32,000 --> 00:00:33,597
+Each lane opens its evidence.
+
+10
+00:00:33,597 --> 00:00:37,068
+The screen reader lane reached a button without a usable name.
+
+11
+00:00:37,068 --> 00:00:41,474
+You can inspect the actual browser frame, its announcement and the event trail.
+
+12
+00:00:41,474 --> 00:00:44,118
+The fix prompt comes from a closed reason code.
+
+13
+00:00:44,118 --> 00:00:49,957
+Nothing here is a human screen reader session, and a finished lane is not a certificate of accessibility.
+
+14
+00:00:57,000 --> 00:00:59,797
+The engine has a published correctness matrix.
+
+15
+00:00:59,797 --> 00:01:02,958
+Ten deliberately isolated fixtures, six lanes each.
+
+16
+00:01:02,958 --> 00:01:09,524
+All sixty expectations pass, including focus traps, missing names, mismatched labels, occlusion and reflow.
+
+17
+00:01:09,524 --> 00:01:13,841
+Unknown engine failures are kept separate from accessibility failures.
+
+18
+00:01:13,841 --> 00:01:17,549
+The method also publishes its limits and timing assumptions.
+
+19
+00:01:18,049 --> 00:01:20,358
+This is the repaired controlled bakery.
+
+20
+00:01:20,358 --> 00:01:25,864
+It follows the same three step journey: add the first product, open the cart, then checkout.
+
+21
+00:01:25,864 --> 00:01:28,232
+The dated rerun finishes all six lanes.
+
+22
+00:01:28,232 --> 00:01:31,725
+Both versions retain their real timelines and screenshots.
+
+23
+00:01:31,725 --> 00:01:35,751
+We do not attribute these hand authored fixtures to any AI builder.
+
+24
+00:01:50,049 --> 00:01:54,303
+For an authorized public site, paste its URL and inspect real controls.
+
+25
+00:01:54,303 --> 00:01:56,520
+Select up to three actions in order.
+
+26
+00:01:56,520 --> 00:02:01,313
+Preview can replay earlier selections to reveal the next page or a cart drawer.
+
+27
+00:02:01,313 --> 00:02:05,866
+It requires authorization because those actions can change the target site.
+
+28
+00:02:05,866 --> 00:02:08,503
+This example only inspects example dot com.
+
+29
+00:02:12,049 --> 00:02:15,487
+The real Deployxa account is connected in read only mode.
+
+30
+00:02:15,487 --> 00:02:20,433
+Cloud writes, purchases, rollback and AI requests are blocked by the application.
+
+31
+00:02:20,433 --> 00:02:22,604
+No resources have been provisioned.
+
+32
+00:02:22,604 --> 00:02:29,540
+The account's reported fifty dollar usage ceiling does not guarantee zero spending, so hosting remains unverified.
+
+33
+00:02:29,540 --> 00:02:31,409
+No paid upgrade is authorized.
+
+34
+00:02:32,049 --> 00:02:34,790
+Finish Line also races its own Start button.
+
+35
+00:02:34,790 --> 00:02:37,718
+All six lanes finish that one step self check.
+
+36
+00:02:37,718 --> 00:02:43,885
+Automated accessibility checks pass, while human keyboard and screen reader checks remain pending.
+
+37
+00:02:43,885 --> 00:02:48,308
+Original AI builder exports are still required for the real benchmark.
+
+38
+00:02:48,308 --> 00:02:50,613
+This is the working local prototype.
+
+39
+00:02:50,613 --> 00:02:51,298
+Push code.
+
+40
+00:02:51,298 --> 00:02:52,481
+Everyone finishes.

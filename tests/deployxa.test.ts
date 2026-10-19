@@ -5,31 +5,45 @@ import { Deployxa } from "../apps/web/server/deployxa.js";
 
 function connection(tools: Tool[]) {
   const client = new Deployxa();
-  const callTool = vi
-    .fn()
-    .mockResolvedValue({
-      content: [{ type: "text", text: '{"status":"running"}' }],
-    });
+  const callTool = vi.fn().mockResolvedValue({
+    content: [{ type: "text", text: '{"status":"running"}' }],
+  });
   client.client = { callTool } as unknown as Client;
   client.tools = tools;
   return { client, callTool };
 }
 
 describe("Deployxa read-only integration", () => {
-  it.each(["deployxa_create_deployment", "deployxa_purchase_domain"])(
-    "blocks %s before any network call",
-    async (name) => {
-      const { client, callTool } = connection([
-        {
-          name,
-          inputSchema: { type: "object" },
-          annotations: { readOnlyHint: false },
-        },
-      ]);
-      await expect(client.call(name)).rejects.toThrow("read-only");
-      expect(callTool).not.toHaveBeenCalled();
-    },
-  );
+  it.each([
+    "deployxa_create_deployment",
+    "deployxa_purchase_domain",
+    "deployxa_rollback_deployment",
+    "deployxa_chat_assistant",
+  ])("blocks %s before any network call", async (name) => {
+    const { client, callTool } = connection([
+      {
+        name,
+        inputSchema: { type: "object" },
+        annotations: { readOnlyHint: false },
+      },
+    ]);
+    await expect(client.call(name)).rejects.toThrow("read-only");
+    expect(callTool).not.toHaveBeenCalled();
+  });
+  it("does not trust a remote read-only hint to authorize credit-consuming tools", async () => {
+    const { client, callTool } = connection([
+      {
+        name: "deployxa_chat_assistant",
+        inputSchema: { type: "object" },
+        annotations: { readOnlyHint: true },
+      },
+    ]);
+    expect(client.canRead("deployxa_chat_assistant")).toBe(false);
+    await expect(client.call("deployxa_chat_assistant")).rejects.toThrow(
+      "Zero-spend policy",
+    );
+    expect(callTool).not.toHaveBeenCalled();
+  });
   it("fails closed when a tool lacks a read-only declaration", async () => {
     const { client, callTool } = connection([
       { name: "unknown", inputSchema: { type: "object" } },

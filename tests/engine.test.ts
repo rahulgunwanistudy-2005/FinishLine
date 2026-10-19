@@ -3,6 +3,7 @@ import { readFile } from "node:fs/promises";
 import { afterAll, beforeAll, expect, it } from "vitest";
 import { runLane } from "../apps/engine/lanes.js";
 import { closeBrowser } from "../apps/engine/browser.js";
+import { scan } from "../apps/engine/inspect.js";
 import type { JourneyStep } from "../packages/core/index.js";
 const server = createServer(async (_req, res) => {
   res.setHeader("Content-Type", "text/html");
@@ -26,6 +27,23 @@ afterAll(async () => {
   server.close();
   await closeBrowser();
 });
+it("replays selected actions to reveal checkout controls for the picker", async () => {
+  const initial = await scan(url, [], url);
+  expect(
+    initial.elements.some((e) => e.target.css === "#checkout-button"),
+  ).toBe(false);
+  const add = initial.elements.find((e) => e.target.css === "#add-first")!;
+  const cart = initial.elements.find((e) => e.target.css === "#open-cart")!;
+  const next = await scan(url, [add, cart], url);
+  expect(next.completedSteps).toBe(2);
+  expect(
+    next.elements.find((e) => e.target.css === "#checkout-button")?.label,
+  ).toBe("Checkout");
+  const reset = await scan(url, [], url);
+  expect(reset.elements.some((e) => e.target.css === "#checkout-button")).toBe(
+    false,
+  );
+}, 60000);
 it("wraps the document between journey steps to reach a cart earlier in DOM order", async () => {
   const journey: JourneyStep[] = [
     {

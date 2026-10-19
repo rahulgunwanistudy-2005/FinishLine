@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-19T15:21:07.590Z",
+  "checkedAt": "2026-10-19T16:05:13.511Z",
   "authenticated": true,
   "toolCount": 66,
   "plan": "free",
@@ -17,6 +17,11 @@
     "autoTopUpEnabled": false
   },
   "zeroSpendConstraint": {
+    "applicationPolicy": {
+      "cashSpendingAllowed": false,
+      "cloudMutationsAllowed": false,
+      "aiRequestsAllowed": false
+    },
     "hardZeroCapReported": false,
     "deploymentPerformed": false,
     "resourceWritesPerformed": false,

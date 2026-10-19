@@ -884,6 +884,13 @@ main:focus {
   font-size: 12px;
   margin-top: 14px;
 }
+.picker-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0 12px;
+}
 .picker-options {
   max-height: 230px;
   overflow: auto;

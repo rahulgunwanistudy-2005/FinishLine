@@ -6,11 +6,15 @@ Finish Line drives one real activation journey through six isolated Chromium ses
 
 **Local preview:** http://127.0.0.1:3000. **Deployxa live URL:** pending a verified zero-cost deployment path. The account is connected read-only.
 
+**Source:** [rahulgunwanistudy-2005/FinishLine](https://github.com/rahulgunwanistudy-2005/FinishLine). [Completion audit](docs/COMPLETION.md) distinguishes the tested local product from remaining submission inputs.
+
 The original and repaired Corner bakery are **controlled fixtures**, not AI-builder outputs. The recorded engine 0.4.0 runs finish **4/6** and **6/6** respectively. Every result has its actual date and browser evidence. No builder rankings, human sessions or manual assistive-technology results are invented.
 
 ![30-second playback of the controlled bakery race, including its measured DNF results](docs/finish-line-demo.gif)
 
 This silent GIF captures the actual app playing a recorded controlled fixture. Open the app for spoken announcements and captions.
+
+[Watch the 2:53 narrated demo](docs/finish-line-demo.mp4), with burned-in captions, [separate subtitles](docs/finish-line-demo.srt) and [transcript](docs/DEMO-NARRATION.md). Narration uses the Mac’s offline computer voice. Footage is the actual local app; no human participant or hosted deployment is represented.
 
 ## Run locally
 
@@ -70,7 +74,7 @@ pnpm build
 pnpm check:a11y    # with a local server running
 ```
 
-Ten HTML fixtures isolate native buttons, clickable divs, empty names, label mismatches, traps, occlusion, reflow, slow rendering, missing key handlers and duplicated labels. All six lanes compare observations against JSON sidecars. The actual generated 60-cell report is [docs/matrix.json](docs/matrix.json), exposed at `/api/matrix` and rendered as a table at `/method`. CI reruns it and preserves the artifact.
+Ten HTML fixtures isolate native buttons, clickable divs, empty names, label mismatches, traps, occlusion, reflow, slow rendering, missing key handlers and duplicated labels. All six lanes compare observations against JSON sidecars. The actual generated 60-cell report is [docs/matrix.json](docs/matrix.json), exposed at `/api/matrix` and rendered as a table at `/method`. CI reruns it and includes the report in the run summary.
 
 The official Playwright container also builds and passes **60/60** checks on Linux ARM64. Its real health response confirms Chromium launches: [container report](docs/container-check.json), [Linux matrix](docs/matrix-linux.json). This local verification does not establish Deployxa hosting or container public-network access.
 
@@ -93,7 +97,7 @@ See [A11Y](docs/A11Y.md) for actual accessibility checks and [manual agreement](
 
 - `POST /api/races` — `{url, journey?}`; returns an ID, caching identical inputs for ten minutes.
 - `GET /api/races/:id`, `GET /api/races/:id/events` — snapshot and SSE progress.
-- `POST /api/journey/scan` — screenshot + numbered controls; up to three picker selections.
+- `POST /api/journey/scan` — `{url, journey?: priorSteps, authorized?: true}`; screenshot + numbered controls after replaying at most two prior actions. Replay requires authorization; the complete journey is capped at three actions.
 - `GET /api/frames/:id`, `GET /api/benchmark`, `GET /api/matrix`.
 - `GET /health` — actual Chromium, database and MCP checks, recording provenance, queue state. Unconfigured services are false, not green.
 - `GET /health/engine` — a real example.com Chromium screenshot.
@@ -105,19 +109,19 @@ Example journey:
 {"url":"https://example.com","journey":[{"label":"Learn more","target":{"css":"a"},"expect":{"urlIncludes":"iana.org"}}]}
 ```
 
-Explicit `urlIncludes` or `selectorAppears` expectations are stronger than mutation-based activation heuristics. The picker sees only controls visible on the initial page; supply explicit API steps for controls revealed later.
+Explicit `urlIncludes` or `selectorAppears` expectations are stronger than mutation-based activation heuristics. The picker can preview selected actions in a fresh isolated browser to reveal later controls, including Checkout inside a cart drawer. Edit previous step and Reset journey replay the shorter prefix. Final races still start at the original URL in six fresh contexts. `pnpm check:picker` verifies selection, preview, edit, reset and submission at 1440px, 390px and 320px using the controlled fixture; see [the actual report](docs/picker-check.json).
 
 ## Deployxa integration
 
 Source checked: [Deployxa MCP documentation](https://deployxa.com/docs/mcp-server). Actual CLI checked: **v1.0.8**. The discovery document in the brief returned 404. The app uses the documented `https://mcp.deployxa.com/mcp` endpoint and authenticated `tools/list`, including pagination. [Phase 0 evidence](docs/PHASE0.md).
 
-Configure `DEPLOYXA_API_KEY` server-side with read-only scope. Authenticated discovery returned **66 tools** on 19 October; actual schemas are in `docs/deployxa-tools.json`. The account exposes `deployxa_get_deployment` and `deployxa_get_readiness`, rather than the brief’s status/score names. The client resolves those compatibility names only when an actual tool is discovered, maps its input schema and rejects non-read-only tools on the public connection.
+Configure `DEPLOYXA_API_KEY` server-side with read-only scope. Authenticated discovery returned **66 tools** on 19 October; actual schemas are in `docs/deployxa-tools.json`. The account exposes `deployxa_get_deployment` and `deployxa_get_readiness`, rather than the brief’s status/score names. The client resolves those compatibility names only when an actual tool is discovered and maps its input schema. A fixed allowlist permits audited metadata reads only: remote read-only hints cannot authorize AI requests or any writes. [Zero-spend safeguards](docs/ZERO-SPEND.md).
 
 `pnpm check:deployxa` performs only read operations and saves a sanitized account report to `docs/deployxa-check.json`. The verified account is Free, has no projects, reports $0 usage and has auto-top-up disabled. However, it reports a **$50 usage ceiling**, not an enforced $0 cap. No cloud resources were created because the user requires zero spend. The repository provider is not connected. Managed databases and preview deployments are excluded from the free plan. Verify a hard zero-spend limit and free deployment terms before provisioning; do not upgrade, add paid resources or enable top-up. [Current pricing](https://deployxa.com/pricing).
 
 Deploy history lists reported deployments and race links. Race this deploy waits up to 120 seconds for a healthy URL, uses the previous saved journey or an explicitly supplied one, then queues a race. The gate compares against the previous completed race for the same project; only Finish → DNF is a regression. Unknown requires review. Log streaming and automatic attachment of runtime log excerpts have not been implemented.
 
-Rollback is administrator-only: SANDBOX_ADMIN_TOKEN plus a separate DEPLOYXA_SANDBOX_KEY, project ID/name, typed confirmation and deployment-ownership verification. There is no public rollback UI. It has not been exercised without a sandbox account.
+Rollback is disabled by the zero-spend policy. The endpoint always returns 403 before connecting to a sandbox, even if administrator credentials are supplied. The older bounded sandbox checks remain in source behind that restriction; there is no runtime switch to authorize writes. `pnpm check:zero-spend` verifies the actual server response and policy flags.
 
 A CI integration can run after a real Deployxa deploy. Set FINISH_LINE_ORIGIN, FINISH_LINE_JOURNEY (JSON) and DEPLOYXA_PROJECT_ID as environment variables:
 
@@ -127,10 +131,10 @@ A CI integration can run after a real Deployxa deploy. Set FINISH_LINE_ORIGIN, F
     FINISH_LINE_ORIGIN: ${{ vars.FINISH_LINE_ORIGIN }}
     FINISH_LINE_JOURNEY: ${{ vars.FINISH_LINE_JOURNEY }}
     DEPLOYXA_PROJECT_ID: ${{ vars.DEPLOYXA_PROJECT_ID }}
-  run: deployxa deploy --json | node scripts/race-on-deploy.mjs
+  run: node scripts/race-on-deploy.mjs < verified-existing-deployment.json
 ```
 
-Do not claim hosting or promotion enforcement until this has been run with a real account. The script exits nonzero on regression or incomplete measurement; the UI banner alone is advisory.
+The JSON must describe an existing deployment; this example does not deploy or provision anything. Do not claim hosting or promotion enforcement until the hook has been exercised with a real deployment. The script exits nonzero on regression or incomplete measurement; the UI banner alone is advisory.
 
 ## Benchmark recording
 

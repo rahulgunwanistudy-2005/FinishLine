@@ -1,0 +1,16 @@
+{
+  "checkedAt": "2026-10-19T15:50:22.642Z",
+  "origin": "http://127.0.0.1:3000",
+  "applicationPolicy": {
+    "cashSpendingAllowed": false,
+    "cloudMutationsAllowed": false,
+    "aiRequestsAllowed": false
+  },
+  "rollback": {
+    "status": 403,
+    "message": "Rollback is disabled by the zero-spend policy. No cloud changes are allowed."
+  },
+  "unauthorizedPreviewStatus": 400,
+  "cloudWritesPerformed": false,
+  "note": "Verifies application safeguards only. Does not alter or certify the provider's billing settings."
+}

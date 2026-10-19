@@ -11,3 +11,4 @@ The full user brief is in docs/BUILD-BRIEF.md. Its honesty rules take priority o
 - Follow docs/DESIGN.md. The track is the main experience, with captions, mute, visible focus, reduced motion and semantic result tables.
 - Before shipping logic changes run typecheck, lint and relevant tests. Engine changes require the fixture matrix; UI changes require browser screenshots and accessibility checks.
 - Deployxa actions need actual discovered tool schemas. Read docs/STATUS.md for pending credentials, real benchmark inputs and manual checks.
+- The user authorizes $0 cash spending. Keep the fixed metadata allowlist and deny all cloud writes, rollback and AI requests. Do not run provisioning/deployment/top-up commands or paid services. Read docs/ZERO-SPEND.md; a Free plan or billing alert is not proof of a hard $0 cap.

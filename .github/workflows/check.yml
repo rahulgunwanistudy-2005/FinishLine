@@ -1,8 +1,18 @@
 name: Verify browser evidence
-on: [push, pull_request]
+on:
+  push:
+    paths-ignore: ["docs/**", "README.md", "SUBMISSION.md", "AGENTS.md"]
+  pull_request:
+    paths-ignore: ["docs/**", "README.md", "SUBMISSION.md", "AGENTS.md"]
+  workflow_dispatch:
+permissions:
+  contents: read
 jobs:
   verify:
+    # Standard runners are free on public repos. Do not schedule this on private repos.
+    if: ${{ github.event.repository.private == false }}
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
@@ -11,13 +21,16 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 24
-          cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm exec playwright install --with-deps chromium
       - run: pnpm typecheck && pnpm lint && pnpm test && pnpm build
       - run: pnpm test:matrix
-      - uses: actions/upload-artifact@v4
+      - name: Publish matrix in the run summary
         if: always()
-        with:
-          name: correctness-matrix
-          path: docs/matrix.json
+        run: |
+          if [ -f docs/matrix.json ]; then
+            echo '### Browser correctness matrix' >> "$GITHUB_STEP_SUMMARY"
+            echo '```json' >> "$GITHUB_STEP_SUMMARY"
+            cat docs/matrix.json >> "$GITHUB_STEP_SUMMARY"
+            echo '```' >> "$GITHUB_STEP_SUMMARY"
+          fi

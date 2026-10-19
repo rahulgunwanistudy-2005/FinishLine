@@ -9,6 +9,7 @@ import { z } from "zod";
 import {
   ENGINE_VERSION,
   RaceInputSchema,
+  ScanInputSchema,
   regressions,
   type Race,
 } from "../../../packages/core/index.js";
@@ -24,7 +25,7 @@ import {
   storageMode,
 } from "./store.js";
 import { createRace, bus, queueState, setRaceLogger } from "./runner.js";
-import { deployxa, records, Deployxa } from "./deployxa.js";
+import { deployxa, records, Deployxa, spendingPolicy } from "./deployxa.js";
 import { registerMcp } from "./mcp.js";
 const port = Number(process.env.PORT ?? 3000);
 const app = Fastify({
@@ -160,6 +161,7 @@ async function health() {
       toolCount: deployxa.tools.length,
       reason: deployxa.error || undefined,
       capabilities: deployxa.tools.map((t) => t.name),
+      spendingPolicy,
     },
     benchmark: {
       ok: recordings.length > 0,
@@ -271,9 +273,9 @@ app.post(
   "/api/journey/scan",
   { config: { rateLimit: { max: 5, timeWindow: 600000 } } },
   async (req) => {
-    const { url } = RaceInputSchema.pick({ url: true }).parse(req.body);
+    const { url, journey } = ScanInputSchema.parse(req.body);
     await assertPublicUrl(url);
-    return scan(url);
+    return scan(url, journey);
   },
 );
 app.get("/api/deployxa/projects", async () => ({
@@ -340,7 +342,7 @@ app.post(
       )
         break;
       if (["failed", "error", "cancelled"].includes(status)) {
-        const diagnosis = deployxa.has("deployxa_diagnose_deployment")
+        const diagnosis = deployxa.canRead("deployxa_diagnose_deployment")
           ? await deployxa.call("deployxa_diagnose_deployment", {
               deploymentId: id,
               projectId: input.projectId,
@@ -398,6 +400,13 @@ app.get("/api/deployxa/gate/:raceId", async (req) => {
   };
 });
 app.post("/api/deployxa/sandbox/rollback", async (req) => {
+  if (!spendingPolicy.cloudMutationsAllowed)
+    throw Object.assign(
+      new Error(
+        "Rollback is disabled by the zero-spend policy. No cloud changes are allowed.",
+      ),
+      { statusCode: 403 },
+    );
   const token = process.env.SANDBOX_ADMIN_TOKEN;
   const supplied = req.headers.authorization?.replace(/^Bearer /, "") ?? "";
   if (
@@ -418,7 +427,7 @@ app.post("/api/deployxa/sandbox/rollback", async (req) => {
     confirm !== process.env.DEPLOYXA_SANDBOX_PROJECT_NAME
   )
     throw new Error("Type the configured sandbox project name to confirm.");
-  const sandbox = new Deployxa(true);
+  const sandbox = new Deployxa();
   if (
     !process.env.DEPLOYXA_SANDBOX_KEY ||
     !(await sandbox.connect(process.env.DEPLOYXA_SANDBOX_KEY, false))

@@ -6,11 +6,30 @@ const toolAliases: Record<string, string[]> = {
   deployxa_get_deployment_status: ["deployxa_get_deployment"],
   deployxa_get_readiness_score: ["deployxa_get_readiness"],
 };
+// Explicitly audited metadata reads only. A remote readOnlyHint is insufficient:
+// AI tools can consume credits even when they do not change a deployment.
+const allowedReadTools = new Set([
+  "deployxa_list_projects",
+  "deployxa_get_project",
+  "deployxa_list_deployments",
+  "deployxa_get_deployment_status",
+  "deployxa_get_deployment",
+  "deployxa_get_readiness_score",
+  "deployxa_get_readiness",
+  "deployxa_get_deployment_logs",
+  "deployxa_get_organization_quota",
+  "deployxa_get_organization_settings",
+  "deployxa_get_repository_connection",
+]);
+export const spendingPolicy = {
+  cashSpendingAllowed: false,
+  cloudMutationsAllowed: false,
+  aiRequestsAllowed: false,
+};
 export class Deployxa {
   client?: Client;
   tools: Tool[] = [];
   error = "DEPLOYXA_API_KEY is not configured.";
-  constructor(private readonly allowMutations = false) {}
   async connect(key = process.env.DEPLOYXA_API_KEY, recordDiscovery = true) {
     if (!key) return false;
     const client = new Client({ name: "finish-line", version: "0.1.0" });
@@ -69,6 +88,14 @@ export class Deployxa {
   has(name: string) {
     return !!this.tool(name);
   }
+  canRead(name: string) {
+    const tool = this.tool(name);
+    return (
+      !!tool &&
+      allowedReadTools.has(tool.name) &&
+      tool.annotations?.readOnlyHint === true
+    );
+  }
   private tool(name: string) {
     return [name, ...(toolAliases[name] ?? [])]
       .map((candidate) => this.tools.find((t) => t.name === candidate))
@@ -78,9 +105,9 @@ export class Deployxa {
     if (!this.client || !this.has(name))
       throw new Error(`Deployxa capability unavailable: ${name}`);
     const tool = this.tool(name)!;
-    if (!this.allowMutations && tool.annotations?.readOnlyHint !== true)
+    if (!this.canRead(name))
       throw new Error(
-        "The public Deployxa connection only permits read-only tools.",
+        "Zero-spend policy permits only audited read-only metadata tools. Purchases, deployments, rollback and AI requests are blocked.",
       );
     const properties = tool.inputSchema.properties ?? {};
     const args: Record<string, unknown> = {};

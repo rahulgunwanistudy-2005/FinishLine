@@ -1,7 +1,7 @@
 {
-  "checkedAt": "2026-10-19T07:26:55.933Z",
+  "checkedAt": "2026-10-19T16:07:42.561Z",
   "image": "finish-line:local",
-  "imageId": "sha256:20f73b7d18390dbb25a53a726a64da459a6a7d22e44e003a93cd37f6643aedb2",
+  "imageId": "sha256:9f63e63ee2149f2935415291bc84ec5bdd822838bf57fdd1b55f49e387b38810",
   "baseImage": "mcr.microsoft.com/playwright:v1.56.1-noble",
   "runtime": {
     "platform": "linux",
@@ -30,7 +30,12 @@
         "ok": false,
         "toolCount": 0,
         "reason": "DEPLOYXA_API_KEY is not configured.",
-        "capabilities": []
+        "capabilities": [],
+        "spendingPolicy": {
+          "cashSpendingAllowed": false,
+          "cloudMutationsAllowed": false,
+          "aiRequestsAllowed": false
+        }
       },
       "benchmark": {
         "ok": true,
@@ -52,5 +57,10 @@
   "limits": [
     "Local Docker verification only; Deployxa hosting and managed Postgres remain unverified.",
     "The fixture matrix uses trusted local pages; public outbound navigation was verified separately on the host, not in this container."
-  ]
+  ],
+  "unitTests": {
+    "total": 29,
+    "passed": 29
+  },
+  "rollbackBlockedStatus": 403
 }

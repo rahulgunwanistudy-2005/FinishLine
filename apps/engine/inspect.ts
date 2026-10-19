@@ -182,12 +182,33 @@ export async function hasEffect(
     return false;
   }
 }
-export async function scan(url: string) {
+export async function scan(
+  url: string,
+  journey: JourneyStep[] = [],
+  trustedUrl?: string,
+) {
+  if (journey.length > 2)
+    throw new Error("Preview supports at most two prior actions.");
   const { guardedContext, navigate } = await import("./browser.js");
-  const context = await guardedContext();
+  const context = await guardedContext({ trustedUrl });
   try {
     const page = await context.newPage();
+    page.setDefaultTimeout(10000);
+    watchNavigation(page);
     await navigate(page, url);
+    for (const [index, step] of journey.entries()) {
+      const target = await resolveTarget(page, step);
+      const before = await effectSnapshot(page);
+      await target.click();
+      if (!(await hasEffect(page, before, step)))
+        throw new Error(
+          `Preview step ${index + 1} (${step.label}) had no observable effect. Choose another action.`,
+        );
+      await page.waitForLoadState("load", { timeout: 15000 });
+      await page
+        .waitForLoadState("networkidle", { timeout: 1500 })
+        .catch(() => {});
+    }
     const cdp = await context.newCDPSession(page);
     await cdp.send("Accessibility.enable");
     const elements = [];
@@ -222,6 +243,7 @@ export async function scan(url: string) {
       screenshot: `data:image/jpeg;base64,${(await page.screenshot({ type: "jpeg", quality: 65 })).toString("base64")}`,
       width: 1280,
       height: 800,
+      completedSteps: journey.length,
       elements,
     };
   } finally {

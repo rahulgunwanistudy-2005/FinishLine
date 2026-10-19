@@ -1,6 +1,7 @@
 import { describe, it, expect } from "vitest";
 import {
   RaceInputSchema,
+  ScanInputSchema,
   regressions,
   speechSeconds,
   type LaneResult,
@@ -45,6 +46,25 @@ describe("URL boundaries", () => {
       }).success,
     ).toBe(false);
   });
+});
+it("requires authorization and caps replayed preview actions", () => {
+  const url = "https://example.com";
+  const step = { label: "Go", target: { css: "button" } };
+  expect(ScanInputSchema.safeParse({ url }).success).toBe(true);
+  expect(ScanInputSchema.safeParse({ url, journey: [step] }).success).toBe(
+    false,
+  );
+  expect(
+    ScanInputSchema.safeParse({ url, journey: [step, step], authorized: true })
+      .success,
+  ).toBe(true);
+  expect(
+    ScanInputSchema.safeParse({
+      url,
+      journey: [step, step, step],
+      authorized: true,
+    }).success,
+  ).toBe(false);
 });
 describe("results", () => {
   it("only gates a finished to DNF regression, never unknown", () => {

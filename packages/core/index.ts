@@ -29,6 +29,16 @@ export const RaceInputSchema = z.object({
     .refine((v) => /^https?:\/\//i.test(v), "Use an http or https URL"),
   journey: z.array(JourneyStepSchema).min(1).max(3).optional(),
 });
+export const ScanInputSchema = z
+  .object({
+    url: RaceInputSchema.shape.url,
+    journey: z.array(JourneyStepSchema).max(2).default([]),
+    authorized: z.boolean().default(false),
+  })
+  .refine((input) => !input.journey.length || input.authorized, {
+    message: "Confirm you are authorized before previewing actions.",
+    path: ["authorized"],
+  });
 export type Box = { x: number; y: number; w: number; h: number };
 export type LaneEvent = {
   i: number;
