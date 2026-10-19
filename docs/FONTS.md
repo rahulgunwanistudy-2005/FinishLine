@@ -1,7 +1,12 @@
-# Font assets
+# Typography
 
-Barlow and Barlow Condensed by Jeremy Tribby, distributed through Google Fonts under the SIL Open Font License. Original license files are included in `apps/web/public/fonts/`.
+Finish Line uses the platform system font stack:
 
-CSS source: https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600;700&display=swap
+```
+-apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui,
+"Helvetica Neue", Helvetica, Arial, sans-serif
+```
 
-The eight Latin WOFF2 faces were fetched from Google Fonts and are served locally to remove a third-party render-blocking round trip. `scripts/vendor-fonts.mjs` reproduces the download. Other scripts and benchmark data use normal system fallbacks for characters outside the supplied subset. Regular body and bold condensed display faces are preloaded.
+On Apple devices this renders San Francisco with its built-in optical sizing and tracking tables; other platforms fall back to their own UI face (Segoe UI, Roboto). No web fonts are downloaded, so there is no render-blocking font request and no third-party font licence to ship.
+
+The earlier Barlow / Barlow Condensed WOFF2 files (SIL Open Font License) were removed in the Apple-style redesign. They remain in git history.

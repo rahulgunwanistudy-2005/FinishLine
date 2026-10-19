@@ -59,7 +59,7 @@ Finish Line has keyboard-operable controls, visible focus, reduced-motion final 
 
 ## Built with
 
-TypeScript, React, Vite, Fastify, Playwright/Chromium, CDP accessibility APIs, PostgreSQL/Drizzle (optional until connected), Zod, MCP TypeScript SDK, Web Speech, Vitest and axe-core. Barlow and Barlow Condensed typography. Deployxa integration pending account verification.
+TypeScript, React, Vite, Fastify, Playwright/Chromium, CDP accessibility APIs, PostgreSQL/Drizzle (optional until connected), Zod, MCP TypeScript SDK, Web Speech, Vitest and axe-core. System (San Francisco) typography with light and dark appearance. Deployxa integration pending account verification.
 
 ## Video script — 2 minutes 50 seconds
 
