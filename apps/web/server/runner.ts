@@ -7,13 +7,15 @@ import {
   type Race,
   type JourneyStep,
 } from "../../../packages/core/index.js";
-import { runLane } from "../../engine/lanes.js";
+import { laneScheduler } from "../../engine/schedule.js";
 import { scan } from "../../engine/inspect.js";
 import { assertPublicUrl } from "../../engine/security.js";
 import { memory, saveFrame, saveRace } from "./store.js";
 export const bus = new EventEmitter();
 bus.setMaxListeners(200);
 const limit = pLimit(2);
+// Validates ENGINE_LANE_CONCURRENCY at startup instead of on the first race.
+const lanesScheduler = laneScheduler();
 const waiting: string[] = [];
 let logRace: (
   data: Record<string, unknown>,
@@ -23,7 +25,11 @@ export function setRaceLogger(logger: typeof logRace) {
   logRace = logger;
 }
 export function queueState() {
-  return { active: limit.activeCount, waiting: limit.pendingCount };
+  return {
+    active: limit.activeCount,
+    waiting: limit.pendingCount,
+    lanes: lanesScheduler.state(),
+  };
 }
 type RaceOptions = {
   source?: Race["source"];
@@ -120,9 +126,10 @@ async function createRaceImpl(
     bus.emit(race.id, "snapshot", race);
     try {
       // Each lane owns an isolated context. A mouse failure invalidates the journey after every context is safely closed.
+      // ENGINE_LANE_CONCURRENCY may hold lanes for a slot; each lane's budget starts when it runs.
       await Promise.all(
         lanes.map(async (lane) => {
-          const result = await runLane(
+          const result = await lanesScheduler(
             lane,
             race.url,
             race.journey,

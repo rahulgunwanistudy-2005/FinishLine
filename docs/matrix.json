@@ -1,6 +1,7 @@
 {
-  "checkedAt": "2026-10-19T16:23:27.374Z",
+  "checkedAt": "2026-10-19T17:33:08.911Z",
   "engineVersion": "0.4.0",
+  "laneConcurrency": "unlimited",
   "total": 60,
   "passed": 60,
   "rows": [
@@ -104,7 +105,7 @@
             "reasonCode": null,
             "cost": {
               "unit": "seconds",
-              "value": 1.04
+              "value": 0.94
             }
           },
           "detail": "Journey completed"
@@ -211,7 +212,7 @@
             "reasonCode": null,
             "cost": {
               "unit": "seconds",
-              "value": 1.17
+              "value": 0.94
             }
           },
           "detail": "Journey completed"
@@ -318,7 +319,7 @@
             "reasonCode": null,
             "cost": {
               "unit": "seconds",
-              "value": 0.95
+              "value": 0.94
             }
           },
           "detail": "Journey completed"
@@ -425,7 +426,7 @@
             "reasonCode": null,
             "cost": {
               "unit": "seconds",
-              "value": 0.99
+              "value": 0.98
             }
           },
           "detail": "Journey completed"
@@ -532,7 +533,7 @@
             "reasonCode": null,
             "cost": {
               "unit": "seconds",
-              "value": 0.99
+              "value": 0.96
             }
           },
           "detail": "Journey completed"
@@ -639,7 +640,7 @@
             "reasonCode": null,
             "cost": {
               "unit": "seconds",
-              "value": 0.97
+              "value": 0.93
             }
           },
           "detail": "Journey completed"
@@ -746,7 +747,7 @@
             "reasonCode": null,
             "cost": {
               "unit": "seconds",
-              "value": 0.98
+              "value": 0.95
             }
           },
           "detail": "Journey completed"
@@ -960,7 +961,7 @@
             "reasonCode": null,
             "cost": {
               "unit": "seconds",
-              "value": 2.76
+              "value": 2.8
             }
           },
           "detail": "Journey completed"
@@ -1067,7 +1068,7 @@
             "reasonCode": null,
             "cost": {
               "unit": "seconds",
-              "value": 0.97
+              "value": 0.95
             }
           },
           "detail": "Journey completed"

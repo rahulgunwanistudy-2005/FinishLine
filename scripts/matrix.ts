@@ -1,6 +1,6 @@
 import { createServer } from "node:http";
 import { readFile, readdir, writeFile } from "node:fs/promises";
-import { runLane } from "../apps/engine/lanes.js";
+import { laneConcurrency, scheduleLane } from "../apps/engine/schedule.js";
 import { closeBrowser } from "../apps/engine/browser.js";
 import {
   lanes,
@@ -40,7 +40,7 @@ try {
     const name = file.replace(".json", "");
     const url = `http://127.0.0.1:${address.port}/${name}.html`;
     const results = await Promise.all(
-      lanes.map((lane) => runLane(lane, url, fixture.journey, {}, url)),
+      lanes.map((lane) => scheduleLane(lane, url, fixture.journey, {}, url)),
     );
     const cells = results.map((result: LaneResult) => {
       const expected = fixture.expected[result.lane];
@@ -71,6 +71,7 @@ try {
       {
         checkedAt: new Date().toISOString(),
         engineVersion: ENGINE_VERSION,
+        laneConcurrency: laneConcurrency() ?? "unlimited",
         total: rows.length * lanes.length,
         passed: rows.length * lanes.length - failures,
         rows,

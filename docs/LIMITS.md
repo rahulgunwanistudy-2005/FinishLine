@@ -6,7 +6,7 @@
 - Scans inspect the first 150 candidate controls. Voice pages with more than 300 candidates produce unknown when their name-resolution budget is exceeded.
 - Names that look generic or like image files are flagged using a deterministic heuristic; misses and false positives are possible.
 - A mouse failure invalidates the journey. Underlying diagnostic observations are still retained; they do not justify a valid accessibility comparison.
-- 45 seconds per lane, six parallel contexts per race, global concurrency two, queue capped at 20. Timeouts and page errors are unknown. The effective browser budget is bounded by the lane cap; queue wait is separate.
+- 45 seconds per lane, six parallel contexts per race (or a process-wide cap set by `ENGINE_LANE_CONCURRENCY`, see docs/HOSTING.md), global concurrency two, queue capped at 20. Timeouts and page errors are unknown. The effective browser budget is bounded by the lane cap; queue wait is separate.
 - No production retention policy or authentication for public race evidence. Do not run URLs containing secrets or private customer data. No sessions or passwords are accepted.
 - URL length and journey size are validated. Outbound HTTP(S) resolves DNS, rejects non-public ranges, and pins sockets to checked addresses through a local authenticated proxy. Each request and redirect is checked; WebSockets, downloads, popups and service workers are blocked. Production egress isolation remains defense in depth.
 - Postgres schema and adapter passed actual local Postgres 14 upsert and JPEG round-trip checks. Managed hosting remains unverified. Without DATABASE_URL, durable local JSON/JPEG files are used. Local storage requires a persistent volume in hosted deployments.

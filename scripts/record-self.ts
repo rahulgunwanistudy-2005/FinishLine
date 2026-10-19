@@ -2,7 +2,7 @@ import "././../apps/web/server/env.js";
 import { randomUUID } from "node:crypto";
 import { mkdir, writeFile } from "node:fs/promises";
 import { lanes, ENGINE_VERSION, type Race } from "../packages/core/index.js";
-import { runLane } from "../apps/engine/lanes.js";
+import { scheduleLane } from "../apps/engine/schedule.js";
 import { closeBrowser } from "../apps/engine/browser.js";
 const url = new URL("/", process.env.PUBLIC_ORIGIN ?? "http://127.0.0.1:3000")
   .href;
@@ -28,7 +28,7 @@ await mkdir("benchmark/frames", { recursive: true });
 try {
   race.results = await Promise.all(
     lanes.map((lane) =>
-      runLane(
+      scheduleLane(
         lane,
         url,
         race.journey,
