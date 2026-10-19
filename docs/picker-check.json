@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-19T16:50:35.893Z",
+  "checkedAt": "2026-10-19T17:14:24.345Z",
   "source": "Controlled bakery fixture through real Chromium; API transport intercepted only to preserve production SSRF boundaries. Race submission captured, not executed.",
   "results": [
     {
